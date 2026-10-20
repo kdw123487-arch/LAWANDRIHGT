@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>법과권리 개념 정리</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 법전(조문집) 구조 — 좌측 목차 + 본문. 각 장은 '결론 박스(두괄식)' → 세부 조항 순서. 출제 표시는 인주색 도장. */
+:root{
+  --bg:#f5f6f8; --paper:#ffffff; --ink:#18212e; --muted:#5a6475; --line:#dde1e8;
+  --accent:#1d5a86; --accent-soft:#e6eef5; --stamp:#c0362c; --stamp-soft:#fbeceb;
+  --note:#8a6a12; --note-soft:#fbf4e1;
+  --f-display:"Nanum Myeongjo","Noto Serif KR",serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --paper:#1a1f28; --ink:#e4e8ef; --muted:#9aa3b2; --line:#2c3340;
+  --accent:#7db3dc; --accent-soft:#1d2a38; --stamp:#f0776c; --stamp-soft:#3a1f1d;
+  --note:#e2c06a; --note-soft:#332b17; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --paper:#1a1f28; --ink:#e4e8ef; --muted:#9aa3b2; --line:#2c3340;
+  --accent:#7db3dc; --accent-soft:#1d2a38; --stamp:#f0776c; --stamp-soft:#3a1f1d;
+  --note:#e2c06a; --note-soft:#332b17; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px;padding-block:40px 80px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;font-size:13.5px;max-height:calc(100vh - 40px);overflow:auto}
+nav.toc .grp{font-size:11.5px;letter-spacing:.08em;color:var(--muted);margin:18px 0 6px;font-weight:600}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:3px 0 3px 10px;border-left:2px solid var(--line)}
+nav.toc a:hover,nav.toc a:focus-visible{border-left-color:var(--accent);color:var(--accent);outline:none}
+main{min-width:0}
+header.top h1{font-family:var(--f-display);font-size:clamp(28px,4.5vw,40px);line-height:1.25;margin:0 0 6px;text-wrap:balance}
+header.top .sub{color:var(--muted);margin:0}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:20px 0 8px}
+button.toggle{font:inherit;font-size:14px;border:1.5px solid var(--stamp);color:var(--stamp);background:transparent;border-radius:6px;padding:6px 12px;cursor:pointer;font-weight:600}
+button.toggle[aria-pressed="true"]{background:var(--stamp);color:var(--paper)}
+button.toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.legend{font-size:13px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+.x{display:inline-block;font-style:normal;font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--stamp);border:1.5px solid var(--stamp);border-radius:4px;padding:0 5px;line-height:1.55;margin-right:6px;vertical-align:1px;transform:rotate(-2deg)}
+.c{display:inline-block;font-size:11.5px;font-weight:600;color:var(--note);background:var(--note-soft);border-radius:4px;padding:0 6px;line-height:1.6;margin-left:4px;vertical-align:1px}
+.src{font-size:12px;color:var(--muted);font-weight:500}
+
+.flow{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:24px 0}
+.flow h2{font-family:var(--f-display);font-size:21px;margin:0 0 10px}
+.flow ol{margin:0;padding-left:20px}
+.flow li{margin:4px 0}
+
+.part{margin-top:56px}
+.part-h{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:8px}
+.part-h .no{font-family:var(--f-display);font-size:15px;color:var(--accent);font-weight:800;white-space:nowrap}
+.part-h h2{font-family:var(--f-display);font-size:clamp(22px,3.4vw,28px);margin:0;text-wrap:balance}
+.part > p.why{color:var(--muted);margin:6px 0 0}
+
+section.ch{margin-top:34px;scroll-margin-top:20px}
+section.ch > h3{font-size:19px;font-weight:700;margin:0 0 10px;text-wrap:balance}
+section.ch > h3 .art{color:var(--accent);font-weight:700;margin-right:8px;font-variant-numeric:tabular-nums}
+.lead{background:var(--accent-soft);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 8px 8px 0;margin-bottom:14px}
+.lead b.k{display:block;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:2px}
+h4{font-size:15.5px;margin:18px 0 6px;font-weight:700}
+ul{margin:0;padding-left:20px}
+ul ul{margin-top:2px}
+li{margin:3px 0}
+li.ex{background:var(--stamp-soft);border-radius:4px;padding:1px 6px;margin-left:-6px;list-style-position:inside;padding-left:6px}
+li.ex::marker{color:var(--stamp)}
+.tbl{overflow-x:auto;margin:8px 0 4px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;background:var(--paper)}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.warn{background:var(--note-soft);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:14.5px}
+.warn b{color:var(--note)}
+.calc{font-variant-numeric:tabular-nums;background:var(--paper);border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin:8px 0}
+
+/* 출제만 보기 */
+body.only main section.ch li:not(.ex):not(:has(li.ex)){opacity:.28}
+body.only main .lead{opacity:.5}
+
+@media (max-width:820px){
+  .wrap{grid-template-columns:1fr;gap:0;padding-block:24px 60px}
+  nav.toc{position:static;max-height:none;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 16px 14px;margin-bottom:20px}
+  nav.toc .links{display:flex;flex-wrap:wrap;gap:4px 12px}
+  nav.toc a{border-left:none;padding:2px 0}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+<p style="max-width:860px;margin:16px auto 0;font-size:13px"><a href="./" style="color:var(--accent)">← 처음으로</a></p>
+
+
+<div class="wrap">
+<nav class="toc" aria-label="목차">
+  <div class="grp">시작</div>
+  <div class="links"><a href="#flow">전체 흐름</a><a href="#exam">시험 안내</a></div>
+  <div class="grp">제1편 가족과 재산</div>
+  <div class="links"><a href="#c1">1 친족</a><a href="#c2">2 상속 순위</a><a href="#c3">3 유언</a><a href="#c4">4 유류분·결격·기여분</a><a href="#c5">5 승인·포기</a><a href="#c6">6 혼인·부부재산</a><a href="#c7">7 협의이혼</a><a href="#c8">8 재판상 이혼</a><a href="#c9">9 이혼 후 정리</a></div>
+  <div class="grp">제2편 범죄와 절차</div>
+  <div class="links"><a href="#c10">10 주요 범죄</a><a href="#c11">11 수사기관</a><a href="#c12">12 수사 절차</a><a href="#c13">13 체포·구속</a><a href="#c14">14 송치·기소</a><a href="#c15">15 고소·합의</a><a href="#c16">16 피해 회복</a></div>
+  <div class="grp">제3편 형벌과 그 이후</div>
+  <div class="links"><a href="#c17">17 형벌 9종</a><a href="#c18">18 가석방·집행정지</a><a href="#c19">19 전과기록</a></div>
+  <div class="grp">제4편 종합</div>
+  <div class="links"><a href="#c20">20 교통사고</a><a href="#check">출제 체크리스트</a></div>
+</nav>
+
+<main>
+<header class="top">
+  <h1>법과권리 개념 정리</h1>
+  <p class="sub">한재경 교수 · 2026년 2학기 · 9/2 ~ 10/14 AI 노트 9개 종합</p>
+  <div class="bar">
+    <button class="toggle" id="onlyExam" aria-pressed="false">출제 표시만 강조</button>
+    <div class="legend"><span><i class="x">출제</i>강의에서 시험에 나온다고 한 내용</span><span><span class="c">글자수</span>단답 글자수까지 언급된 용어</span></div>
+  </div>
+</header>
+
+<section class="flow" id="flow">
+  <h2>한 줄 결론: 법은 '가족의 재산'과 '국가의 처벌' 두 축으로 내 권리를 정한다</h2>
+  <ol>
+    <li><b>누가 가족인가</b>(친족) → 그 가족이 <b>무엇을 물려받나</b>(상속·유언·유류분) → 가족을 <b>만들고 끝내는 법</b>(혼인·이혼).</li>
+    <li>범죄가 생기면 <b>어떤 행위가 범죄인가</b>(형법각론) → <b>누가 어떻게 수사하나</b>(용의자→피의자→피고인→수형자) → <b>피해자는 어떻게 보상받나</b>(합의·배상명령·공탁).</li>
+    <li>유죄가 나오면 <b>어떤 형벌</b>(9종)을 받고 → <b>언제 풀려나며</b>(가석방) → <b>기록은 얼마나 남나</b>(전과 조회기간).</li>
+    <li>마지막 <b>교통사고</b>는 형사(처벌)와 민사(보험·배상)가 동시에 작동하는 종합 사례다.</li>
+  </ol>
+</section>
+
+<section class="flow" id="exam">
+  <h2>시험 안내 <span class="src">0902 OT</span></h2>
+  <ul>
+    <li><b>형식</b>: A3 용지, 박스형 + 단답식.</li>
+    <li class="ex"><i class="x">출제</i><b>박스형</b>: 지문 5개 중 옳은 것 모두 고르기(1~3개), 박스당 2점, <b>부분점수 없음</b>. <b>단답식</b>: 단어·수치를 직접 기입 → 용어와 숫자를 정확히 외울 것.</li>
+    <li><b>성적</b>: 출석 10 / 중간 40 / 기말 40 / 과제 10. 상대평가(A 최대 40%, B 80등까지). 동점은 양측 동의 시 가위바위보, 미동의 시 둘 다 하위 등급. +/0은 교수 재량.</li>
+    <li><b>출석</b>: 결석 1회 −1점, 지각 3회당 −1점(6번째부터 −2점). 인정 사유는 증빙 필수(예비군·민방위 통지문, 4촌 이내 장례식 현수막 앞 사진, 결혼식, 지하철 연착증명서·영상, 병원 진단서+처방전+영수증). 버스·택시 지연은 불인정.</li>
+    <li><b>과제(10점)</b>: ① 자필증서 방식 유언장(손글씨 → 사진 업로드, 14주차 12월 첫째 주까지) ② 형사합의서(피해자=본인, 가해자=교수, 필수 문구 포함, 노원경찰서 기재) ③ 내용증명 또는 소장 ④ 폭력예방교육 이수증(기말 전까지).</li>
+    <li><b>중간고사 마지막 범위</b>: 교통사고(10/14). 강의안은 종이 1만원(일광문화사), PDF 없음. 보충 인강 업로드 예정.</li>
+    <li><b>상담</b>: 교수님께 문자 먼저 보낸 뒤 통화(야간·새벽 불가). 교통사고·경찰 조사 등 긴급 시 현장에서 연락 가능, 졸업 후에도 상담 가능.</li>
+  </ul>
+</section>
+
+<!-- ============ 제1편 ============ -->
+<div class="part">
+  <div class="part-h"><span class="no">제1편</span><h2>가족과 재산 — 민법(친족·상속·혼인)</h2></div>
+  <p class="why">상속과 이혼은 모두 "누가 친족인가"에서 출발한다. 그래서 친족 → 상속 → 혼인 → 이혼 순서로 본다.</p>
+
+  <section class="ch" id="c1">
+    <h3><span class="art">1</span>친족의 범위와 소멸 <span class="src">0909</span></h3>
+    <div class="lead"><b class="k">핵심</b>친족은 핏줄(혈족)이나 결혼(인척)으로만 생긴다. 혈족 8촌·인척 4촌·배우자(0촌)까지가 친족이며, 자연혈족은 끊을 수 없지만 인척은 이혼으로 즉시 끝난다.</div>
+    <h4>친족의 3종류</h4>
+    <ul>
+      <li><b>혈족 8촌 이내</b>, <b>인척 4촌 이내</b>, <b>배우자 0촌</b>(배우자도 친족).</li>
+      <li>1990년대 이전엔 외가(모계)는 4촌까지만 친족 → 민법 개정 후 친가·외가 모두 8촌으로 동일.</li>
+    </ul>
+    <h4>혈족: 직계와 방계</h4>
+    <ul>
+      <li><b>직계혈족</b>: 직계존속(부모·조부모 등 위), 직계비속(자녀·손자녀 등 아래).</li>
+      <li><b>방계혈족</b>: 형제자매·사촌·백숙부처럼 옆으로 퍼지는 혈족. 가장 가까운 방계는 2촌(형제).</li>
+      <li>호칭: 백부/숙부 = 큰아빠/작은아빠(합쳐서 <b>백숙부</b>), 삼촌 = 미혼 백숙부. 종형제 = 사촌, 고종(고모 자녀)·이종(이모 자녀)·외종(외삼촌 자녀).</li>
+      <li class="ex"><i class="x">출제</i>시험 범위는 <b>1촌~5촌</b> 호칭과 촌수 계산.</li>
+      <li><b>홀수촌 형제는 없다</b>: 형제 관계는 항상 짝수촌.</li>
+    </ul>
+    <h4>인척의 유형</h4>
+    <ul>
+      <li>① 내 혈족의 배우자(큰엄마·외숙모·형수) ② 배우자의 혈족(시댁·처가) ③ 배우자의 혈족의 배우자(동서, 2촌 인척).</li>
+      <li>④ 혈족의 배우자의 혈족(<b>사돈</b>)은 개정으로 제외 → 현행법상 남. 촌수 계산 불필요, 결혼도 가능.</li>
+    </ul>
+    <h4>관계의 소멸</h4>
+    <ul>
+      <li>자연혈족(핏줄): 절대 끊을 수 없음. 법정혈족(양자·친양자): <b>파양</b>으로 끊을 수 있음.</li>
+      <li>입양 자녀는 법정혈족으로 상속권 있음. <b>인척은 상속 불가</b>.</li>
+      <li>인척 관계: <b>이혼 시 즉시 소멸</b>. 배우자 <b>사망 시 유지</b>되다가 <b>재혼하면 소멸</b>. 단 자녀와 사망한 배우자 쪽 혈족의 관계는 그대로(자녀의 외가는 유지).</li>
+    </ul>
+    <h4>가족관계 서류</h4>
+    <ul>
+      <li>2008년 호적제도 폐지 → <b>가족관계등록부·가족관계증명서</b>. 가족관계증명서에는 본인 기준 0촌(배우자)·1촌(부모·자녀)만 기재.</li>
+      <li><b>기본증명서</b>: 본인 사항만 기재, 취업 시 활용. <b>본적</b> 폐지 → <b>등록기준지</b>.</li>
+      <li>주민번호 뒷자리 첫 숫자: 1900년대생 남1/여2, 2000년대생 남3/여4.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c2">
+    <h3><span class="art">2</span>법정상속 순위와 계산 <span class="src">0914 · 0916</span></h3>
+    <div class="lead"><b class="k">핵심</b>유언이 없으면 법정상속. 1순위 직계비속+배우자 → 2순위 직계존속+배우자 → 3순위 형제자매 → 4순위 3~4촌 방계. 배우자는 법률혼만, 비율은 자녀 1 : 배우자 1.5.</div>
+    <ul>
+      <li>상속은 <b>유언상속</b>(유언대로)과 <b>법정상속</b>(법이 정한 순위) 두 가지. 사망자 약 80%가 유언 없이 사망, 상속 소송만 연 3만 건 이상.</li>
+    </ul>
+    <div class="tbl"><table>
+      <tr><th>순위</th><th>상속인</th><th>포인트</th></tr>
+      <tr><td class="num">1순위</td><td>직계비속(자녀 등) + 배우자</td><td>자녀 각 1, 배우자 1.5. 자녀가 먼저 사망하면 손자녀가 대습상속</td></tr>
+      <tr><td class="num">2순위</td><td>직계존속(부모 등) + 배우자</td><td>1순위가 없을 때. 양자는 양부모·친부모 모두 직계존속</td></tr>
+      <tr><td class="num">3순위</td><td>형제자매(2촌 방계)</td><td></td></tr>
+      <tr><td class="num">4순위</td><td>삼촌·사촌(3~4촌 방계)</td><td>삼촌이 우선, 사촌은 삼촌 사망 시 대습상속</td></tr>
+      <tr><td>없을 때</td><td>사실혼 배우자 → 특별연고자 → 국가</td><td>법원의 특별연고자 확인 절차가 국가 귀속보다 먼저</td></tr>
+    </table></div>
+    <ul>
+      <li><b>법률혼 배우자만</b> 순위에 들어감. 사실혼(동거) 배우자는 1~4순위가 모두 없을 때만 가능. 단 <b>유족급여</b>는 받을 수 있음.</li>
+      <li class="ex"><i class="x">출제</i><b>대습상속</b><span class="c">4글자</span>: 상속인이 피상속인보다 먼저 사망하면 그 직계비속이 대신 상속.</li>
+      <li class="ex"><i class="x">출제</i><b>특별연고자</b><span class="c">5글자</span>: 4순위까지 상속인도 유언도 없을 때 재산 일부를 청구할 수 있는 사람.</li>
+      <li class="ex"><i class="x">출제</i><b>전부소생자</b>: 전 배우자와의 사이에서 태어난 자녀. 재혼 상대의 전부소생자는 <b>인척</b>이라 법정상속 불가 → 물려주려면 반드시 유언.</li>
+      <li><b>동시사망</b>: 비행기 추락처럼 순서를 알 수 없으면 서로 존재하지 않은 것으로 간주. 단 사망 순서를 입증해 대습상속을 인정한 대법원 판례 있음.</li>
+      <li><b>태아</b>: 살아서 태어나면 1순위 직계비속, 사산되면 없던 것으로 처리.</li>
+      <li><b>양자 vs 친양자</b>: 양자는 양·친부모 모두 직계존속. 친양자는 친부모와 상속관계 단절.</li>
+    </ul>
+    <div class="calc"><b>계산 예제</b> <i class="x">출제</i>유언 없음, 재산 7억, 가족 = 배우자 + 자녀 2명 + 부모님<br>
+      → 부모님은 2순위라 제외. 1.5 : 1 : 1 = 3.5 → 1당 2억<br>
+      → <b>배우자 3억, 자녀 각 2억</b>. 계산이 딱 떨어지지 않으면 오답일 가능성이 높다.</div>
+  </section>
+
+  <section class="ch" id="c3">
+    <h3><span class="art">3</span>유언의 5가지 방식 <span class="src">0914</span></h3>
+    <div class="lead"><b class="k">핵심</b>유언은 법이 정한 5가지 방식만 효력이 있다. 자필증서는 요건 하나만 빠져도 무효, 가장 권장되는 방식은 공정증서.</div>
+    <ul>
+      <li class="ex"><i class="x">출제</i>유언 5가지 방식이 시험 범위: <b>자필증서·녹음·공정증서·비밀증서·구수증서</b>. (강의안의 녹색 표시 부분과 구수증서 세부는 시험 제외)</li>
+      <li><b>자필증서</b>: 전문 자필. <b>날짜·서명·주소·생년월일</b> 필수, 하나라도 누락·변조 시 무효. 재산은 특정해야 함("제주도에 있는 집" ✕, 정확한 주소·동·호수 ○). 수익자를 유언집행자로 지정 불가.</li>
+      <li><b>녹음</b>: 증인 필요, 녹음 중단 불가, 수익자는 증인 불가.</li>
+      <li><b>공정증서</b>: 공증인(변호사) 사무실에서 작성, 증인 필요. <b>가장 권장</b>.</li>
+      <li><b>비밀증서</b>: 봉투에 밀봉, 증인은 내용을 모른 채 서명.</li>
+      <li><b>구수증서</b>: 질병·사고 등 급박한 상황에서 말로 하면 증인이 받아 적음.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c4">
+    <h3><span class="art">4</span>유류분 · 상속결격 · 기여분 · 구하라법 <span class="src">0914 · 0916</span></h3>
+    <div class="lead"><b class="k">핵심</b>유언으로도 빼앗을 수 없는 최소 몫이 유류분이다. 법정상속분의 1/2(직계비속·배우자) 또는 1/3(직계존속)이고, 1년 안에 청구해야 한다.</div>
+    <ul>
+      <li>계산: 유언이 없었다고 보고 <b>법정상속분을 먼저 계산</b> → 직계비속·배우자는 그 <b>1/2</b>, 직계존속은 <b>1/3</b>.</li>
+      <li class="ex"><i class="x">출제</i>청구기한: 침해를 안 날로부터 <b>1년 이내</b>. (10년 기한도 있으나 시험은 1년만)</li>
+      <li><b>1순위가 있으면 2순위는 유류분 청구 불가</b>.</li>
+      <li>2026년부터 <b>형제자매는 유류분권 제외</b>.</li>
+      <li><b>상속회복청구권</b>(상속분을 침해당했을 때): <b>3년 이내</b>.</li>
+    </ul>
+    <div class="calc"><b>유류분 예제</b> 재산 7억, 배우자 + 자녀 2명<br>법정상속 3억 / 2억 / 2억 → 유류분 <b>1억 5천 / 1억 / 1억</b></div>
+    <ul>
+      <li><b>상속결격 사유</b>: 상속인을 살해했거나 살해하려 한 경우(기수·미수), 유언장 위조·변조·은닉 등 유언에 부정행위를 한 경우.</li>
+      <li class="ex"><i class="x">출제</i><b>기여분</b>: 피상속인을 부양했거나 재산 유지에 기여한 상속인이 더 인정받는 몫, 법원에 청구. 예) 치매 아버지를 10년 돌본 딸이 10억 중 1억을 먼저 인정받고 나머지 9억을 나눔.</li>
+      <li><b>구하라법</b>: 미성년 자녀 부양의무를 중대하게 위반했거나 자녀에게 범죄·학대를 한 직계존속은 상속권 제한. <b>2026년 1월 1일 시행</b>.</li>
+      <li><b>안심상속 원스톱서비스</b>: 사망신고 후 정부24에서 부동산·차량·금융채무를 한꺼번에 조회. 빚이 많으면 3개월 안에 대응.</li>
+    </ul>
+    <div class="warn"><b>노트 간 차이</b> 0909 노트는 구하라법 시행을 "2016년 1월 1일"로, 0914 노트는 "2026년 1월 1일"로 적고 있다. 상세 설명이 나온 0914 기준으로 정리했으니 강의안에서 한 번 확인할 것.</div>
+  </section>
+
+  <section class="ch" id="c5">
+    <h3><span class="art">5</span>단순승인 · 상속포기 · 한정승인 <span class="src">0916</span></h3>
+    <div class="lead"><b class="k">핵심</b>상속은 빚도 함께 넘어온다. 재산이 많으면 가만히 있으면 되고(단순승인), 빚이 많으면 3개월 안에 포기, 애매하면 한정승인.</div>
+    <ul>
+      <li><b>단순승인</b>: 재산 &gt; 빚이면 아무것도 안 해도 자동 단순승인.</li>
+      <li><b>상속포기</b>: 빚이 확실히 많을 때, 사망을 안 날로부터 <b>3개월 이내</b> 법원에 심판청구서 제출. <b>4순위까지 모두 포기</b>해야 완전한 효력.</li>
+      <li class="ex"><i class="x">출제</i><b>한정승인</b>: 재산·빚 규모가 불분명할 때, 파악된 재산 한도 안에서만 빚을 갚겠다는 의사 표시.</li>
+      <li>빚을 늦게 안 경우: <b>빚이 많다는 걸 안 날부터 새로 3개월</b>이 기산되는 개정 조항.</li>
+      <li>상속포기 때 인감도장·인감증명서를 남에게 함부로 맡기지 말 것.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c6">
+    <h3><span class="art">6</span>혼인과 부부재산 <span class="src">0916</span></h3>
+    <div class="lead"><b class="k">핵심</b>혼인신고를 해야 법률혼이다. 부부 재산은 각자 것(별산제)이지만, 생활비 같은 일상가사비용 빚은 함께 책임진다.</div>
+    <ul>
+      <li>혼인 요건: <b>만 18세</b>는 부모 동의 필요, <b>만 19세</b>부터 단독 혼인.</li>
+      <li><b>법률혼</b>(혼인신고 ○) vs <b>사실혼</b>(혼인신고 ✕).</li>
+      <li><b>동성동본 금혼</b>: 8촌 이내 혈족 간 혼인 불가, 일부 인척은 6촌까지 불가.</li>
+      <li class="ex"><i class="x">출제</i><b>일상가사비용</b><span class="c">6글자</span>: 교육비·생활비 등 일상 가정생활 비용. 배우자 모르게 빌렸어도 <b>부부 연대채무</b>.</li>
+      <li><b>부부별산제</b>: 혼인 전부터 가진 <b>고유재산</b>, 증여·우연으로 얻은 <b>특유재산</b>은 각자 것이라 분할 대상 아님. 로또 당첨금을 특유재산으로 본 판결 있음.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c7">
+    <h3><span class="art">7</span>협의이혼 <span class="src">0916</span></h3>
+    <div class="lead"><b class="k">핵심</b>합의하면 협의이혼. 가정법원 확인 → 숙려기간(자녀·임신 3개월, 그 외 1개월) → 확인서 받고 3개월 안에 구청 신고.</div>
+    <ul>
+      <li>이혼 종류: ① <b>협의이혼</b>(합의) ② <b>재판상 이혼</b>(6가지 법정 사유).</li>
+      <li>절차: 이혼신고서 작성 → 가정법원 의사 확인 → 숙려기간 → 확인서 발급 후 <b>3개월 이내</b> 구청 제출.</li>
+      <li><b>숙려기간</b>: 미성년 자녀가 있거나 임신 중이면 <b>3개월</b>, 그 외 <b>1개월</b>. 가정폭력 등 급박한 사정이면 단축·면제 신청 가능.</li>
+      <li>이혼 때 반드시 정할 것: <b>재산분할 + 위자료</b>, 미성년 자녀의 <b>친권·양육권·면접교섭권</b>.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c8">
+    <h3><span class="art">8</span>재판상 이혼 — 6가지 사유와 조정전치주의 <span class="src">0921</span></h3>
+    <div class="lead"><b class="k">핵심</b>합의가 안 되면 법이 정한 6가지 사유가 있어야 이혼할 수 있다. 소송 전에 반드시 4주 조정을 거치고, 잘못한 쪽(유책배우자)은 청구할 수 없다.</div>
+    <div class="tbl"><table>
+      <tr><th>호</th><th>사유</th><th>설명</th></tr>
+      <tr><td class="num">1호</td><td>부정한 행위</td><td>간통보다 넓음(간통은 현재 형사처벌 없음). 모텔 입장 사진·문자 등 정황으로도 인정</td></tr>
+      <tr><td class="num">2호</td><td>악의의 유기</td><td>아픈 배우자를 알면서 돌보지 않음</td></tr>
+      <tr><td class="num">3호</td><td>배우자 또는 그 직계존속의 부당한 대우</td><td>시어머니의 폭행도 사유. 재산분할은 남편과, <b>위자료는 시어머니</b>에게 청구</td></tr>
+      <tr><td class="num">4호</td><td>자기 직계존속에 대한 부당한 대우</td><td>장인·장모 등과의 관계에서 심히 부당한 대우</td></tr>
+      <tr><td class="num">5호</td><td>3년 이상 생사불명</td><td>실종 신고 후 5년이면 실종선고 → 이혼이 아니라 <b>사망 간주</b>, 상속으로 전환</td></tr>
+      <tr><td class="num">6호</td><td>기타 중대한 사유</td><td>판사가 판단. 약물·인터넷 중독, 회복 불가능한 조울증 등</td></tr>
+    </table></div>
+    <ul>
+      <li><b>유책배우자는 재판상 이혼 청구 불가</b>.</li>
+      <li><b>조정전치주의</b>: 소송 전에 반드시 이혼조정. 바로 소송해도 조정으로 돌려보냄.</li>
+      <li><b>조정기간 4주</b> — 협의이혼 숙려기간(1·3개월)과 구별.</li>
+      <li>조정 성립 → <b>조정조서</b> → <b>1개월 이내</b> 이혼신고(협의이혼 3개월과 구별). 넘기면 과태료만 내면 되고 조서·판결문 재발급은 필요 없음.</li>
+      <li>조정 불성립 → 이혼소송, 판사가 직권으로 결정.</li>
+      <li>행방불명 배우자와 재판상 이혼 시 재산 <b>1:1</b> 분할(전업주부도 동일). 임신 중이면 태아 몫 포함 <b>1:1.5</b>, 사산 시 시부모와 재분할.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c9">
+    <h3><span class="art">9</span>이혼 후 정리 — 돈과 자녀 <span class="src">0902 · 0921</span></h3>
+    <div class="lead"><b class="k">핵심</b>재산분할은 2년, 위자료는 3년 안에 청구. 친권은 재산·법률행위, 양육권은 함께 사는 권리. 양육비는 18세까지, 못 받은 건 성년 후에도 청구된다.</div>
+    <div class="tbl"><table>
+      <tr><th></th><th>재산분할</th><th>위자료</th></tr>
+      <tr><td>청구기한</td><td class="num"><b>이혼 후 2년</b></td><td class="num"><b>이혼 후 3년</b></td></tr>
+      <tr><td>성격</td><td>결혼 중 함께 모은 재산 나누기. 유책 여부 무관</td><td>정신적 손해배상</td></tr>
+      <tr><td>상대방</td><td>배우자</td><td>유책배우자 또는 원인 제공한 제3자</td></tr>
+      <tr><td>비고</td><td>전업주부 기여도 인정(약 50%, 원칙 45~50%)</td><td></td></tr>
+    </table></div>
+    <ul>
+      <li><b>친권</b>: 자녀의 <b>재산관리권 + 법률행위 대리권</b>(미성년 자녀 계약 대리 등).</li>
+      <li><b>양육권</b>: 자녀와 <b>공동생활</b>할 권리. 자녀 의사와 부모 경제 여건 고려. 협의 → 안 되면 법원 조정·소송.</li>
+      <li><b>양육비</b>: <b>만 18세까지</b>. 성년이 된 후에도 미성년 때 못 받은 양육비 <b>소급 청구 가능</b>.</li>
+      <li><b>면접교섭권</b>: 양육권 없는 부모도 자녀를 만날 권리. 날짜·시간·횟수 정함. 가정폭력 전력이 있으면 제한 가능.</li>
+    </ul>
+  </section>
+</div>
+
+<!-- ============ 제2편 ============ -->
+<div class="part">
+  <div class="part-h"><span class="no">제2편</span><h2>범죄와 절차 — 형법·형사소송</h2></div>
+  <p class="why">일상에서 걸리기 쉬운 범죄를 먼저 보고, 사건이 생기면 수사 → 기소 → 합의·보상까지 어떻게 흘러가는지 따라간다.</p>
+
+  <section class="ch" id="c10">
+    <h3><span class="art">10</span>일상에서 걸리기 쉬운 범죄 <span class="src">0928</span></h3>
+    <div class="lead"><b class="k">핵심</b>싸움 말리기·사실 폭로·주운 물건·반복 연락처럼 사소해 보이는 행동도 범죄가 된다. 개입하지 말고, 말하지 말고, 바로 돌려주고, 거절하면 멈출 것.</div>
+    <h4>폭행</h4>
+    <ul>
+      <li>싸움을 말리다 양쪽에 손대면 <b>특수폭행(2대1)</b>으로 처벌될 수 있음.</li>
+      <li>1대1 싸움은 <b>쌍방폭행</b>, 정당방위 안 됨. 둘이 합의하면 종결 가능.</li>
+      <li>상해진단서가 경찰에 제출되면 <b>폭행죄 → 폭행치상(상해)</b>로 바뀌어 반의사불벌죄가 적용되지 않음.</li>
+      <li>전치 1주 합의금 관례 50~100만 원(정해진 기준 없음). 형사가 "합의 보라"면 그게 유리하다는 신호 → 안 하면 벌금 100~150만 원 + 전과 2년.</li>
+    </ul>
+    <h4>명예훼손</h4>
+    <ul>
+      <li>우리나라는 <b>사실적시 명예훼손죄</b>가 있어 사실을 말해도 성립.</li>
+      <li>SNS·1대1 문자도 해당, <b>정보통신망법 제70조 제1항</b>으로 가중처벌. 직장 험담 관련 상담이 연 300건. 비밀은 100% 퍼진다고 볼 것.</li>
+    </ul>
+    <h4>성범죄</h4>
+    <ul>
+      <li>3가지: <b>성폭력(강간)·성추행(강제추행)·성희롱</b>.</li>
+      <li>술 취한 상태의 성관계는 <b>준강간</b>, 동의로 인정되지 않음. 발생 시 즉시 변호사 선임.</li>
+      <li>직장 내 성희롱: 외모·향기 언급 같은 언어적 성희롱, 동성 간 신체 접촉도 해당. 사장의 언어적 성희롱은 형사처벌 가능, 과장·부장은 형사처벌 없이 징계.</li>
+    </ul>
+    <h4>절도·점유이탈물횡령·스토킹</h4>
+    <ul>
+      <li>학교 안에서 남의 물건을 가져가면 <b>절도</b>. 길에서 주운 물건을 1주일 이상 갖고 있으면 <b>점유이탈물횡령</b> → 즉시 경찰서에 맡기고 영상으로 증거 남기기.</li>
+      <li><b>스토킹</b>: 접근·미행뿐 아니라 문자·이메일·선물 발송도 해당. 거절 의사를 밝히면 즉시 모든 연락 중단.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c11">
+    <h3><span class="art">11</span>수사기관 개편 — 검찰청에서 공소청으로 <span class="src">0928 · 0930</span></h3>
+    <div class="lead"><b class="k">핵심</b>10월 2일부터 검사는 수사하지 않고 기소만 한다. 수사는 사법경찰관(경찰청·중수청)이 맡는다.</div>
+    <ul>
+      <li><b>검찰청 → 공소청</b>. 검사의 수사권 폐지 → <b>사법경찰관(경찰청·중대범죄수사청)</b>이 수사.</li>
+      <li>검사의 역할 4가지: ① 영장 청구(체포·구속·압수수색) ② 보완수사 요구 ③ 재수사 요구 ④ 공소 제기·유지.</li>
+      <li>수사를 원하는 검사는 검사 직함을 버리고 중수청 수사관으로 전환 가능.</li>
+      <li>보이스피싱 주의: 검사는 수사 목적으로 직접 전화하지 않음. 소환 문자 링크 클릭 금지, 경찰서 대표번호로 직접 확인.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c12">
+    <h3><span class="art">12</span>수사 절차와 신분의 4단계 <span class="src">0928 · 0930</span></h3>
+    <div class="lead"><b class="k">핵심</b>용의자 → (입건) 피의자 → (기소) 피고인 → (유죄 확정) 수형자. 원칙은 임의출석이고, 수사의 꽃은 문답식 조사다.</div>
+    <ul>
+      <li><b>수사의 단서</b>: 고소·고발·자수·신고(변사체 발견 등).</li>
+      <li><b>내사(입건 전 조사)</b>: 혐의 확인용 예비 조사. 이 단계의 사람은 <b>용의자</b>. 내사 종결 시 입건 불가.</li>
+      <li>증거가 나와 <b>입건</b>되면 <b>피의자</b>, 검사가 기소하면 <b>피고인</b>, 유죄 확정 시 <b>수형자</b>.</li>
+      <li>고소·고발 사건은 <b>3개월 이내 수사 완료</b> 의무(신규 조항).</li>
+      <li>출석요구서(우편·전화) → 스스로 나오면 <b>임의출석</b>(원칙). 임의출석자는 언제든 자유롭게 퇴거 가능. 정당한 이유 없이 3회 이상 불응 시 체포영장 가능.</li>
+      <li>경찰 조사 시 함부로 진술하지 말고 변호사 동석 후 답변할 권리.</li>
+    </ul>
+    <h4>조사와 증거</h4>
+    <ul>
+      <li><b>피의자신문조서</b>: 피의자를 문답식으로 캐묻는 조서, 강력한 증거.</li>
+      <li><b>참고인진술조서</b>: 목격자 등 참고인 조서. 재판에서는 <b>증인</b>으로 신분이 바뀜.</li>
+      <li><b>자백만으로는 유죄 불충분</b> → CCTV·증인 등 보강 증거 필요.</li>
+      <li><b>압수수색영장</b>(세 번째 영장): 법원 발부 후 수색·압수. 국과수 감정, 사실조회, 통역·번역도 병행.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c13">
+    <h3><span class="art">13</span>체포와 구속 <span class="src">0928 · 0930</span></h3>
+    <div class="lead"><b class="k">핵심</b>체포는 3종류이고 모두 48시간 안에 끝내야 한다. 더 잡아두려면 구속영장이 필요하며, 불구속 수사가 원칙이다.</div>
+    <ul>
+      <li><b>체포영장 체포</b>: 판사 발부, 유효기간 <b>7일</b>(예외 14일).</li>
+      <li><b>긴급체포</b>: 살인·강간·마약 등 중대범죄, 영장 없이 체포 후 사후에 검사 승인.</li>
+      <li><b>현행범 체포</b>: 일반 시민도 가능, 즉시 경찰에 인계.</li>
+      <li>체포 시 <b>미란다 원칙</b> 고지 필수. 체포 후 조사 가능 시간 <b>최대 48시간</b>.</li>
+      <li>48시간 이내에 <b>구속영장</b> 청구. 구속기간: 경찰 10일 → 검찰 20일 → 1심 6개월 → 2심 4개월 → 3심 4개월.</li>
+      <li>불구속(출퇴근) 수사가 대원칙, 도주·증거인멸 우려가 있을 때만 구속.</li>
+      <li><b>구속영장실질심사</b><span class="c">8글자</span>: 구속영장 발부 <b>전</b>, 판사가 피의자를 직접 만나 심사.</li>
+      <li><b>구속적부심사</b><span class="c">6글자</span>: 구속된 <b>후</b>, 구속이 적법한지 다시 심사 요청.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c14">
+    <h3><span class="art">14</span>송치·불송치와 기소의 종류 <span class="src">0930</span></h3>
+    <div class="lead"><b class="k">핵심</b>경찰은 혐의가 있으면 송치, 없으면 불송치로 끝낸다. 기소할지는 오직 검사가 정하며, 정식기소·약식기소·기소유예·불기소 네 갈래다.</div>
+    <ul>
+      <li><b>송치</b>: 혐의 있음 → 기록·증거·구속 피의자를 검사에게 넘김. 증거가 부족하면 검사는 <b>보완수사 요청</b>.</li>
+      <li><b>불송치</b>: 혐의 없음 → 경찰이 종결하되 기록은 검사에게 <b>송부</b>. 검사는 <b>재수사 요청</b> 가능, 피해자는 <b>3개월 이내 이의신청</b>.</li>
+      <li><b>공소제기(기소)</b>는 오로지 검사의 권한.</li>
+    </ul>
+    <div class="tbl"><table>
+      <tr><th>종류</th><th>내용</th></tr>
+      <tr><td>정식기소</td><td>정식 형사재판</td></tr>
+      <tr><td>약식기소</td><td>벌금형 수준, 서류재판. 약식명령 등기 발송. 불복 시 <b>7일 이내</b> 이의 → 정식재판</td></tr>
+      <tr><td>기소유예</td><td>증거는 충분하지만 정상을 참작해 기소 보류</td></tr>
+      <tr><td>불기소(무혐의)</td><td>증거 부족. 나중에 증거가 나오면 기소 가능</td></tr>
+    </table></div>
+  </section>
+
+  <section class="ch" id="c15">
+    <h3><span class="art">15</span>고소·친고죄·반의사불벌죄와 합의서 <span class="src">0928 · 0930</span></h3>
+    <div class="lead"><b class="k">핵심</b>합의로 사건이 끝나는 건 친고죄와 반의사불벌죄뿐이다. 그 외 범죄는 합의해도 재판이 진행된다. 합의서엔 "처벌을 원하지 않는다"는 문구가 반드시 있어야 한다.</div>
+    <ul>
+      <li><b>고소</b>: 피해자 본인 / <b>고발</b>: 제3자.</li>
+      <li><b>친고죄</b>(대표: 모욕죄): 피해자가 고소해야만 수사·처벌. 범인을 안 날로부터 <b>6개월</b> 내 고소. 한 번 취소하면 <b>재고소 불가</b>.</li>
+      <li><b>반의사불벌죄</b>(폭행죄·명예훼손죄 등): 피해자가 처벌을 원하지 않으면 공소 불가, 수사·재판 중단.</li>
+      <li>고소 취소는 <b>1심 판결 선고 전</b>까지.</li>
+      <li>그 외 범죄는 합의해도 재판 진행(벌금·전과 발생).</li>
+    </ul>
+    <h4>합의서 작성 요령</h4>
+    <ul>
+      <li>필수 문구: <b>"가해자의 처벌을 원하지 않으며, 차후 민·형사상 이의를 제기하지 않겠습니다"</b>.</li>
+      <li>"선처를 바랍니다"는 합의서로 인정 안 됨.</li>
+      <li>교통사고처럼 후유증이 걱정되면 <b>"민사상" 부분을 빼고</b> 형사 처벌 불원 문구만.</li>
+      <li>표창장·봉사활동 증빙 등 선처 자료를 함께 내면 기소유예 가능성.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c16">
+    <h3><span class="art">16</span>피해 회복 — 배상명령·형사합의·공탁 <span class="src">0928 · 0930</span></h3>
+    <div class="lead"><b class="k">핵심</b>벌금은 국가로 간다. 피해자가 돈을 받으려면 민사소송을 따로 하거나, 형사절차 안에서 배상명령·형사합의를 이용한다. 합의가 안 되면 가해자는 공탁을 한다.</div>
+    <ul>
+      <li>형사적 표현 <b>범죄</b> ↔ 민사적 표현 <b>불법행위</b>.</li>
+      <li><b>배상명령</b>: 형사재판 판사가 손해배상까지 함께 명령 → 민사소송 없이 원스톱. <b>정식기소된 경우에만</b> 신청. 사기죄 등 일부 범죄, 미성년 가해자는 부모가 책임.</li>
+      <li><b>형사합의</b>: 당사자 간 합의, "향후 민·형사상 청구 포기" 문구 필수.</li>
+      <li>배상명령이나 민사판결문이 있으면 월급·전세보증금·통장·부동산 <b>압류·경매</b> 가능.</li>
+      <li><b>공탁</b>: 피해자가 과도한 합의금을 요구할 때 가해자가 적정 금액을 <b>법원(공탁소)</b>에 맡김 → 반성 표시, 감형 근거. 최근엔 피해자 용서 여부까지 보므로 공탁만으로는 효과 제한. 피해자는 언제든 찾아갈 수 있고 법원이 통지.</li>
+    </ul>
+  </section>
+</div>
+
+<!-- ============ 제3편 ============ -->
+<div class="part">
+  <div class="part-h"><span class="no">제3편</span><h2>형벌과 그 이후</h2></div>
+  <p class="why">유죄 선고 이후의 이야기. 이 편은 숫자 출제 표시가 가장 많다.</p>
+
+  <section class="ch" id="c17">
+    <h3><span class="art">17</span>형벌의 9가지 종류 <span class="src">1012</span></h3>
+    <div class="lead"><b class="k">핵심</b>형벌은 사형·징역·금고·자격상실·자격정지·벌금·구류·과료·몰수 9가지다. 과태료·범칙금·과징금은 행정벌이라 전과가 남지 않는다.</div>
+    <ul>
+      <li>판사가 형벌을 주문하고, <b>모든 형벌은 검사의 지휘로 집행</b>.</li>
+      <li>취업에 영향을 주는 형벌 6가지: 사형·징역·금고·자격상실·자격정지·벌금.</li>
+      <li>과태료·범칙금·과징금 = <b>행정벌</b>(행정부가 부과), 전과 없음.</li>
+    </ul>
+    <div class="tbl"><table>
+      <tr><th>형벌</th><th>내용</th></tr>
+      <tr><td>사형</td><td><i class="x">출제</i>집행 방법 <b>교수형</b>. 제도는 있으나 김대중 대통령 이후 미집행. 서울구치소, 선고 후 원칙상 6개월 내 집행</td></tr>
+      <tr><td>징역</td><td>가두고 작업 부과(役 = 일). 무기 / <i class="x">출제</i>유기 <b>1월 이상 30년 이하</b>, <i class="x">출제</i>가중 시 최대 <b>50년</b></td></tr>
+      <tr><td>금고</td><td><i class="x">출제</i>징역과 같지만 <b>정역(작업) 없음</b>. 과실범(교통사고)·정치범</td></tr>
+      <tr><td>자격상실</td><td>사형·무기징역·무기금고 시 공무원 자격·피선거권 등 영구 박탈</td></tr>
+      <tr><td>자격정지</td><td>유기징역·유기금고 시 일정 기간 정지</td></tr>
+      <tr><td>벌금</td><td><i class="x">출제</i>최저 <b>5만 원 이상</b>(최대액은 미출제) · <i class="x">출제</i>납부 <b>30일 이내</b> · <i class="x">출제</i>미납 시 <b>노역장 유치 1일~3년</b>(1일 10만 원 계산)<br>300만 원 이하 → 사회봉사 대체 가능(2009) · 500만 원 이하 → 집행유예 가능(2018)</td></tr>
+      <tr><td>구류</td><td><i class="x">출제</i><b>1일 이상 30일 이하</b> 구금(기간만 출제)</td></tr>
+      <tr><td>과료</td><td><i class="x">출제</i>벌금의 하위, <b>2,000원 이상 5만 원 미만</b>. 미납 시 노역장 유치 동일</td></tr>
+      <tr><td>몰수·추징</td><td>범죄에 쓰인 물건을 국고로. 몰수가 불가능하면 그 금액을 <b>추징</b>(예: 뇌물 공무원 추징금 2억)</td></tr>
+    </table></div>
+  </section>
+
+  <section class="ch" id="c18">
+    <h3><span class="art">18</span>가석방과 형 집행정지 <span class="src">1012</span></h3>
+    <div class="lead"><b class="k">핵심</b>모범수는 무기 20년, 유기 형기 1/3을 채우면 가석방 심사를 받는다. 중병이면 형 집행정지로 잠시 나가지만 그 기간은 형기에 들어가지 않는다.</div>
+    <ul>
+      <li class="ex"><i class="x">출제</i><b>가석방</b> 대상: 징역·금고형 모범수(행장 양호, 개전의 정 뚜렷).</li>
+      <li class="ex"><i class="x">출제</i>심사 요건: 무기징역 <b>20년</b> 이상, 유기징역 선고형의 <b>1/3</b> 이상 복역.</li>
+      <li class="ex"><i class="x">출제</i>가석방 후 보호관찰: 유기징역은 <b>잔여 형기</b>, 무기징역은 <b>10년</b>.</li>
+      <li><b>형 집행정지</b>: 암 등 중병 수형자. 외부 치료 후 복귀하면 집행 재개, 기간은 합산 안 됨.</li>
+      <li>용어 주의: 형 집행<b>중지</b>(✕) → 형 집행<b>정지</b>(○).</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="c19">
+    <h3><span class="art">19</span>전과기록 3종류와 조회 기간 <span class="src">1012</span></h3>
+    <div class="lead"><b class="k">핵심</b>전과는 검찰청·읍면동·경찰청 세 곳에 남는다. 조회 기간은 3년 초과 징역·금고 10년, 3년 이하 5년, 벌금 2년.</div>
+    <div class="tbl"><table>
+      <tr><th>보관 기관</th><th>기록 명칭 <i class="x">출제</i></th></tr>
+      <tr><td>검찰청</td><td><b>수형인명부</b></td></tr>
+      <tr><td>등록기준지 읍·면·동사무소</td><td><b>수형인명표</b></td></tr>
+      <tr><td>경찰청</td><td><b>범죄경력자료</b></td></tr>
+    </table></div>
+    <ul>
+      <li class="ex"><i class="x">출제</i>조회 기간: <b>3년 초과</b> 징역·금고 → 출소 후 <b>10년</b> / <b>3년 이하</b> → 출소 후 <b>5년</b> / <b>벌금</b> → 부과 때부터 <b>2년</b>(출소 개념 없음).</li>
+    </ul>
+    <div class="calc"><b>예제</b> 징역 1년 6개월 만기 복역 → 3년 이하 → 석방 후 <b>5년</b>간 전과자</div>
+  </section>
+</div>
+
+<!-- ============ 제4편 ============ -->
+<div class="part">
+  <div class="part-h"><span class="no">제4편</span><h2>종합 사례 — 교통사고</h2></div>
+  <p class="why">중간고사 마지막 범위. 앞에서 배운 형사처벌·합의·민사배상이 한 사건 안에서 모두 작동한다.</p>
+
+  <section class="ch" id="c20">
+    <h3><span class="art">20</span>교통사고의 형사·민사 처리 <span class="src">1014</span></h3>
+    <div class="lead"><b class="k">핵심</b>교통사고도 범죄다. 종합보험에 들었으면 사람을 다치게 해도 원칙적으로 형사처벌이 면제되지만, 사망·뺑소니·중상해·12대 중과실은 예외다. 그중 뺑소니가 특히 중요하다.</div>
+    <h4>기본 구조</h4>
+    <ul>
+      <li>형사 처리와 민사 처리가 동시에 진행. 보험은 <b>민사(손해배상)</b> 해결 수단.</li>
+      <li><b>대물사고</b>: 과실손괴죄가 없어 형사처벌 없음, 보험(민사)으로만 해결. 경찰 출동도 대개 불필요.</li>
+      <li><b>대인사고</b>: 다치면 <b>업무상 과실치상</b>, 사망하면 <b>업무상 과실치사</b>.</li>
+    </ul>
+    <h4>보험과 형사처벌 특례</h4>
+    <ul>
+      <li><b>종합보험</b>: 피해 전액 보장, 비싸지만 <b>형사처벌 면제 특례</b>(사망·뺑소니·중상해·12대 중과실 제외).</li>
+      <li><b>책임보험</b>: 싸지만 일부만 보상, 초과분은 자비. 책임보험·무보험이라도 <b>형사합의</b>하면 종합보험과 같게 처리 가능.</li>
+      <li>무보험 가해자가 재산이 없으면 민사소송 실익 없음. 제주 렌터카는 모두 종합보험, 일부 렌트 오토바이는 책임보험이라 확인 필요.</li>
+    </ul>
+    <h4>형사처벌 예외 3가지</h4>
+    <ul>
+      <li><b>사망사고</b>: 보험·합의와 상관없이 무조건 처벌.</li>
+      <li><b>뺑소니</b>: 합의해도 면제 불가.</li>
+      <li><b>중상해</b>(장애·식물인간): 단 합의하면 면제 가능.</li>
+    </ul>
+    <h4>뺑소니 <span class="c">특히 중요</span></h4>
+    <ul>
+      <li class="ex"><i class="x">중요</i>성립: ① <b>구호조치 미이행</b> 또는 ② <b>연락처 미제공</b> 중 하나라도 해당하면 성립.</li>
+      <li>종합보험이 있어도 형사처벌. 차에서 내리지 않고 창문으로만 확인해도 성립 가능 → 반드시 하차.</li>
+      <li>연락처는 피해자뿐 아니라 <b>병원(응급실 간호사·원무과)</b>에도. 상대가 도주하면 먼저 경찰에 신고해 뺑소니 의도가 없음을 알릴 것.</li>
+    </ul>
+    <h4>12대 중과실 <i class="x">출제</i></h4>
+    <ul>
+      <li>12대 중과실로 사람을 다치게 하면 종합보험·합의와 무관하게 형사처벌(실무상 사건 접수 전 합의 시 예외 처리 가능).</li>
+      <li class="ex"><b>1번</b> 신호위반(황색불 통과, 횡단보도 앞 전진 포함)</li>
+      <li class="ex"><b>2번</b> 중앙선 침범(유턴 위반, 고속도로 횡단 포함)</li>
+      <li class="ex"><b>3번</b> 제한속도 <b>20km 초과</b> — 주관식 출제 가능</li>
+      <li class="ex"><b>6번</b> 신호등 없는 횡단보도 보행자 보호의무 위반</li>
+      <li class="ex"><b>8번</b> 음주(주취)운전</li>
+      <li class="ex"><b>9번</b> 인도 돌진</li>
+      <li class="ex"><b>11번</b> 스쿨존(어린이 보호구역) 사고, 초등학생 이하 대상</li>
+      <li><b>후진사고</b>도 형사처벌 대상 → 비상등 켜고 후진, 블랙박스에 소리 녹음.</li>
+      <li>오토바이·자전거로 횡단보도 주행 = 신호위반. 자전거는 종합보험이 없어 무조건 형사처벌.</li>
+    </ul>
+    <div class="warn"><b>빠진 번호</b> AI 노트에는 4·5·7·10·12번 항목이 없다. 강의에서 따로 짚지 않은 것으로 보이지만, 박스형 지문에 섞여 나올 수 있으니 강의안으로 12개 전체를 확인할 것.</div>
+    <h4>현장 대응</h4>
+    <ul>
+      <li>현장 이탈 금지(보험사·경찰 도착 전까지), 직접 촬영해 증거 확보, 블랙박스는 전·후·측면.</li>
+      <li>보험사에 즉시 연락. 과실비율(몇 대 몇)은 민사 사항 → 이의 있으면 <b>금융감독원</b>에 진정.</li>
+      <li>대인사고는 <b>119 동시 신고</b>(구호의무). 고속도로에선 차에서 내려 시비 금지(2차 사고).</li>
+      <li>합의서에 <b>"후유증 발생 시 가해자가 치료 및 손해 배상"</b> 조항 필수. 보험사는 기왕증을 주장해 회피하려 함.</li>
+      <li><b>음주운전</b>: 의심되면 즉시 경찰 신고, 상대가 인정하면 음주량·장소·시간을 녹화·녹음. 음주 사고는 보험 처리 불가, 가해자 전액 부담.</li>
+    </ul>
+  </section>
+</div>
+
+<section class="flow" id="check" style="margin-top:56px">
+  <h2>출제 체크리스트</h2>
+  <ul>
+    <li><i class="x">출제</i>1~5촌 호칭·촌수 계산</li>
+    <li><i class="x">출제</i>법정상속 계산(1.5 : 1 : 1), 유류분 1/2·1/3, 청구기한 1년</li>
+    <li><i class="x">출제</i>유언 5방식: 자필증서·녹음·공정증서·비밀증서·구수증서(자필 요건: 날짜·서명·주소·생년월일)</li>
+    <li><i class="x">출제</i>용어 단답: 대습상속(4) · 특별연고자(5) · 일상가사비용(6) · 전부소생자 · 기여분 · 한정승인</li>
+    <li><span class="c">글자수</span> 구속영장실질심사(8) · 구속적부심사(6)</li>
+    <li><i class="x">출제</i>사형=교수형 · 유기징역 1월~30년(가중 50년) · 징역/금고 차이=정역</li>
+    <li><i class="x">출제</i>벌금 5만 원 이상·30일 납부·노역장 1일~3년 · 구류 1~30일 · 과료 2,000원~5만 원 미만</li>
+    <li><i class="x">출제</i>가석방 무기 20년 / 유기 1/3, 보호관찰 잔여형기 / 10년</li>
+    <li><i class="x">출제</i>전과기록 수형인명부(검찰청)·수형인명표(읍면동)·범죄경력자료(경찰청), 조회 10년/5년/2년</li>
+    <li><i class="x">출제</i>12대 중과실 1·2·3(20km)·6·8·9·11번, 뺑소니 성립 요건</li>
+    <li>헷갈리는 숫자: 숙려 1·3개월 vs 조정 4주 · 협의이혼 신고 3개월 vs 조정조서 1개월 · 재산분할 2년 vs 위자료 3년 · 상속포기 3개월 · 상속회복 3년 · 친고죄 고소 6개월 · 불송치 이의 3개월 · 약식명령 이의 7일 · 체포영장 7일 · 체포 48시간 · 구속영장 10일</li>
+  </ul>
+</section>
+</main>
+</div>
+
+<script>
+(function(){
+  var b=document.getElementById('onlyExam');
+  b.addEventListener('click',function(){
+    var on=document.body.classList.toggle('only');
+    b.setAttribute('aria-pressed',on?'true':'false');
+  });
+})();
+</script>
+
+</body>
+</html>

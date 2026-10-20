@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>법과권리 중간고사 문제집</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 시험지(A3 박스형) 감각 — 상단 도구줄, 가운데 한 문제 카드, 아래 번호판. 오답 노트는 별도 탭. 채점 표시는 인주색. */
+:root{
+  --bg:#f3f4f7; --paper:#ffffff; --ink:#18212e; --muted:#5d6676; --line:#d9dee6; --soft:#eef1f5;
+  --accent:#1d5a86; --accent-soft:#e4edf5; --stamp:#c0362c; --stamp-soft:#fbeceb;
+  --ok:#2c7a4b; --ok-soft:#e5f3ea; --note:#8a6a12; --note-soft:#fbf4e1;
+  --f-display:"Nanum Myeongjo","Noto Serif KR",serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --paper:#1a1f28; --ink:#e4e8ef; --muted:#9aa3b2; --line:#2e3542; --soft:#222834;
+  --accent:#7db3dc; --accent-soft:#1d2a38; --stamp:#f0776c; --stamp-soft:#3a1f1d;
+  --ok:#6cc790; --ok-soft:#183024; --note:#e2c06a; --note-soft:#332b17; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --paper:#1a1f28; --ink:#e4e8ef; --muted:#9aa3b2; --line:#2e3542; --soft:#222834;
+  --accent:#7db3dc; --accent-soft:#1d2a38; --stamp:#f0776c; --stamp-soft:#3a1f1d;
+  --ok:#6cc790; --ok-soft:#183024; --note:#e2c06a; --note-soft:#332b17; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto;padding-block:32px 80px}
+h1{font-family:var(--f-display);font-size:clamp(26px,4.4vw,36px);margin:0;line-height:1.25;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0;font-size:14px}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--ink);margin:22px 0 14px}
+.tab{background:none;border:none;padding:8px 14px;font-weight:600;color:var(--muted);border-radius:6px 6px 0 0}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tab .cnt{display:inline-block;min-width:20px;padding:0 6px;margin-left:6px;border-radius:10px;background:var(--stamp);color:var(--paper);font-size:12px;line-height:18px;text-align:center;font-variant-numeric:tabular-nums}
+
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:4px 12px;font-size:13.5px}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.spacer{flex:1}
+.sync{font-size:12.5px;color:var(--muted)}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px 24px 20px}
+.qhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;font-size:13px;color:var(--muted)}
+.qno{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.tag{border:1px solid var(--line);border-radius:4px;padding:0 7px;line-height:1.7}
+.hot{color:var(--stamp);border:1.5px solid var(--stamp);border-radius:4px;padding:0 6px;font-weight:700;font-size:11.5px;transform:rotate(-2deg);display:inline-block}
+.prev-wrong{color:var(--note);background:var(--note-soft);border-radius:4px;padding:0 7px;font-weight:600}
+
+.sit{border:1.5px solid var(--ink);border-radius:2px;padding:14px 16px;margin:6px 0 14px;background:var(--paper)}
+.sit .lab{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.sit p{margin:4px 0}
+.treebox{overflow-x:auto;margin:10px 0 2px}
+.treebox svg{display:block;margin:0 auto;max-width:none}
+.tl{stroke:var(--ink);stroke-width:1.5;fill:none}
+.tl.dash{stroke-dasharray:4 4;stroke:var(--muted)}
+.tn rect{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
+.tn.k rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.tn.d rect{fill:var(--soft);stroke:var(--muted);stroke-dasharray:3 3}
+.tn.u rect{fill:var(--paper);stroke:var(--muted);stroke-dasharray:2 3}
+.tn text{fill:var(--ink);font-size:12.5px;font-family:var(--f-body);font-weight:600}
+.tn.d text{fill:var(--muted)}
+.tml{fill:var(--muted);font-size:11px;font-family:var(--f-body)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);justify-content:center;margin-top:4px}
+
+.stem{font-weight:600;margin:4px 0 12px;text-wrap:pretty}
+.stem small{font-weight:400;color:var(--muted)}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:10px;align-items:start;text-align:left;width:100%;background:var(--paper);border:1.5px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--ink);line-height:1.55}
+.opt .k{font-family:var(--f-display);font-weight:800;font-size:17px;text-align:center;line-height:1.35;border-radius:50%;}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed="true"] .k{color:var(--accent)}
+.opt .mk{font-size:12px;font-weight:700;white-space:nowrap}
+.opt.g-ok{border-color:var(--ok)}
+.opt.g-miss{border-color:var(--stamp);background:var(--stamp-soft)}
+.opt.g-ok .mk{color:var(--ok)} .opt.g-miss .mk{color:var(--stamp)}
+.opt:disabled{cursor:default}
+
+.short{display:flex;gap:8px;flex-wrap:wrap}
+.short input{flex:1;min-width:0;font:inherit;padding:9px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;align-items:center}
+.btn{border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:8px;padding:8px 16px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:disabled{opacity:.4;cursor:default}
+
+.result{margin-top:16px;border-radius:10px;padding:14px 16px;border:1.5px solid}
+.result.ok{border-color:var(--ok);background:var(--ok-soft)}
+.result.no{border-color:var(--stamp);background:var(--stamp-soft)}
+.result .verdict{font-weight:700;font-size:16px}
+.result.ok .verdict{color:var(--ok)} .result.no .verdict{color:var(--stamp)}
+.exp{margin-top:6px}
+.exp ul{margin:4px 0;padding-left:18px}
+.exp li{margin:2px 0}
+
+.grid{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px}
+.dot{width:34px;height:30px;border-radius:6px;border:1px solid var(--line);background:var(--paper);color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums;padding:0}
+.dot.cur{border:2px solid var(--ink);color:var(--ink);font-weight:700}
+.dot.s-ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.dot.s-no{background:var(--stamp-soft);color:var(--stamp);border-color:var(--stamp)}
+.score{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* 오답 노트 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:16px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.stat .n{font-weight:700;font-variant-numeric:tabular-nums;font-size:17px}
+.stat .l{font-size:12px;color:var(--muted)}
+.bar{height:4px;background:var(--soft);border-radius:2px;margin-top:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.nitem{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--stamp);border-radius:8px;padding:14px 16px;margin-bottom:10px}
+.nitem.done{border-left-color:var(--ok);opacity:.85}
+.nitem .meta{display:flex;flex-wrap:wrap;gap:8px;font-size:12.5px;color:var(--muted);align-items:center}
+.nitem .meta b{color:var(--stamp)}
+.nitem .q{font-weight:600;margin:6px 0}
+.nitem details{margin:4px 0}
+.nitem summary{cursor:pointer;color:var(--accent);font-size:13.5px}
+.cmp{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;font-size:14px;margin:6px 0}
+.cmp dt{color:var(--muted)} .cmp dd{margin:0}
+.cmp .mine{color:var(--stamp);font-weight:600} .cmp .right{color:var(--ok);font-weight:600}
+textarea{width:100%;box-sizing:border-box;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:var(--soft);color:var(--ink);resize:vertical;min-height:48px}
+.empty{background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:28px;text-align:center;color:var(--muted)}
+.empty b{color:var(--ink);display:block;font-size:16px;margin-bottom:4px}
+@media (max-width:560px){.card{padding:18px 16px}.opt{grid-template-columns:26px minmax(0,1fr)}.opt .mk{grid-column:2}}
+@media (prefers-reduced-motion:no-preference){.result{animation:pop .18s ease-out}@keyframes pop{from{transform:translateY(4px);opacity:.6}to{transform:none;opacity:1}}}
+</style>
+<p style="max-width:860px;margin:16px auto 0;font-size:13px"><a href="./" style="color:var(--accent)">← 처음으로</a></p>
+
+
+<div class="wrap">
+  <header>
+    <h1>법과권리 중간고사 문제집</h1>
+    <p class="sub">박스형 36 · 단답형 23 · 총 59문항 — 시험과 같이 박스형은 옳은 것을 모두 골라야 정답(부분점수 없음)</p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-quiz" aria-selected="true">문제 풀기</button>
+    <button class="tab" role="tab" id="tab-note" aria-selected="false">오답 노트<span class="cnt" id="noteCnt">0</span></button>
+  </div>
+
+  <section id="view-quiz">
+    <div class="tools" id="partChips"></div>
+    <div class="tools">
+      <button class="chip" id="onlyWrong" aria-pressed="false">미해결 오답만</button>
+      <button class="chip" id="shuffle" aria-pressed="false">순서 섞기</button>
+      <span class="spacer"></span>
+      <span class="score" id="score"></span>
+    </div>
+    <div id="qcard"></div>
+    <div class="grid" id="grid" aria-label="문항 번호"></div>
+  </section>
+
+  <section id="view-note" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="tools">
+      <button class="chip" data-nf="open" aria-pressed="true">미해결</button>
+      <button class="chip" data-nf="done" aria-pressed="false">해결함</button>
+      <button class="chip" data-nf="all" aria-pressed="false">전체</button>
+      <span class="spacer"></span>
+      <button class="btn" id="retryWrong">미해결 오답 다시 풀기</button>
+    </div>
+    <div id="noteList"></div>
+  </section>
+  <p class="sync" id="sync">기록 저장소 확인 중…</p>
+</div>
+
+<script>
+/* ---------- 가계도 ---------- */
+function tree(t){
+  var X=98,Y=80,W=78,H=30,P=14,ns={},mx=0,my=0,s='';
+  t.n.forEach(function(n){ns[n[0]]={x:n[1],y:n[2],lab:n[3],f:n[4]||''};mx=Math.max(mx,n[1]);my=Math.max(my,n[2]);});
+  function cx(n){return P+W/2+n.x*X} function cy(n){return P+18+H/2+n.y*Y}
+  (t.m||[]).forEach(function(m){var A=ns[m[0]],B=ns[m[1]];if(cx(A)>cx(B)){var z=A;A=B;B=z}
+    var x1=cx(A)+W/2,x2=cx(B)-W/2,y=cy(A);
+    s+='<line class="tl'+(m[2]?' dash':'')+'" x1="'+x1+'" y1="'+y+'" x2="'+x2+'" y2="'+y+'"/>';
+    if(m[3])s+='<text class="tml" x="'+((x1+x2)/2)+'" y="'+(y-6)+'" text-anchor="middle">'+m[3]+'</text>';});
+  (t.c||[]).forEach(function(c){var ps=c[0].map(function(p){return ns[p]}),C=ns[c[1]],sx,sy;
+    if(ps.length===2){sx=(cx(ps[0])+cx(ps[1]))/2;sy=cy(ps[0]);}else{sx=cx(ps[0]);sy=cy(ps[0])+H/2;}
+    var top=cy(C)-H/2,ym=top-(Y-H)/2;
+    s+='<path class="tl'+(c[2]?' dash':'')+'" d="M'+sx+' '+sy+' V'+ym+' H'+cx(C)+' V'+top+'"/>';
+    if(c[3])s+='<text class="tml" x="'+(cx(C)+6)+'" y="'+(ym+13)+'">'+c[3]+'</text>';});
+  Object.keys(ns).forEach(function(k){var n=ns[k];
+    s+='<g class="tn '+n.f+'"><rect x="'+(cx(n)-W/2)+'" y="'+(cy(n)-H/2)+'" width="'+W+'" height="'+H+'" rx="5"/><text x="'+cx(n)+'" y="'+(cy(n)+4.5)+'" text-anchor="middle">'+n.lab+'</text></g>';});
+  var w=P*2+W+mx*X,h=P*2+18+H+my*Y;
+  return '<div class="treebox"><svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" role="img" aria-label="가계도">'+s+'</svg></div>'+
+   '<div class="legend"><span>파란 칸: 피상속인</span><span>점선 칸: 사망</span><span>점선 연결: 이혼·사실혼·단절</span></div>';
+}
+
+/* ---------- 문항 ---------- */
+var K=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ'];
+var STEM='옳은 것을 있는 대로 고르시오.';
+var Q=[
+/* 친족 */
+{id:'k1',p:'친족',t:'b',hot:1,stem:'친족의 범위와 소멸에 대한 설명으로 '+STEM,
+ o:['민법상 친족은 8촌 이내의 혈족, 4촌 이내의 인척, 배우자이다.','배우자는 1촌 친족이다.','혈족의 배우자의 혈족(사돈)은 현행 민법상 인척에 해당한다.','이혼하면 인척 관계는 즉시 소멸한다.','배우자가 사망하면 그 즉시 배우자 측과의 인척 관계가 소멸한다.'],a:[0,3],
+ e:'<ul><li>ㄴ 배우자는 <b>0촌</b>.</li><li>ㄷ 사돈은 개정으로 인척에서 빠져 현행법상 남이다(결혼도 가능).</li><li>ㅁ 배우자 사망 시 인척 관계는 <b>유지</b>되고, <b>재혼하면</b> 소멸한다.</li></ul>'},
+{id:'k2',p:'친족',t:'b',hot:1,stem:'혈족과 촌수에 대한 설명으로 '+STEM,
+ o:['형제자매는 2촌 방계혈족이다.','홀수 촌수의 형제 관계도 존재한다.','아버지의 형제(백숙부)는 나와 3촌이다.','이모의 자녀를 고종형제라고 한다.','자연혈족 관계도 파양을 통해 끊을 수 있다.'],a:[0,2],
+ e:'<ul><li>ㄴ 형제 관계는 항상 짝수 촌이라 홀수촌 형제는 없다.</li><li>ㄹ 이모의 자녀는 <b>이종</b>형제다. 고종은 고모의 자녀, 외종은 외삼촌의 자녀다.</li><li>ㅁ 핏줄(자연혈족)은 절대 끊을 수 없다. 파양은 양자·친양자 같은 법정혈족에만 해당한다.</li></ul>'},
+{id:'k3',p:'친족',t:'b',stem:'가족관계 서류와 제도에 대한 설명으로 '+STEM,
+ o:['2008년 호적제도가 폐지되고 가족관계등록부가 도입되었다.','가족관계증명서에는 본인의 형제자매까지 기재된다.','기본증명서에는 본인에 관한 사항만 기재되어 취업 때 활용할 수 있다.','2000년대에 태어난 여성의 주민등록번호 뒷자리 첫 숫자는 4이다.','인척도 법정상속인이 될 수 있다.'],a:[0,2,3],
+ e:'<ul><li>ㄴ 가족관계증명서에는 0촌(배우자)·1촌(부모·자녀)만 기재된다.</li><li>ㅁ 인척은 상속할 수 없다. 입양 자녀는 법정혈족이라 상속한다.</li></ul>'},
+{id:'k4',p:'친족',t:'s',hot:1,stem:'나와 아버지의 사촌 형제 사이는 몇 촌인가?',acc:['5'],show:'5촌',
+ e:'아버지와 아버지의 사촌 형제는 4촌이다. 나는 아버지보다 한 대 아래이므로 4 + 1 = <b>5촌</b>(당숙).'},
+{id:'k5',p:'친족',t:'s',hot:1,stem:'이모의 자녀를 부르는 명칭은?',acc:['이종형제','이종사촌','이종','이종형제자매'],show:'이종형제',
+ e:'고모의 자녀 = 고종형제, 이모의 자녀 = <b>이종형제</b>, 외삼촌의 자녀 = 외종형제. 모두 4촌이다.'},
+{id:'k6',p:'친족',t:'s',stem:'호적제도 폐지와 함께 "본적" 대신 사용하게 된 개념은?',acc:['등록기준지'],show:'등록기준지',e:'본적 개념은 폐지되고 <b>등록기준지</b>를 쓴다. 전과기록 중 수형인명표도 등록기준지 읍·면·동사무소에 보관된다.'},
+
+/* 상속 사례형 */
+{id:'i1',p:'상속',t:'b',hot:1,
+ sit:'<p>갑은 유언 없이 사망하였다. 갑의 재산은 <b>14억 원</b>이고 빚은 없다. 갑에게는 혼인신고를 한 배우자 을, 자녀 A·B가 있으며 갑의 부모도 생존해 있다.</p>',
+ tr:{n:[['f',0,0,'갑의 부'],['mo',1.1,0,'갑의 모'],['g',0.55,1,'갑','k'],['e',1.65,1,'을'],['a',0.55,2,'A'],['b',1.65,2,'B']],m:[['f','mo'],['g','e']],c:[[['f','mo'],'g'],[['g','e'],'a'],[['g','e'],'b']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['을의 법정상속분은 6억 원이다.','갑의 부모도 2순위 상속인으로서 각 1억 원씩 상속받는다.','A와 B는 각각 4억 원을 상속받는다.','을이 혼인신고를 하지 않은 사실혼 배우자였다면 을에게는 법정상속분이 없다.','갑이 "전 재산을 A에게 준다"는 유언을 남겼다면 B의 유류분은 1억 원이다.'],a:[0,2,3],
+ e:'<ul><li>1순위(직계비속+배우자)가 있으므로 부모(2순위)는 상속받지 못한다(ㄴ ✗).</li><li>비율 을 1.5 : A 1 : B 1 = 3.5 → 14억 ÷ 3.5 = 4억 → 을 <b>6억</b>, A·B 각 <b>4억</b>.</li><li>ㄹ 법률혼 배우자만 순위에 포함된다.</li><li>ㅁ B의 법정상속분 4억의 1/2 = <b>2억</b>.</li></ul>'},
+{id:'i2',p:'상속',t:'b',hot:1,
+ sit:'<p>갑은 유언 없이 사망하였고 재산은 <b>7억 원</b>이다. 배우자 을과 자녀 B가 생존해 있다. 갑의 다른 자녀 A는 갑보다 <b>먼저 사망</b>하였는데, A에게는 배우자가 없고 자녀 C·D가 있다.</p>',
+ tr:{n:[['g',0.7,0,'갑','k'],['e',1.8,0,'을'],['a',0.45,1,'A(사망)','d'],['b',2.05,1,'B'],['c',0,2,'C'],['dd',0.9,2,'D']],m:[['g','e']],c:[[['g','e'],'a'],[['g','e'],'b'],[['a'],'c'],[['a'],'dd']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['C와 D는 대습상속으로 각각 1억 원을 상속받는다.','을은 3억 원을 상속받는다.','A가 먼저 사망했으므로 A의 몫은 을과 B에게 나누어진다.','B는 2억 5천만 원을 상속받는다.','C와 D가 없었다면 갑의 상속인은 을과 B뿐이다.'],a:[0,1,4],
+ e:'<ul><li>먼저 사망한 A의 자리에 A의 직계비속 C·D가 들어간다(<b>대습상속</b>). 그래서 ㄷ은 틀렸다.</li><li>을 1.5 : A몫 1 : B 1 = 3.5 → 1당 2억 → 을 <b>3억</b>, B <b>2억</b>, A몫 2억을 C·D가 1억씩.</li></ul>'},
+{id:'i3',p:'상속',t:'b',hot:1,
+ sit:'<p>갑은 유언 없이 사망하였다. 재산은 <b>5억 원</b>이다. 갑의 아내 을은 갑의 아이(병)를 <b>임신 중</b>이다. 갑의 아버지는 이미 사망하였고 어머니 정과 형 무가 생존해 있다.</p>',
+ tr:{n:[['f',0.1,0,'부(사망)','d'],['j',1.1,0,'정(모)'],['mu',0,1,'형 무'],['g',1.2,1,'갑','k'],['e',2.3,1,'을'],['bb',1.75,2,'태아 병','u']],m:[['f','j'],['g','e']],c:[[['f','j'],'mu'],[['f','j'],'g'],[['g','e'],'bb',1]]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['병이 살아서 태어나면 을과 병이 1순위 상속인이 된다.','병이 살아서 태어나면 을은 3억 원, 병은 2억 원을 상속받는다.','병이 사산되면 을과 정이 상속인이 되며, 을은 3억 원, 정은 2억 원을 받는다.','병이 사산되면 형 무도 3순위로 함께 상속받는다.','태아는 아직 태어나지 않았으므로 어떤 경우에도 상속인이 될 수 없다.'],a:[0,1,2],
+ e:'<ul><li>태아는 <b>살아서 태어나면</b> 1순위 직계비속으로 인정, <b>사산되면</b> 없던 것으로 본다(ㅁ ✗).</li><li>출생 시 을 1.5 : 병 1 → 5억 ÷ 2.5 = 2억 → 을 3억, 병 2억.</li><li>사산 시 2순위(직계존속 정 + 배우자 을), 같은 1.5 : 1 비율 → 을 3억, 정 2억. 2순위가 있으면 3순위 형제(무)는 받지 못한다(ㄹ ✗).</li></ul>'},
+{id:'i4',p:'상속',t:'b',hot:1,
+ sit:'<p>갑은 전처와 이혼하였고 전처와의 사이에 자녀 A가 있다. 이후 을과 재혼(혼인신고)하여 자녀 C를 낳았다. 을에게는 전 남편과의 사이에서 낳은 자녀 B가 있으며, 갑은 B를 <b>입양하지 않았다</b>. 갑은 유언 없이 사망하였고 재산은 <b>7억 원</b>이다.</p>',
+ tr:{n:[['x',0,0,'전처'],['g',1.15,0,'갑','k'],['e',2.3,0,'을'],['y',3.45,0,'을의 전남편'],['a',0.58,1,'A'],['c',1.73,1,'C'],['b',2.88,1,'B']],m:[['x','g',1,'이혼'],['g','e'],['e','y',1,'이혼']],c:[[['x','g'],'a'],[['g','e'],'c'],[['e','y'],'b']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['B는 을의 전부소생자로서 갑과는 인척 관계이므로 갑의 법정상속인이 아니다.','이혼한 전처는 A의 어머니이므로 갑의 상속인이 된다.','A는 이혼한 전처의 자녀이므로 갑의 재산을 상속받을 수 없다.','을은 3억 원을 상속받는다.','갑이 B에게 재산을 남기려 했다면 유언을 했어야 한다.'],a:[0,3,4],
+ e:'<ul><li>재혼 배우자의 <b>전부소생자</b>는 인척이라 법정상속 불가 → 주려면 반드시 유언(ㄱ·ㅁ ✓).</li><li>이혼한 전처는 배우자가 아니다(ㄴ ✗). A는 갑의 친자녀, 직계비속이다(ㄷ ✗).</li><li>상속인: 을 1.5, A 1, C 1 → 7억 ÷ 3.5 = 2억 → 을 <b>3억</b>, A·C 각 2억.</li></ul>'},
+{id:'i5',p:'상속',t:'b',hot:1,
+ sit:'<p>갑은 "<b>전 재산을 복지재단에 기부한다</b>"는 적법한 유언을 남기고 사망하였다. 재산은 <b>21억 원</b>이다. 갑에게는 배우자 을과 자녀 A·B가 있고 갑의 부모도 생존해 있다.</p>',
+ tr:{n:[['f',0,0,'갑의 부'],['mo',1.1,0,'갑의 모'],['g',0.55,1,'갑','k'],['e',1.65,1,'을'],['a',0.55,2,'A'],['b',1.65,2,'B']],m:[['f','mo'],['g','e']],c:[[['f','mo'],'g'],[['g','e'],'a'],[['g','e'],'b']]},
+ stem:'위 사례에서 가족의 권리에 대한 설명으로 '+STEM,
+ o:['을의 유류분은 4억 5천만 원이다.','A의 유류분은 3억 원이다.','유류분 반환은 침해 사실을 안 날부터 3년 이내에 청구해야 한다.','갑의 부모도 직계존속으로서 유류분을 청구할 수 있다.','유언이 있으므로 가족은 아무것도 청구할 수 없다.'],a:[0,1],
+ e:'<ul><li>유류분은 먼저 <b>유언이 없었다고 보고</b> 법정상속분을 계산: 21억 ÷ 3.5 = 6억 → 을 9억, A·B 6억.</li><li>직계비속·배우자는 그 <b>1/2</b> → 을 4억 5천, A·B 3억.</li><li>ㄷ 청구기한은 <b>1년</b>. ㄹ 1순위가 있으면 2순위는 유류분 청구 불가. ㅁ 유류분은 유언으로도 깰 수 없는 최소 몫이다.</li></ul>'},
+{id:'i6',p:'상속',t:'b',hot:1,
+ sit:'<p>미혼이고 자녀가 없는 갑은 "<b>전 재산을 친구 무에게 준다</b>"는 유언을 남기고 사망하였다. 재산은 <b>6억 원</b>이다. 갑의 아버지 병, 어머니 을, 누나 정이 생존해 있다. (2026년 사망)</p>',
+ tr:{n:[['bb',0,0,'병(부)'],['e',1.1,0,'을(모)'],['j',0,1,'누나 정'],['g',1.1,1,'갑','k'],['mu',2.4,1,'친구 무']],m:[['bb','e']],c:[[['bb','e'],'j'],[['bb','e'],'g']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['유언이 없었다면 병과 을이 각각 3억 원을 상속받았을 것이다.','병과 을은 각각 1억 원의 유류분을 청구할 수 있다.','누나 정은 형제자매로서 유류분을 청구할 수 있다.','병과 을이 모두 이미 사망했고 유언이 없었다면 정이 3순위 상속인이 된다.','직계존속의 유류분은 법정상속분의 1/2이다.'],a:[0,1,3],
+ e:'<ul><li>1순위가 없으므로 2순위 직계존속 병·을이 3억씩(ㄱ).</li><li>직계존속의 유류분은 법정상속분의 <b>1/3</b> → 1억씩(ㄴ ✓, ㅁ ✗).</li><li>2026년부터 <b>형제자매는 유류분권 제외</b>(ㄷ ✗).</li></ul>'},
+{id:'i7',p:'상속',t:'b',hot:1,
+ sit:'<p>갑은 유언 없이 사망하였고 재산은 <b>10억 원</b>이다. 갑의 배우자는 이미 사망하였고 자녀 A·B·C가 있다. 딸 A는 치매에 걸린 갑을 10년간 혼자 돌보았고, 법원은 A의 <b>기여분을 1억 원</b>으로 인정하였다.</p>',
+ tr:{n:[['g',0.5,0,'갑','k'],['s',1.6,0,'배우자(사망)','d'],['a',0,1,'A'],['b',1.05,1,'B'],['c',2.1,1,'C']],m:[['g','s']],c:[[['g','s'],'a'],[['g','s'],'b'],[['g','s'],'c']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['A가 받는 금액은 모두 4억 원이다.','B는 3억 원을 상속받는다.','기여분은 법원에 청구하여 인정받을 수 있다.','상속인이 아닌 요양보호사도 기여분을 청구할 수 있다.','10억 원을 먼저 3등분한 뒤 A에게 1억 원을 더 얹어 준다.'],a:[0,1,2],
+ e:'<ul><li>기여분 1억을 <b>먼저 떼고</b> 남은 9억을 나눈다 → 각 3억. A는 1억 + 3억 = <b>4억</b>(ㅁ ✗).</li><li>기여분은 피상속인을 부양하거나 재산 유지에 기여한 <b>상속인</b>이 법원에 청구한다(ㄹ ✗).</li></ul>'},
+{id:'i8',p:'상속',t:'b',hot:1,
+ sit:'<p>갑이 사망하였다. 갑에게는 재산 <b>2억 원</b>과 빚 <b>5억 원</b>이 있다. 배우자 을과 자녀 A가 있고, 갑의 부모와 형 B도 생존해 있다.</p>',
+ tr:{n:[['f',0,0,'갑의 부'],['mo',1.1,0,'갑의 모'],['b',0,1,'형 B'],['g',1.1,1,'갑','k'],['e',2.2,1,'을'],['a',1.65,2,'A']],m:[['f','mo'],['g','e']],c:[[['f','mo'],'b'],[['f','mo'],'g'],[['g','e'],'a']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['을과 A가 기한 내에 아무것도 하지 않으면 단순승인이 되어 빚까지 물려받는다.','을과 A가 상속을 포기하려면 사망을 안 날부터 3개월 이내에 법원에 청구해야 한다.','을과 A만 상속을 포기하면 갑의 빚 문제는 가족 모두에게서 완전히 끝난다.','빚의 규모가 확실하지 않다면 한정승인으로 상속받은 재산 한도에서만 빚을 갚을 수 있다.','3개월이 지난 뒤 빚을 알게 되었다면 어떤 경우에도 대응할 방법이 없다.'],a:[0,1,3],
+ e:'<ul><li>ㄷ 1순위가 포기하면 다음 순위(부모 → 형제 …)로 넘어간다. <b>4순위까지 모두 포기</b>해야 완전한 효력.</li><li>ㅁ 빚이 많다는 사실을 <b>안 날부터 새로 3개월</b>이 기산되는 개정 조항이 있다.</li></ul>'},
+{id:'i9',p:'상속',t:'b',
+ sit:'<p>20세 미혼인 갑이 자녀 없이 사망하였고 재산은 <b>3억 원</b>이다. 어머니 을은 갑이 3살 때 집을 나가 양육비를 한 번도 주지 않아 <b>부양의무를 중대하게 위반</b>하였다. 아버지 병이 갑을 혼자 키웠다. 갑에게는 동생 정이 있다. (2026년 사망)</p>',
+ tr:{n:[['bb',0,0,'병(부)'],['e',1.1,0,'을(모)'],['g',0,1,'갑','k'],['j',1.1,1,'동생 정']],m:[['bb','e']],c:[[['bb','e'],'g'],[['bb','e'],'j']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['구하라법을 고려하지 않으면 갑의 상속인은 2순위인 을과 병이다.','구하라법에 따라 을의 상속권이 제한될 수 있다.','을의 상속권이 제한되면 동생 정이 을의 몫을 대습상속한다.','정이 재산을 노리고 병을 살해하려다 미수에 그쳤다면 정은 상속결격자가 된다.','정이 갑의 유언장을 숨겼더라도 상속결격 사유에는 해당하지 않는다.'],a:[0,1,3],
+ e:'<ul><li><b>구하라법</b>(2026.1.1 시행): 미성년 자녀 부양의무를 중대하게 위반한 직계존속은 상속권 제한.</li><li>ㄷ 대습상속은 먼저 사망한 상속인의 <b>직계비속</b>이 대신 받는 것이다. 형제가 부모 몫을 대습하지 않는다.</li><li>결격 사유: 상속인 살해·<b>살해 미수</b>, 유언장 위조·변조·<b>은닉</b>(ㄹ ✓, ㅁ ✗).</li></ul>'},
+{id:'i10',p:'상속',t:'b',
+ sit:'<p>갑과 아들 A가 비행기 추락 사고로 함께 사망하였고 <b>누가 먼저 사망했는지 알 수 없다</b>. 갑의 재산은 <b>7억 원</b>이다. 갑의 배우자 을과 딸 B가 생존해 있으며, A는 미혼이고 자녀가 없다.</p>',
+ tr:{n:[['g',0.5,0,'갑(사망)','k'],['e',1.6,0,'을'],['a',0.5,1,'A(사망)','d'],['b',1.6,1,'B']],m:[['g','e']],c:[[['g','e'],'a'],[['g','e'],'b']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['A는 갑과 동시에 사망한 것으로 보아 갑의 재산을 상속하지 못한다.','을은 4억 2천만 원, B는 2억 8천만 원을 상속받는다.','A의 몫은 대습상속으로 A의 형제 B에게 돌아간다.','사망 순서가 입증되면 이와 다르게 처리될 수 있다.','동시사망이므로 갑의 재산은 국가에 귀속된다.'],a:[0,1,3],
+ e:'<ul><li><b>동시사망</b>은 서로 존재하지 않았던 것으로 보아 상속 순서를 따르지 않는다. 남은 상속인 을 1.5 : B 1 → 7억 ÷ 2.5 = 2.8억 → 을 4.2억, B 2.8억.</li><li>ㄹ 추락 중 순서를 입증해 대습상속을 인정한 대법원 판례가 있다.</li></ul>'},
+{id:'i11',p:'상속',t:'b',
+ sit:'<p>갑이 유언 없이 사망하였다. 갑에게는 법률혼 배우자·직계비속·직계존속·형제자매가 <b>모두 없다</b>. 갑은 사실혼 배우자 을과 20년간 함께 살았다. 갑의 삼촌 병과 병의 자녀(갑의 사촌) 정이 생존해 있다.</p>',
+ tr:{n:[['gf',0.4,0,'조부(사망)','d'],['gm',1.4,0,'조모(사망)','d'],['f',0,1,'부(사망)','d'],['bb',1.8,1,'삼촌 병'],['g',0,2,'갑','k'],['e',0.95,2,'을'],['j',1.8,2,'사촌 정']],m:[['gf','gm'],['g','e',1,'사실혼']],c:[[['gf','gm'],'f'],[['gf','gm'],'bb'],[['f'],'g'],[['bb'],'j']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['병은 4순위 상속인이다.','병과 정은 같은 4순위이므로 재산을 똑같이 나눈다.','을은 함께 산 배우자이므로 병보다 먼저 상속받는다.','병이 이미 사망했다면 정이 상속받을 수 있다.','병과 정이 모두 없다면 을이 재산을 받을 수 있고, 국가 귀속 전에는 특별연고자 확인 절차를 거친다.'],a:[0,3,4],
+ e:'<ul><li>4순위는 3~4촌 방계혈족. 같은 4순위라도 <b>삼촌이 우선</b>, 사촌은 삼촌이 사망한 경우에 받는다(ㄴ ✗, ㄹ ✓).</li><li>사실혼 배우자는 1~4순위가 <b>모두 없을 때만</b> 받을 수 있다(ㄷ ✗).</li></ul>'},
+{id:'i12',p:'상속',t:'b',
+ sit:'<p>갑은 어릴 때 을·병 부부에게 <b>친양자</b>로 입양되었다. 갑은 미혼이고 자녀 없이 사망하였으며 재산은 <b>4억 원</b>이다. 양부모 을·병과 친생모 정이 생존해 있다.</p>',
+ tr:{n:[['j',0,0,'친생모 정'],['e',1.3,0,'을(양부)'],['bb',2.4,0,'병(양모)'],['g',1.85,1,'갑','k']],m:[['e','bb']],c:[[['e','bb'],'g',0,'친양자'],[['j'],'g',1]]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['을과 병이 각각 2억 원을 상속받는다.','친생모 정도 직계존속으로서 함께 상속받는다.','갑이 친양자가 아닌 일반 양자였다면 정도 직계존속에 포함된다.','양친자 관계는 법정혈족이므로 파양으로 끊을 수 있다.','입양된 자녀는 친생자가 아니므로 양부모의 재산을 상속할 수 없다.'],a:[0,2,3],
+ e:'<ul><li><b>친양자</b>는 친부모와 상속관계가 단절된다 → 양부모 을·병만 2순위로 2억씩.</li><li>일반 <b>양자</b>는 양부모·친부모 모두 직계존속.</li><li>법정혈족은 파양으로 끊을 수 있고, 입양 자녀는 법적 혈족이라 상속권이 있다(ㅁ ✗).</li></ul>'},
+{id:'i13',p:'상속',t:'s',hot:1,
+ sit:'<p>갑이 유언 없이 사망하였다. 재산은 <b>9억 원</b>이다. 배우자 을, 자녀 A·B·C가 모두 생존해 있고 갑의 부모도 생존해 있다.</p>',
+ tr:{n:[['g',1,0,'갑','k'],['e',2.1,0,'을'],['a',0.45,1,'A'],['b',1.55,1,'B'],['c',2.65,1,'C']],m:[['g','e']],c:[[['g','e'],'a'],[['g','e'],'b'],[['g','e'],'c']]},
+ stem:'을의 법정상속분은 몇 억 원인가? (숫자만)',acc:['3'],show:'3억 원',
+ e:'을 1.5 + 자녀 3명 × 1 = 4.5 → 9억 ÷ 4.5 = 2억 → 을 1.5 × 2억 = <b>3억</b>, 자녀 각 2억. 부모는 2순위라 제외. 계산이 딱 떨어지는지 꼭 확인!'},
+{id:'i14',p:'상속',t:'s',hot:1,
+ sit:'<p>갑은 "<b>전 재산을 지인 무에게 준다</b>"는 유언을 남기고 사망하였다. 재산은 <b>10억 원</b>이다. 가족으로는 배우자 을과 자녀 A만 있다.</p>',
+ stem:'A가 청구할 수 있는 유류분은 몇 억 원인가? (숫자만)',acc:['2'],show:'2억 원',
+ e:'법정상속분: 을 1.5 : A 1 = 2.5 → 10억 ÷ 2.5 = 4억 → 을 6억, A 4억. A의 유류분 = 4억 × 1/2 = <b>2억</b>.'},
+{id:'i15',p:'상속',t:'s',hot:1,stem:'4순위까지 상속인이 없고 유언도 없을 때, 법원을 통해 재산 일부를 청구할 수 있는 사람을 무엇이라 하는가? (5글자)',acc:['특별연고자'],show:'특별연고자',e:'<b>특별연고자</b>. 확인 절차를 거친 뒤에도 없으면 국가에 귀속된다.'},
+{id:'i16',p:'상속',t:'s',hot:1,stem:'상속인이 될 사람이 피상속인보다 먼저 사망한 경우, 그 직계비속이 대신 상속받는 제도는? (4글자)',acc:['대습상속'],show:'대습상속',e:'<b>대습상속</b>. 예: 자녀가 먼저 사망하면 손자녀가 그 몫을 받는다.'},
+{id:'i17',p:'상속',t:'s',stem:'빚이 재산보다 확실히 많을 때 상속포기는 사망을 안 날부터 몇 개월 이내에 해야 하는가? (숫자만)',acc:['3'],show:'3개월',e:'<b>3개월</b> 이내 법원에 심판청구서 제출. 한정승인도 같은 3개월. 빚을 늦게 알았다면 안 날부터 새로 3개월.'},
+{id:'i18',p:'상속',t:'s',stem:'상속분을 침해당했을 때 행사하는 상속회복청구권의 청구 기한은 몇 년인가? (숫자만)',acc:['3'],show:'3년',e:'상속회복청구권 <b>3년</b>. 유류분 반환 청구(1년)와 구별할 것.'},
+
+/* 유언 */
+{id:'w1',p:'유언',t:'b',hot:1,stem:'유언의 방식에 대한 설명으로 '+STEM,
+ o:['자필증서 유언은 전문을 자필로 쓰고 날짜·서명·주소·생년월일을 반드시 적어야 한다.','자필증서에 "제주도에 있는 집을 A에게 준다"고 쓰면 유효하다.','녹음 유언에는 증인이 필요하지 않다.','공정증서 유언은 공증인(변호사) 사무실에서 증인과 함께 작성한다.','비밀증서 유언에서 증인은 내용을 확인한 뒤 서명한다.'],a:[0,3],
+ e:'<ul><li>ㄴ 재산은 정확한 주소·동·호수로 <b>특정</b>해야 한다.</li><li>ㄷ 녹음도 증인이 필요하고, 중단 없이 녹음해야 한다.</li><li>ㅁ 비밀증서는 봉투에 밀봉하고 증인은 <b>내용을 모른 채</b> 서명한다.</li></ul>'},
+{id:'w2',p:'유언',t:'b',hot:1,
+ sit:'<p>갑은 재산을 정리하기 위해 여러 방식의 유언을 고민하고 있다. 자녀 A는 갑의 재산을 받을 사람(수익자)이다.</p>',
+ stem:'갑의 유언에 대한 설명으로 '+STEM,
+ o:['컴퓨터로 작성해 출력한 뒤 서명만 자필로 한 유언장은 자필증서 유언으로 유효하다.','갑이 녹음 유언을 하면서 A를 증인으로 세울 수 있다.','갑이 교통사고로 위독한 상황에서 말로 유언하고 증인이 받아 적으면 구수증서 유언이 된다.','자필증서 유언에서 수익자 A를 유언집행자로 지정할 수 없다.','유언은 법이 정한 5가지 방식으로만 효력이 있다.'],a:[2,3,4],
+ e:'<ul><li>ㄱ 자필증서는 <b>전문을 자필</b>로 써야 한다.</li><li>ㄴ 녹음 유언에서 수익자는 증인이 될 수 없다.</li><li>5가지: 자필증서·녹음·공정증서·비밀증서·구수증서. 가장 권장되는 방식은 공정증서.</li></ul>'},
+{id:'w3',p:'유언',t:'s',hot:1,stem:'유언의 5가지 방식 중 공증인(변호사) 사무실에서 증인과 함께 작성하며 가장 권장되는 방식은?',acc:['공정증서','공정증서유언','공정증서에의한유언'],show:'공정증서',e:'<b>공정증서</b> 유언. 분쟁 가능성이 가장 낮다.'},
+
+/* 혼인·이혼 */
+{id:'m1',p:'혼인·이혼',t:'b',stem:'혼인과 부부 재산에 대한 설명으로 '+STEM,
+ o:['만 18세는 부모 동의가 있어야 혼인할 수 있고, 만 19세부터는 단독으로 혼인할 수 있다.','8촌 이내 혈족 사이에서는 혼인할 수 없다.','부부별산제에 따라 혼인 전부터 가지고 있던 고유재산도 이혼 시 분할 대상이 된다.','배우자 몰래 빌린 생활비라면 다른 배우자는 갚을 책임이 없다.','로또 당첨금이 특유재산으로 판단된 판결이 있다.'],a:[0,1,4],
+ e:'<ul><li>ㄷ <b>고유재산</b>(혼인 전 재산)과 <b>특유재산</b>(증여·우연히 얻은 재산)은 각자 것이라 분할 대상이 아니다.</li><li>ㄹ 교육비·생활비 등 <b>일상가사비용</b>은 몰래 빌렸어도 부부 연대채무.</li></ul>'},
+{id:'m2',p:'혼인·이혼',t:'b',
+ sit:'<p>갑과 을 부부는 <b>5살 자녀</b>를 두고 있으며 서로 합의하여 협의이혼을 하려고 한다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['숙려기간은 3개월이다.','가정법원의 확인서를 받은 후 3개월 이내에 구청에 이혼신고를 해야 한다.','자녀가 없고 임신 중도 아니었다면 숙려기간은 1개월이다.','가정폭력 등 급박한 사정이 있어도 숙려기간은 줄일 수 없다.','협의이혼이므로 친권·양육권은 따로 정하지 않아도 된다.'],a:[0,1,2],
+ e:'<ul><li>미성년 자녀가 있거나 임신 중이면 <b>3개월</b>, 그 외 <b>1개월</b>.</li><li>ㄹ 급박한 사정이면 가정법원에 신청해 단축·면제 가능.</li><li>ㅁ 미성년 자녀의 친권·양육권·면접교섭권은 반드시 정해야 한다.</li></ul>'},
+{id:'m3',p:'혼인·이혼',t:'b',
+ sit:'<p>을은 남편 갑과 결혼한 후 시어머니 병으로부터 <b>지속적으로 폭행</b>을 당했으나 갑은 이를 방관하였다. 을은 이혼을 원하지만 갑은 응하지 않는다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['배우자의 직계존속으로부터 받은 부당한 대우로서 재판상 이혼 사유가 된다.','을은 정신적 손해에 대한 위자료를 병을 상대로 청구할 수 있다.','을은 재산분할도 병을 상대로 청구해야 한다.','을은 이혼조정을 거치지 않고 곧바로 이혼소송을 진행할 수 있다.','조정기간은 4주이다.'],a:[0,1,4],
+ e:'<ul><li>배우자의 직계존속(시어머니)의 폭행도 재판상 이혼 사유.</li><li><b>재산분할은 남편 갑</b>과, <b>위자료는 원인 제공자 병</b>에게(ㄷ ✗).</li><li><b>조정전치주의</b>: 소송 전에 반드시 조정. 바로 소송해도 조정으로 돌려보낸다(ㄹ ✗).</li></ul>'},
+{id:'m4',p:'혼인·이혼',t:'b',stem:'재판상 이혼에 대한 설명으로 '+STEM,
+ o:['이혼의 책임이 있는 유책배우자는 재판상 이혼을 청구할 수 없다.','배우자가 3년 이상 생사불명이면 재판상 이혼을 청구할 수 있다.','실종선고를 받으면 그 배우자와는 이혼한 것으로 처리된다.','조정이 성립하면 조정조서를 받고 3개월 이내에 이혼신고를 해야 한다.','"기타 중대한 사유"에 해당하는지는 판사가 사안별로 판단한다.'],a:[0,1,4],
+ e:'<ul><li>ㄷ 실종 신고 후 5년이 지나 <b>실종선고</b>를 받으면 이혼이 아니라 <b>사망</b>으로 처리되어 상속 절차로 넘어간다.</li><li>ㄹ 조정조서는 <b>1개월</b> 이내(협의이혼 확인서는 3개월). 넘기면 과태료만 내면 된다.</li><li>ㅁ 판례상 약물·인터넷 중독, 회복 불가능한 조울증 등이 인정됐다.</li></ul>'},
+{id:'m5',p:'혼인·이혼',t:'b',stem:'이혼 후의 재산과 자녀 문제에 대한 설명으로 '+STEM,
+ o:['재산분할은 이혼 후 2년 이내에 청구해야 한다.','위자료는 이혼 후 3년 이내에 청구해야 한다.','유책배우자는 재산분할을 청구할 수 없다.','친권은 자녀와 함께 살면서 돌볼 권리를 말한다.','양육비는 만 18세까지 지급하며, 미성년 때 못 받은 양육비는 자녀가 성년이 된 후에도 청구할 수 있다.'],a:[0,1,4],
+ e:'<ul><li>ㄷ 재산분할은 <b>유책 여부와 무관</b>하게 함께 모은 재산을 나누는 것이다.</li><li>ㄹ 그건 <b>양육권</b>. 친권은 재산관리권 + 법률행위 대리권.</li></ul>'},
+{id:'m6',p:'혼인·이혼',t:'s',hot:1,stem:'교육비·생활비처럼 일상 가정생활에 필요한 비용으로, 부부가 연대하여 책임지는 채무의 대상은? (6글자)',acc:['일상가사비용'],show:'일상가사비용',e:'<b>일상가사비용</b>은 배우자 모르게 빌렸어도 부부 연대채무.'},
+{id:'m7',p:'혼인·이혼',t:'s',stem:'재판상 이혼 소송을 제기하기 전에 반드시 이혼조정을 먼저 거쳐야 한다는 원칙은?',acc:['조정전치주의'],show:'조정전치주의',e:'<b>조정전치주의</b>. 조정기간 4주, 성립 시 조정조서 → 1개월 내 신고.'},
+{id:'m8',p:'혼인·이혼',t:'s',stem:'이혼 후 양육권이 없는 부모가 자녀를 만날 수 있는 권리는?',acc:['면접교섭권','면접교섭'],show:'면접교섭권',e:'<b>면접교섭권</b>. 날짜·시간·횟수를 정하며, 가정폭력 전력이 있으면 제한될 수 있다.'},
+
+/* 범죄·수사 */
+{id:'c1',p:'범죄·수사',t:'b',stem:'폭행과 명예훼손에 대한 설명으로 '+STEM,
+ o:['싸움을 말리다가 양쪽 모두에게 손을 대면 특수폭행으로 처벌받을 수 있다.','1대1로 싸운 경우 먼저 맞은 쪽은 정당방위로 인정된다.','상해진단서가 경찰에 제출되면 폭행치상(상해)이 되어 반의사불벌죄가 적용되지 않는다.','사실을 말한 경우에는 명예훼손죄가 성립하지 않는다.','1대1 문자로 험담해도 정보통신망법상 명예훼손에 해당할 수 있다.'],a:[0,2,4],
+ e:'<ul><li>ㄴ 1대1 싸움은 <b>쌍방폭행</b>, 정당방위 인정 안 됨(합의하면 종결 가능).</li><li>ㄹ 우리나라에는 <b>사실적시 명예훼손죄</b>가 있다.</li><li>ㅁ 정보통신망법 제70조 제1항, 가중처벌.</li></ul>'},
+{id:'c2',p:'범죄·수사',t:'b',stem:'성범죄·절도·스토킹에 대한 설명으로 '+STEM,
+ o:['술에 취한 상대방과의 성관계는 준강간으로 처벌될 수 있다.','동성 간의 신체 접촉은 성희롱에 해당하지 않는다.','길에서 주운 물건을 1주일 이상 가지고 있으면 점유이탈물횡령죄가 될 수 있다.','거절 의사를 밝힌 상대에게 선물을 보내는 것은 스토킹에 해당하지 않는다.','과장·부장의 언어적 성희롱은 형사처벌 대상이다.'],a:[0,2],
+ e:'<ul><li>ㄴ 동성 간 신체 접촉, 외모·향기 언급도 성희롱.</li><li>ㄹ 문자·이메일·<b>선물 발송</b>도 스토킹.</li><li>ㅁ 과장·부장의 언어적 성희롱은 형사처벌 없이 <b>징계</b>, 사장은 형사처벌 가능.</li></ul>'},
+{id:'c3',p:'범죄·수사',t:'b',stem:'수사기관 개편과 수사 절차에 대한 설명으로 '+STEM,
+ o:['검찰청이 공소청으로 개편되면서 검사의 수사권이 폐지되었다.','검사는 경찰에 보완수사를 요구할 수 있다.','검사가 수사 때문에 직접 전화하는 것은 정상적인 절차이다.','내사 단계에서 혐의를 받는 사람은 피의자라고 부른다.','고소·고발 사건은 3개월 이내에 수사를 완료해야 한다.'],a:[0,1,4],
+ e:'<ul><li>검사의 역할: 영장 청구, 보완수사 요구, 재수사 요구, 공소 제기·유지.</li><li>ㄷ 검사는 수사 목적으로 직접 전화하지 않는다 → 보이스피싱 주의.</li><li>ㄹ 내사 단계는 <b>용의자</b>, 입건 후 피의자.</li></ul>'},
+{id:'c4',p:'범죄·수사',t:'b',
+ sit:'<p>갑이 편의점에서 물건을 훔쳐 나가는 것을 손님 을이 보고 그 자리에서 붙잡았다.</p>',
+ stem:'체포·구속에 대한 설명으로 '+STEM,
+ o:['현행범은 일반 시민인 을도 체포할 수 있으며, 즉시 경찰에 인계해야 한다.','체포할 때에는 미란다 원칙을 고지해야 한다.','체포 후 조사할 수 있는 시간은 최대 72시간이다.','판사가 발부한 체포영장의 유효기간은 원칙적으로 7일이다.','구속수사가 원칙이고 불구속수사는 예외이다.'],a:[0,1,3],
+ e:'<ul><li>ㄷ 모든 체포 후 조사 가능 시간은 <b>48시간</b>. 더 잡아두려면 48시간 안에 구속영장 청구.</li><li>ㅁ <b>불구속(출퇴근) 수사가 대원칙</b>, 도주·증거인멸 우려가 있을 때만 구속.</li></ul>'},
+{id:'c5',p:'범죄·수사',t:'b',stem:'송치·기소에 대한 설명으로 '+STEM,
+ o:['경찰이 불송치 결정을 해도 수사 기록은 검사에게 송부해야 한다.','피해자는 불송치 결정에 대해 3개월 이내에 이의신청할 수 있다.','약식명령에 불복하려면 14일 이내에 정식재판을 청구해야 한다.','기소유예는 증거가 부족할 때 내리는 처분이다.','피의자가 자백하면 다른 증거 없이도 유죄가 된다.'],a:[0,1],
+ e:'<ul><li>ㄷ 약식명령 이의는 <b>7일</b> 이내.</li><li>ㄹ 기소유예는 증거가 <b>충분하지만</b> 정상을 참작해 보류하는 것. 증거 부족은 불기소(무혐의).</li><li>ㅁ 자백만으로는 유죄 불충분, CCTV·증인 등 보강증거가 필요.</li></ul>'},
+{id:'c6',p:'범죄·수사',t:'b',
+ sit:'<p>갑은 단체 대화방에서 을에게 심한 욕설을 하였고(모욕), 며칠 뒤에는 병을 밀쳐 넘어뜨렸다(폭행, 상해 없음).</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['모욕죄는 친고죄이므로 을은 범인을 안 날부터 6개월 이내에 고소해야 한다.','을이 고소를 취소했다가 마음이 바뀌면 다시 고소할 수 있다.','폭행죄는 반의사불벌죄이므로 병이 처벌을 원하지 않으면 공소를 제기할 수 없다.','병이 합의서에 "선처를 바랍니다"라고만 써도 처벌불원 합의서로 인정된다.','고소 취소는 1심 판결 선고 전까지 할 수 있다.'],a:[0,2,4],
+ e:'<ul><li>ㄴ 친고죄는 한 번 취소하면 <b>재고소 불가</b>.</li><li>ㄹ 필수 문구: "가해자의 <b>처벌을 원하지 않으며</b>, 차후 민·형사상 이의를 제기하지 않겠습니다".</li></ul>'},
+{id:'c7',p:'범죄·수사',t:'b',stem:'피해 회복 제도에 대한 설명으로 '+STEM,
+ o:['배상명령은 정식기소된 사건에서만 신청할 수 있다.','형사재판에서 선고된 벌금은 피해자에게 지급된다.','공탁은 가해자가 적정 금액을 법원(공탁소)에 맡기는 제도이다.','피해자는 재판이 끝날 때까지 공탁금을 찾아갈 수 없다.','형사적 표현인 "범죄"는 민사적으로 "불법행위"에 해당한다.'],a:[0,2,4],
+ e:'<ul><li>ㄴ 벌금은 <b>국가</b>에 귀속된다. 그래서 배상명령·형사합의·민사소송이 필요하다.</li><li>ㄹ 피해자는 공탁금을 <b>언제든지</b> 찾아갈 수 있고 법원이 통지한다.</li></ul>'},
+{id:'c8',p:'범죄·수사',t:'s',stem:'용의자 → 피의자 → (   ) → 수형자. 빈칸에 들어갈 말은?',acc:['피고인'],show:'피고인',e:'검사가 <b>기소</b>하면 피의자는 <b>피고인</b>이 되고, 유죄가 확정되면 수형자가 된다.'},
+{id:'c9',p:'범죄·수사',t:'s',stem:'구속된 이후에 구속이 적법한지 판사에게 다시 심사해 달라고 요청하는 제도는? (6글자)',acc:['구속적부심사','구속적부심'],show:'구속적부심사',e:'<b>구속적부심사</b>(구속 후). 구속영장실질심사(8글자)는 영장 발부 <b>전</b>.'},
+{id:'c10',p:'범죄·수사',t:'s',stem:'구속영장 발부 전에 판사가 피의자를 직접 만나 구속 여부를 심사하는 제도는? (8글자)',acc:['구속영장실질심사','영장실질심사'],show:'구속영장실질심사',e:'<b>구속영장실질심사</b>.'},
+{id:'c11',p:'범죄·수사',t:'s',stem:'형사합의서 필수 문구: "가해자의 (   )을/를 원하지 않으며, 차후 민·형사상 이의를 제기하지 않겠습니다." 빈칸은?',acc:['처벌'],show:'처벌',e:'"선처를 바랍니다"로는 인정되지 않는다. 교통사고처럼 후유증이 우려되면 "민사상" 부분을 빼고 형사 처벌 불원 문구만 남긴다.'},
+
+/* 형벌 */
+{id:'p1',p:'형벌',t:'b',hot:1,stem:'형벌의 종류에 대한 설명으로 '+STEM,
+ o:['우리나라 사형의 집행 방법은 교수형이다.','유기징역은 1월 이상 30년 이하이며, 형을 가중하면 50년까지 가능하다.','금고는 징역과 달리 정역(작업)을 부과한다.','과태료는 형벌이므로 전과가 남는다.','몰수할 수 없는 경우에는 그 가액을 추징한다.'],a:[0,1,4],
+ e:'<ul><li>ㄷ 반대다. <b>징역</b>은 작업 부과, <b>금고</b>는 작업 없음(과실범·정치범).</li><li>ㄹ 과태료·범칙금·과징금은 <b>행정벌</b>, 전과 없음.</li></ul>'},
+{id:'p2',p:'형벌',t:'b',hot:1,
+ sit:'<p>갑은 폭행 사건으로 <b>벌금 200만 원</b>을 선고받았다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['갑은 30일 이내에 벌금을 납부해야 한다.','벌금을 내지 않으면 1일 10만 원으로 계산하여 20일간 노역장에 유치될 수 있다.','300만 원 이하의 벌금이므로 노역장 대신 사회봉사로 대체할 수 있다.','노역장 유치 기간은 최대 5년이다.','벌금형은 전과로 남지 않는다.'],a:[0,1,2],
+ e:'<ul><li>ㄹ 노역장 유치는 1일 이상 <b>3년</b> 이하.</li><li>ㅁ 벌금도 형벌이라 전과가 남는다(조회 기간 2년).</li><li>참고: 500만 원 이하 벌금은 집행유예 가능(2018).</li></ul>'},
+{id:'p3',p:'형벌',t:'b',hot:1,stem:'가석방과 형 집행정지에 대한 설명으로 '+STEM,
+ o:['무기징역은 20년 이상 복역해야 가석방 심사를 받을 수 있다.','유기징역은 선고형의 2분의 1 이상 복역해야 가석방 심사를 받을 수 있다.','무기징역으로 가석방되면 10년간 보호관찰을 받는다.','형 집행정지로 병원 치료를 받은 기간은 형기에 합산된다.','금고형을 받은 모범수도 가석방 대상이 된다.'],a:[0,2,4],
+ e:'<ul><li>ㄴ 유기는 <b>3분의 1</b> 이상.</li><li>보호관찰: 유기 = 잔여 형기, 무기 = 10년.</li><li>ㄹ 형 집행정지 기간은 합산되지 않는다. "형 집행중지"가 아니라 "형 집행<b>정지</b>".</li></ul>'},
+{id:'p4',p:'형벌',t:'b',hot:1,stem:'전과기록에 대한 설명으로 '+STEM,
+ o:['검찰청은 수형인명부를 보관한다.','경찰청이 보관하는 기록은 수형인명표이다.','징역 2년을 만기 복역했다면 출소 후 5년간 전과 조회가 된다.','벌금형은 부과된 때부터 2년간 조회된다.','징역 4년을 만기 복역했다면 출소 후 5년간 조회된다.'],a:[0,2,3],
+ e:'<ul><li>검찰청 = <b>수형인명부</b>, 등록기준지 읍면동 = <b>수형인명표</b>, 경찰청 = <b>범죄경력자료</b>(ㄴ ✗).</li><li>3년 초과 징역·금고 → 출소 후 <b>10년</b>(ㅁ ✗), 3년 이하 → 5년, 벌금 → 2년.</li></ul>'},
+{id:'p5',p:'형벌',t:'s',hot:1,stem:'과료는 (   )원 이상 5만 원 미만이다. 빈칸의 숫자는?',acc:['2000','2천','이천'],show:'2,000원',e:'과료 <b>2,000원 이상 5만 원 미만</b>(벌금의 하위). 벌금은 5만 원 이상.'},
+{id:'p6',p:'형벌',t:'s',hot:1,stem:'구류의 최대 기간은 며칠인가? (숫자만)',acc:['30'],show:'30일',e:'구류는 1일 이상 <b>30일</b> 이하.'},
+{id:'p7',p:'형벌',t:'s',hot:1,
+ sit:'<p>갑은 <b>징역 6년</b>을 선고받고 복역 중인 모범수이다.</p>',
+ stem:'갑이 가석방 심사를 받으려면 최소 몇 년을 복역해야 하는가? (숫자만)',acc:['2'],show:'2년',e:'유기징역은 선고형의 1/3 이상 → 6년 × 1/3 = <b>2년</b>. 가석방 후에는 잔여 형기 동안 보호관찰.'},
+{id:'p8',p:'형벌',t:'s',hot:1,stem:'등록기준지 읍·면·동사무소가 보관하는 전과기록의 명칭은?',acc:['수형인명표'],show:'수형인명표',e:'검찰청 = 수형인명부, 읍면동 = <b>수형인명표</b>, 경찰청 = 범죄경력자료.'},
+
+/* 교통사고 */
+{id:'t1',p:'교통사고',t:'b',stem:'교통사고의 형사·민사 처리에 대한 설명으로 '+STEM,
+ o:['차로 남의 담벼락만 부순 대물사고는 과실손괴죄가 없어 형사처벌을 받지 않는다.','종합보험에 가입한 운전자가 신호를 지키며 운전하다 보행자에게 가벼운 상처를 입혔다면 원칙적으로 형사처벌이 면제된다.','종합보험에 가입했다면 사망사고도 형사처벌이 면제된다.','책임보험만 가입한 경우에도 피해자와 형사합의하면 종합보험과 같이 처리될 수 있다.','음주운전 사고도 보험사가 전액 처리해 준다.'],a:[0,1,3],
+ e:'<ul><li>ㄷ <b>사망사고</b>는 보험·합의와 상관없이 무조건 형사처벌.</li><li>ㅁ 음주운전 사고는 보험 처리 불가, 가해자 전액 자비 부담.</li></ul>'},
+{id:'t2',p:'교통사고',t:'b',hot:1,
+ sit:'<p>종합보험에 가입한 갑은 운전 중 자전거를 탄 을을 쳤다. 갑은 차에서 내리지 않고 창문을 내려 "괜찮냐"고 물은 뒤, 을이 고개를 끄덕이자 그대로 떠났다. 을은 이후 병원에서 전치 3주 진단을 받았다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['구호조치 미이행이나 연락처 미제공 중 하나라도 해당하면 뺑소니가 성립한다.','갑은 창문으로 상태를 확인했으므로 뺑소니가 아니다.','갑은 종합보험에 가입했으므로 형사처벌이 면제된다.','뺑소니는 피해자와 합의하더라도 형사처벌이 면제되지 않는다.','갑이 을을 병원에 데려간 뒤 을에게만 연락처를 주었다면 충분하다.'],a:[0,3],
+ e:'<ul><li>내리지 않고 창문으로만 확인해도 뺑소니가 될 수 있다 → <b>반드시 하차</b>.</li><li>뺑소니는 종합보험·합의와 무관하게 형사처벌.</li><li>ㅁ 연락처는 피해자뿐 아니라 <b>병원(응급실 간호사·원무과)</b>에도 남겨야 한다.</li></ul>'},
+{id:'t3',p:'교통사고',t:'b',hot:1,stem:'12대 중과실과 형사처벌 예외에 대한 설명으로 '+STEM,
+ o:['황색불에 교차로를 통과하다 낸 사고는 신호위반사고에 해당한다.','제한속도를 10km 초과한 사고는 12대 중과실에 해당한다.','어린이 보호구역(스쿨존)에서 초등학생을 다치게 한 사고는 12대 중과실에 해당한다.','피해자를 중상해에 이르게 한 사고는 합의하면 형사처벌이 면제될 수 있다.','자전거로 횡단보도를 달리다 낸 사고는 보험으로 처리되어 형사처벌을 받지 않는다.'],a:[0,2,3],
+ e:'<ul><li>ㄴ 12대 중과실은 제한속도 <b>20km 초과</b>.</li><li>형사처벌 예외 3가지 중 사망·뺑소니는 합의해도 처벌, <b>중상해는 합의 시 면제 가능</b>.</li><li>ㅁ 자전거로 횡단보도 주행 = 신호위반, 자전거는 종합보험이 없어 무조건 형사처벌.</li></ul>'},
+{id:'t4',p:'교통사고',t:'s',hot:1,stem:'12대 중과실 3번: 제한속도를 몇 km 초과한 사고인가? (숫자만)',acc:['20'],show:'20km',e:'제한속도 <b>20km</b> 초과. 주관식 출제 가능하다고 언급됨.'},
+{id:'t5',p:'교통사고',t:'s',stem:'교통사고 과실비율(몇 대 몇)에 이의가 있을 때 진정할 수 있는 기관은?',acc:['금융감독원','금감원'],show:'금융감독원',e:'과실비율은 민사 사항으로 보험사가 처리하고, 이의가 있으면 <b>금융감독원</b>에 진정.'}
+];
+
+/* ---------- 저장소 ---------- */
+var LS='lawquiz-v1', S={items:{},res:{}}, dbRef=null, saveT=null, saving=Promise.resolve();
+function lsGet(){try{var r=localStorage.getItem(LS);return r?JSON.parse(r):null}catch(e){return null}}
+function lsSet(){try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
+function merge(a,b){ // b 우선, 항목별로 더 최근 것
+  var o={items:{},res:Object.assign({},a.res||{},b.res||{})};
+  var ks={};Object.keys(a.items||{}).concat(Object.keys(b.items||{})).forEach(function(k){ks[k]=1});
+  Object.keys(ks).forEach(function(k){var x=(a.items||{})[k],y=(b.items||{})[k];
+    o.items[k]=!x?y:!y?x:((y.t||0)>=(x.t||0)?y:x);});
+  return o;
+}
+function save(){
+  lsSet();
+  if(!dbRef)return;
+  clearTimeout(saveT);
+  saveT=setTimeout(function(){
+    var body=JSON.parse(JSON.stringify(S));
+    saving=saving.then(function(){return dbRef.set(body)}).then(function(){setSync('ok')},function(e){setSync('err')});
+  },700);
+}
+function setSync(s){var el=document.getElementById('sync');
+  el.textContent=s==='ok'?'오답 기록은 계정에 저장되어 다른 기기에서도 이어집니다.':s==='err'?'계정 저장에 실패했습니다. 이 브라우저에는 저장되어 있어요.':'오답 기록은 이 브라우저에만 저장됩니다.';}
+(function boot(){
+  var l=lsGet(); if(l)S=merge(S,l);
+  setSync('local');
+  if(!window.claude||!window.claude.use)return;
+  Promise.all([window.claude.use('db'),window.claude.use('user')]).then(function(r){
+    var db=r[0],user=r[1]; if(!db||!user)return null;
+    return user.id().then(function(uid){ if(!uid)return null;
+      dbRef=db.doc('data/users/'+uid+'/wrongnote');
+      return dbRef.get().then(function(snap){
+        if(snap.exists){S=merge(S,snap.data()||{});lsSet();}
+        setSync('ok'); renderAll();
+        if(Object.keys(S.items).length&&!snap.exists)save();
+      });
+    });
+  }).catch(function(){setSync('local')});
+})();
+
+/* ---------- 상태 ---------- */
+var parts=['전체','친족','상속','유언','혼인·이혼','범죄·수사','형벌','교통사고'];
+var V={tab:'quiz',part:'전체',onlyWrong:false,shuffle:false,list:[],idx:0,sess:{},nf:'open',single:null};
+function byId(id){for(var i=0;i<Q.length;i++)if(Q[i].id===id)return Q[i]}
+function openWrong(){return Object.keys(S.items).filter(function(k){return !S.items[k].done&&byId(k)})}
+function buildList(){
+  var l=Q.filter(function(q){return (V.part==='전체'||q.p===V.part)&&(!V.onlyWrong||(S.items[q.id]&&!S.items[q.id].done))}).map(function(q){return q.id});
+  if(V.single)l=[V.single];
+  if(V.shuffle){for(var i=l.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=l[i];l[i]=l[j];l[j]=t}}
+  V.list=l; if(V.idx>=l.length)V.idx=0;
+}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function norm(s){return String(s).replace(/[\s.,·()"']/g,'').replace(/(억원|억|만원|원|개월|년|일|촌|킬로미터|km|㎞)$/i,'').toLowerCase()}
+function ansText(q){return q.t==='b'?q.a.map(function(i){return K[i]}).join(', '):q.show}
+function pickText(q,pk){return q.t==='b'?(pk.length?pk.slice().sort().map(function(i){return K[i]}).join(', '):'(선택 없음)'):(pk||'(빈칸)')}
+
+/* ---------- 문제 화면 ---------- */
+function renderChips(){
+  var h=parts.map(function(p){var n=p==='전체'?Q.length:Q.filter(function(q){return q.p===p}).length;
+    return '<button class="chip" data-part="'+p+'" aria-pressed="'+(V.part===p)+'">'+p+' '+n+'</button>'}).join('');
+  document.getElementById('partChips').innerHTML=h;
+  document.getElementById('onlyWrong').setAttribute('aria-pressed',V.onlyWrong);
+  document.getElementById('shuffle').setAttribute('aria-pressed',V.shuffle);
+}
+function renderQ(){
+  var box=document.getElementById('qcard');
+  if(!V.list.length){box.innerHTML='<div class="empty"><b>풀 문제가 없어요</b>'+(V.onlyWrong?'미해결 오답이 없습니다. 전체 문제를 풀고 틀린 문제가 생기면 여기에 모입니다.':'선택한 파트에 문제가 없습니다.')+'</div>';renderGrid();return;}
+  var q=byId(V.list[V.idx]),st=V.sess[q.id]||{pk:q.t==='b'?[]:''},it=S.items[q.id];
+  var h='<div class="card"><div class="qhead"><span class="qno">'+(V.idx+1)+'</span><span>/ '+V.list.length+'</span><span class="tag">'+q.p+'</span><span class="tag">'+(q.t==='b'?'박스형 · 2점':'단답형')+'</span>'+(q.hot?'<span class="hot">출제</span>':'')+(it&&!it.done?'<span class="prev-wrong">이전에 '+it.n+'회 틀림</span>':'')+'</div>';
+  if(q.sit||q.tr){h+='<div class="sit"><div class="lab">&lt;상황&gt;</div>'+(q.sit||'')+(q.tr?tree(q.tr):'')+'</div>';}
+  h+='<p class="stem">'+q.stem+(q.t==='b'?' <small>(부분점수 없음)</small>':'')+'</p>';
+  if(q.t==='b'){
+    h+='<div class="opts">'+q.o.map(function(o,i){
+      var on=st.pk.indexOf(i)>=0,cls='',mk='';
+      if(st.g){var isA=q.a.indexOf(i)>=0;
+        if(isA&&on){cls='g-ok';mk='옳음 ✓'}else if(isA&&!on){cls='g-miss';mk='옳음 · 놓침'}else if(!isA&&on){cls='g-miss';mk='틀린 지문'}else{mk=''}}
+      return '<button class="opt '+cls+'" data-opt="'+i+'" aria-pressed="'+on+'"'+(st.g?' disabled':'')+'><span class="k">'+K[i]+'</span><span>'+esc(o)+'</span><span class="mk">'+mk+'</span></button>'}).join('')+'</div>';
+  }else{
+    h+='<div class="short"><input id="sa-'+q.id+'" type="text" autocomplete="off" placeholder="답을 입력하세요" value="'+esc(st.pk)+'"'+(st.g?' disabled':'')+'></div>';
+  }
+  h+='<div class="actions">';
+  if(!st.g)h+='<button class="btn" id="grade">채점하기</button>';
+  else h+='<button class="btn ghost" id="retry">다시 풀기</button>';
+  h+='<span class="spacer"></span><button class="btn ghost" id="prev"'+(V.idx===0?' disabled':'')+'>이전</button><button class="btn ghost" id="next"'+(V.idx>=V.list.length-1?' disabled':'')+'>다음</button></div>';
+  if(st.g){h+='<div class="result '+(st.ok?'ok':'no')+'"><div class="verdict">'+(st.ok?'정답입니다':'오답 — 오답 노트에 기록했어요')+'</div><div>정답: <b>'+ansText(q)+'</b>'+(st.ok?'':' · 내 답: '+esc(pickText(q,st.pk)))+'</div><div class="exp">'+q.e+'</div></div>';}
+  h+='</div>';
+  box.innerHTML=h;
+  var inp=document.getElementById('sa-'+q.id);
+  if(inp){inp.addEventListener('input',function(){(V.sess[q.id]=V.sess[q.id]||{pk:''}).pk=inp.value});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter')grade()});}
+  renderGrid();
+}
+function renderGrid(){
+  var g=document.getElementById('grid'),ok=0,done=0;
+  g.innerHTML=V.list.map(function(id,i){var s=V.sess[id];var c='';if(s&&s.g){done++;if(s.ok){ok++;c='s-ok'}else c='s-no'}
+    return '<button class="dot '+c+(i===V.idx?' cur':'')+'" data-go="'+i+'" aria-label="'+(i+1)+'번">'+(i+1)+'</button>'}).join('');
+  document.getElementById('score').textContent=done?('이번 회차 '+ok+' / '+done+' 정답'):'';
+}
+function grade(){
+  var q=byId(V.list[V.idx]),st=V.sess[q.id]=V.sess[q.id]||{pk:q.t==='b'?[]:''};
+  var ok;
+  if(q.t==='b'){var a=q.a.slice().sort().join(),p=st.pk.slice().sort().join();ok=a===p;}
+  else{var v=norm(st.pk);if(!v){var el=document.getElementById('sa-'+q.id);if(el)el.focus();return;}ok=q.acc.some(function(x){return norm(x)===v});}
+  st.g=1;st.ok=ok;
+  var now=Date.now(),it=S.items[q.id];
+  S.res[q.id]=ok?1:0;
+  if(!ok){S.items[q.id]={n:(it?it.n:0)+1,t:now,mine:pickText(q,st.pk),memo:it?it.memo||'':'',done:false,re:0};}
+  else if(it){it.re=(it.re||0)+1;it.t=now;}
+  save();renderQ();updateCnt();
+}
+
+/* ---------- 오답 노트 ---------- */
+function fmt(t){var d=new Date(t);return (d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+function renderNote(){
+  var st=document.getElementById('stats');
+  st.innerHTML=parts.slice(1).map(function(p){var qs=Q.filter(function(q){return q.p===p}),tried=0,ok=0,w=0;
+    qs.forEach(function(q){if(q.id in S.res){tried++;if(S.res[q.id])ok++}if(S.items[q.id]&&!S.items[q.id].done)w++});
+    var pct=tried?Math.round(ok/tried*100):0;
+    return '<div class="stat"><div class="l">'+p+'</div><div class="n">'+(tried?pct+'%':'–')+'</div><div class="l">'+tried+'/'+qs.length+' 풀이 · 오답 '+w+'</div><div class="bar"><i style="width:'+pct+'%"></i></div></div>'}).join('');
+  document.querySelectorAll('[data-nf]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-nf')===V.nf)});
+  var ids=Object.keys(S.items).filter(function(k){var it=S.items[k];if(!byId(k))return false;return V.nf==='all'||(V.nf==='done'?it.done:!it.done)});
+  ids.sort(function(a,b){return (S.items[b].n-S.items[a].n)||(S.items[b].t-S.items[a].t)});
+  document.getElementById('retryWrong').disabled=!openWrong().length;
+  var L=document.getElementById('noteList');
+  if(!ids.length){L.innerHTML='<div class="empty"><b>'+(V.nf==='done'?'해결한 오답이 아직 없어요':'기록된 오답이 없어요')+'</b>문제를 풀다 틀리면 내 답·정답·해설이 자동으로 여기에 모이고, 메모를 남길 수 있어요.</div>';return;}
+  L.innerHTML=ids.map(function(k){var q=byId(k),it=S.items[k];
+    return '<article class="nitem'+(it.done?' done':'')+'"><div class="meta"><span class="tag">'+q.p+'</span>'+(q.hot?'<span class="hot">출제</span>':'')+'<span><b>'+it.n+'회</b> 틀림</span>'+(it.re?'<span>이후 '+it.re+'회 맞힘</span>':'')+'<span>최근 '+fmt(it.t)+'</span></div>'+
+     '<div class="q">'+q.stem+'</div>'+
+     ((q.sit||q.tr)?'<details><summary>상황 보기</summary><div class="sit">'+(q.sit||'')+(q.tr?tree(q.tr):'')+'</div></details>':'')+
+     (q.t==='b'?'<details><summary>지문 보기</summary><ol style="list-style:none;padding:0;margin:4px 0">'+q.o.map(function(o,i){return '<li><b>'+K[i]+'.</b> '+esc(o)+(q.a.indexOf(i)>=0?' <span style="color:var(--ok);font-weight:600">(옳음)</span>':'')+'</li>'}).join('')+'</ol></details>':'')+
+     '<dl class="cmp"><dt>내 답</dt><dd class="mine">'+esc(it.mine)+'</dd><dt>정답</dt><dd class="right">'+ansText(q)+'</dd></dl>'+
+     '<div class="exp">'+q.e+'</div>'+
+     '<label for="memo-'+k+'" style="font-size:12.5px;color:var(--muted);display:block;margin-top:8px">내 메모 (왜 틀렸는지)</label><textarea id="memo-'+k+'" data-memo="'+k+'" placeholder="예: 유류분 1/2과 1/3을 반대로 외움">'+esc(it.memo||'')+'</textarea>'+
+     '<div class="actions"><button class="btn ghost" data-solo="'+k+'">이 문제 다시 풀기</button><button class="btn '+(it.done?'ghost':'')+'" data-done="'+k+'">'+(it.done?'미해결로 되돌리기':'외웠어요 · 해결')+'</button></div></article>'}).join('');
+}
+function updateCnt(){document.getElementById('noteCnt').textContent=openWrong().length}
+
+/* ---------- 이벤트 ---------- */
+function setTab(t){V.tab=t;document.getElementById('tab-quiz').setAttribute('aria-selected',t==='quiz');document.getElementById('tab-note').setAttribute('aria-selected',t==='note');
+  document.getElementById('view-quiz').hidden=t!=='quiz';document.getElementById('view-note').hidden=t!=='note';renderAll();}
+function renderAll(){updateCnt();if(V.tab==='quiz'){renderChips();buildList();renderQ()}else renderNote()}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.id==='tab-quiz')return setTab('quiz');
+  if(b.id==='tab-note')return setTab('note');
+  if(b.dataset.part){V.part=b.dataset.part;V.idx=0;V.single=null;return renderAll()}
+  if(b.id==='onlyWrong'){V.onlyWrong=!V.onlyWrong;V.idx=0;V.single=null;return renderAll()}
+  if(b.id==='shuffle'){V.shuffle=!V.shuffle;V.idx=0;return renderAll()}
+  if(b.dataset.opt!==undefined){var q=byId(V.list[V.idx]),st=V.sess[q.id]=V.sess[q.id]||{pk:[]};if(st.g)return;var i=+b.dataset.opt,p=st.pk.indexOf(i);if(p>=0)st.pk.splice(p,1);else st.pk.push(i);return renderQ()}
+  if(b.id==='grade')return grade();
+  if(b.id==='retry'){delete V.sess[V.list[V.idx]];return renderQ()}
+  if(b.id==='prev'){V.idx=Math.max(0,V.idx-1);renderQ();return scrollTop()}
+  if(b.id==='next'){V.idx=Math.min(V.list.length-1,V.idx+1);renderQ();return scrollTop()}
+  if(b.dataset.go!==undefined){V.idx=+b.dataset.go;renderQ();return scrollTop()}
+  if(b.dataset.nf){V.nf=b.dataset.nf;return renderNote()}
+  if(b.id==='retryWrong'){V.part='전체';V.onlyWrong=true;V.single=null;V.idx=0;openWrong().forEach(function(k){delete V.sess[k]});return setTab('quiz')}
+  if(b.dataset.solo){var k=b.dataset.solo;V.single=null;V.part=byId(k).p;V.onlyWrong=false;delete V.sess[k];setTab('quiz');var ix=V.list.indexOf(k);V.idx=ix<0?0:ix;renderQ();return scrollTop()}
+  if(b.dataset.done){var it=S.items[b.dataset.done];it.done=!it.done;it.t=Date.now();save();renderNote();return updateCnt()}
+});
+var memoT=null;
+document.addEventListener('input',function(e){var k=e.target.dataset&&e.target.dataset.memo;if(!k)return;S.items[k].memo=e.target.value;clearTimeout(memoT);memoT=setTimeout(save,600)});
+function scrollTop(){var el=document.querySelector('.tabs');if(el&&el.getBoundingClientRect().top<0)el.scrollIntoView({block:'start'})}
+renderAll();
+</script>
+
+</body>
+</html>
