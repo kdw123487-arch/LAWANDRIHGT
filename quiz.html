@@ -127,6 +127,52 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 textarea{width:100%;box-sizing:border-box;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:var(--soft);color:var(--ink);resize:vertical;min-height:48px}
 .empty{background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:28px;text-align:center;color:var(--muted)}
 .empty b{color:var(--ink);display:block;font-size:16px;margin-bottom:4px}
+/* 모의고사 */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+body.wide .wrap{max-width:1180px}
+.mstart{display:grid;gap:14px}
+.rules{margin:6px 0 0;padding-left:20px}
+.rules li{margin:3px 0}
+.hist{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.hist th,.hist td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+.hist th{color:var(--muted);font-weight:600;font-size:12.5px}
+.exbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--ink);color:var(--bg);border-radius:10px;padding:10px 14px;margin-bottom:12px}
+.exbar .clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:21px;letter-spacing:.02em;padding:0 8px;border-radius:6px}
+.exbar .clock.low{background:var(--stamp);color:var(--paper)}
+.exbar .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.exbar .btn.ghost{background:transparent;color:var(--bg);border-color:var(--muted)}
+.exbar .grow{flex:1}
+.confirm{flex-basis:100%;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid var(--muted);padding-top:8px}
+.omr{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 14px}
+.omr button{width:32px;height:28px;font-size:12px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:4px;padding:0;font-variant-numeric:tabular-nums}
+.omr button.on{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+.sheet{background:var(--paper);border:1.5px solid var(--ink);padding:22px 24px}
+.shead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:end;border-bottom:3px double var(--ink);padding-bottom:10px;margin-bottom:6px}
+.shead h2{font-family:var(--f-display);font-size:clamp(19px,2.6vw,24px);margin:0}
+.shead .meta{font-size:13px;color:var(--muted)}
+.cols{column-count:2;column-gap:36px;column-rule:1px solid var(--line)}
+.sec{column-span:all;font-family:var(--f-display);font-size:17px;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin:18px 0 14px}
+.item{break-inside:avoid;margin-bottom:24px;scroll-margin-top:96px}
+.item .ino{font-weight:700;margin-bottom:4px}
+.item .ino small{font-weight:400;color:var(--muted)}
+.st{list-style:none;padding:0;margin:6px 0}
+.st li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:4px;margin:3px 0}
+.st li b{font-family:var(--f-display)}
+.bubs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center}
+.bubs .lab{font-size:12.5px;color:var(--muted);margin-right:4px}
+.bub{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font-family:var(--f-display);font-weight:800;font-size:16px;padding:0}
+.bub[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.item input{width:100%;box-sizing:border-box;font:inherit;padding:8px 10px;border:none;border-bottom:1.5px solid var(--ink);background:var(--soft);color:var(--ink);margin-top:6px}
+.scorebox{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline}
+.scorebig{font-family:var(--f-display);font-size:clamp(46px,9vw,64px);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.scorebig small{font-size:.4em;color:var(--muted)}
+.rv{border-top:1px solid var(--line);padding:14px 0}
+.rv .top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.ox{font-family:var(--f-display);font-weight:800;font-size:24px;line-height:1}
+.ox.o{color:var(--ok)} .ox.x{color:var(--stamp)}
+.mk-ok{color:var(--ok);font-size:12px;font-weight:700;white-space:nowrap}
+.mk-no{color:var(--stamp);font-size:12px;font-weight:700;white-space:nowrap}
+@media (max-width:900px){.cols{column-count:1}.sheet{padding:18px 16px}}
 @media (max-width:560px){.card{padding:18px 16px}.opt{grid-template-columns:26px minmax(0,1fr)}.opt .mk{grid-column:2}}
 @media (prefers-reduced-motion:no-preference){.result{animation:pop .18s ease-out}@keyframes pop{from{transform:translateY(4px);opacity:.6}to{transform:none;opacity:1}}}
 </style>
@@ -136,11 +182,12 @@ textarea{width:100%;box-sizing:border-box;font:inherit;font-size:14px;border:1px
 <div class="wrap">
   <header>
     <h1>법과권리 중간고사 문제집</h1>
-    <p class="sub">박스형 36 · 단답형 23 · 총 59문항 — 시험과 같이 박스형은 옳은 것을 모두 골라야 정답(부분점수 없음)</p>
+    <p class="sub">박스형 36 · 단답형 23 · 총 59문항 · 실전 모의고사 40점 — 박스형은 옳은 것을 모두 골라야 정답(부분점수 없음)</p>
   </header>
 
   <div class="tabs" role="tablist">
     <button class="tab" role="tab" id="tab-quiz" aria-selected="true">문제 풀기</button>
+    <button class="tab" role="tab" id="tab-mock" aria-selected="false">모의고사</button>
     <button class="tab" role="tab" id="tab-note" aria-selected="false">오답 노트<span class="cnt" id="noteCnt">0</span></button>
   </div>
 
@@ -155,6 +202,8 @@ textarea{width:100%;box-sizing:border-box;font:inherit;font-size:14px;border:1px
     <div id="qcard"></div>
     <div class="grid" id="grid" aria-label="문항 번호"></div>
   </section>
+
+  <section id="view-mock" hidden></section>
 
   <section id="view-note" hidden>
     <div class="stats" id="stats"></div>
@@ -412,6 +461,7 @@ function merge(a,b){ // b 우선, 항목별로 더 최근 것
   var ks={};Object.keys(a.items||{}).concat(Object.keys(b.items||{})).forEach(function(k){ks[k]=1});
   Object.keys(ks).forEach(function(k){var x=(a.items||{})[k],y=(b.items||{})[k];
     o.items[k]=!x?y:!y?x:((y.t||0)>=(x.t||0)?y:x);});
+  var seen={};o.hist=(a.hist||[]).concat(b.hist||[]).filter(function(h){if(!h||seen[h.t])return false;seen[h.t]=1;return true}).sort(function(p,q){return p.t-q.t}).slice(-30);
   return o;
 }
 function save(){
@@ -540,12 +590,120 @@ function renderNote(){
 function updateCnt(){document.getElementById('noteCnt').textContent=openWrong().length}
 
 /* ---------- 이벤트 ---------- */
-function setTab(t){V.tab=t;document.getElementById('tab-quiz').setAttribute('aria-selected',t==='quiz');document.getElementById('tab-note').setAttribute('aria-selected',t==='note');
-  document.getElementById('view-quiz').hidden=t!=='quiz';document.getElementById('view-note').hidden=t!=='note';renderAll();}
-function renderAll(){updateCnt();if(V.tab==='quiz'){renderChips();buildList();renderQ()}else renderNote()}
+/* ---------- 모의고사 ---------- */
+var MQ={b:{'친족':2,'상속':5,'유언':1,'혼인·이혼':2,'범죄·수사':3,'형벌':1,'교통사고':1},s:{'친족':1,'상속':3,'유언':1,'혼인·이혼':1,'범죄·수사':2,'형벌':1,'교통사고':1}};
+var PTS={b:2,s:1},MK='lawquiz-mock-v1',mTimer=null;
+var M={phase:'start',limit:50,qs:[],ans:{},start:0,res:null,rf:'all'};
+(function(){try{var r=localStorage.getItem(MK);if(r){var o=JSON.parse(r);if(o&&o.phase)M=o}}catch(e){}})();
+function mSave(){try{localStorage.setItem(MK,JSON.stringify(M))}catch(e){}}
+function pickN(a,n){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a.slice(0,n)}
+function drawMock(){var out=[];['b','s'].forEach(function(t){parts.slice(1).forEach(function(p){
+  var pool=Q.filter(function(q){return q.t===t&&q.p===p}).map(function(q){return q.id});
+  out=out.concat(pickN(pool,MQ[t][p]).sort(function(x,y){return pool.indexOf(x)-pool.indexOf(y)}));});});return out}
+function mAnswered(id){var a=M.ans[id],q=byId(id);return q.t==='b'?!!(a&&a.length):!!(a&&String(a).trim())}
+function mm(ms){ms=Math.max(0,ms);var s=Math.round(ms/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function startMock(){M={phase:'exam',limit:M.limit,qs:drawMock(),ans:{},start:Date.now(),res:null,rf:'all'};mSave();runTimer();setTab('mock');window.scrollTo(0,0)}
+function runTimer(){clearInterval(mTimer);if(M.phase==='exam'){mTimer=setInterval(updTimer,1000);updTimer()}}
+function updTimer(){if(M.phase!=='exam'){clearInterval(mTimer);return}
+  var el=document.getElementById('mTime'),now=Date.now();
+  if(M.limit>0){var left=M.start+M.limit*60000-now;if(left<=0)return submitMock(true);
+    if(el){el.textContent='남은 시간 '+mm(left);el.classList.toggle('low',left<=5*60000)}}
+  else if(el)el.textContent='경과 '+mm(now-M.start);}
+function mUpd(){var n=M.qs.filter(mAnswered).length,el=document.getElementById('mAnswered');if(el)el.textContent=n+' / '+M.qs.length+' 응답';
+  M.qs.forEach(function(id,i){var c=document.querySelector('[data-mj="'+i+'"]');if(c)c.classList.toggle('on',mAnswered(id))});}
+function sitHtml(q){return (q.sit||q.tr)?'<div class="sit"><div class="lab">&lt;상황&gt;</div>'+(q.sit||'')+(q.tr?tree(q.tr):'')+'</div>':''}
+function examHtml(){
+  var nb=M.qs.filter(function(id){return byId(id).t==='b'}).length,ns=M.qs.length-nb,total=nb*PTS.b+ns*PTS.s;
+  var h='<div class="exbar"><b>모의고사</b><span id="mAnswered"></span><span class="grow"></span><span class="clock" id="mTime"></span><button class="btn" data-m="ask">답안 제출</button>'+
+   '<div class="confirm" id="mConfirm" hidden></div></div>';
+  h+='<div class="omr" aria-label="문항 바로가기">'+M.qs.map(function(id,i){return '<button data-mj="'+i+'" aria-label="'+(i+1)+'번으로">'+(i+1)+'</button>'}).join('')+'</div>';
+  h+='<div class="sheet"><div class="shead"><h2>2026학년도 2학기 법과권리 중간고사 (모의)</h2><div class="meta">박스형 '+nb+'문항 × '+PTS.b+'점 · 단답형 '+ns+'문항 × '+PTS.s+'점 · 총 '+total+'점'+(M.limit>0?' · 제한 '+M.limit+'분':'')+'</div></div><div class="cols">';
+  var no=0;
+  h+='<h3 class="sec">Ⅰ. 박스형 — 옳은 것을 있는 대로 고르시오 (각 '+PTS.b+'점, 부분점수 없음)</h3>';
+  M.qs.forEach(function(id){var q=byId(id);if(q.t!=='b')return;no++;var pk=M.ans[id]||[];
+    h+='<div class="item" id="mi-'+id+'"><div class="ino">'+no+'. <small>['+q.p+'] '+PTS.b+'점</small></div>'+sitHtml(q)+'<div class="stem">'+q.stem.replace(' '+STEM,'')+' '+STEM+'</div>'+
+      '<ol class="st">'+q.o.map(function(o,i){return '<li><b>'+K[i]+'.</b><span>'+esc(o)+'</span><span></span></li>'}).join('')+'</ol>'+
+      '<div class="bubs"><span class="lab">답</span>'+K.map(function(k,i){return '<button class="bub" data-mo="'+id+'|'+i+'" aria-pressed="'+(pk.indexOf(i)>=0)+'" aria-label="'+no+'번 '+k+'">'+k+'</button>'}).join('')+'</div></div>';});
+  h+='<h3 class="sec">Ⅱ. 단답형 — 알맞은 단어 또는 수치를 쓰시오 (각 '+PTS.s+'점)</h3>';
+  M.qs.forEach(function(id){var q=byId(id);if(q.t!=='s')return;no++;
+    h+='<div class="item" id="mi-'+id+'"><div class="ino">'+no+'. <small>['+q.p+'] '+PTS.s+'점</small></div>'+sitHtml(q)+'<div class="stem">'+q.stem+'</div>'+
+      '<label class="sr" for="ms-'+id+'" hidden>'+no+'번 답</label><input id="ms-'+id+'" data-ms="'+id+'" type="text" autocomplete="off" placeholder="답 :" value="'+esc(M.ans[id]||'')+'"></div>';});
+  h+='</div></div><div class="actions"><span class="spacer"></span><button class="btn" data-m="ask">답안 제출</button></div>';
+  return h;
+}
+function showConfirm(){var c=document.getElementById('mConfirm');if(!c)return;var left=M.qs.length-M.qs.filter(mAnswered).length;
+  c.innerHTML='<span>'+(left?'응답하지 않은 문항이 <b>'+left+'개</b> 있어요. 제출하면 0점 처리됩니다.':'모든 문항에 답했어요. 제출할까요?')+'</span><span class="grow"></span><button class="btn ghost" data-m="cancel">계속 풀기</button><button class="btn" data-m="submit">제출하고 채점</button>';
+  c.hidden=false;}
+function isRight(q,a){if(q.t==='b'){return q.a.slice().sort().join()===(a||[]).slice().sort().join()}var v=norm(a||'');return !!v&&q.acc.some(function(x){return norm(x)===v})}
+function submitMock(auto){if(M.phase!=='exam')return;clearInterval(mTimer);
+  var now=Date.now(),per={},sc=0,bo=0,so=0,nb=0,ns=0;
+  M.qs.forEach(function(id){var q=byId(id),a=M.ans[id],ok=isRight(q,a);per[id]=ok?1:0;
+    if(q.t==='b'){nb++;if(ok){bo++;sc+=PTS.b}}else{ns++;if(ok){so++;sc+=PTS.s}}
+    S.res[id]=ok?1:0;var it=S.items[id];
+    if(!ok)S.items[id]={n:(it?it.n:0)+1,t:now,mine:pickText(q,q.t==='b'?(a||[]):(a||'')),memo:it?it.memo||'':'',done:false,re:0};
+    else if(it){it.re=(it.re||0)+1;it.t=now}});
+  var used=Math.min(now-M.start,M.limit>0?M.limit*60000:Infinity),total=nb*PTS.b+ns*PTS.s;
+  M.res={sc:sc,total:total,bo:bo,nb:nb,so:so,ns:ns,used:used,auto:!!auto,per:per};M.phase='result';M.rf='all';
+  (S.hist=S.hist||[]).push({t:now,sc:sc,total:total,bo:bo,nb:nb,so:so,ns:ns,used:used,limit:M.limit});S.hist=S.hist.slice(-30);
+  save();mSave();updateCnt();if(V.tab==='mock'){renderMock();window.scrollTo(0,0)}}
+function startHtml(){
+  var h='<div class="mstart"><div class="card"><div class="qhead"><span class="qno">실전 모의고사</span></div>'+
+   '<ul class="rules"><li><b>구성</b>: 박스형 15문항 × 2점 + 단답형 10문항 × 1점 = <b>40점</b> (중간고사 반영 비율과 같은 40점 만점)</li>'+
+   '<li>강의 진도 순서대로, 파트별 비중을 맞춰 59문항 중에서 매번 새로 뽑아요. 상속은 사례형 위주로 8문항이 나와요.</li>'+
+   '<li>박스형은 옳은 지문을 <b>모두</b> 골라야 정답이고 <b>부분점수는 없어요</b>. 단답형은 단어·수치를 직접 써요.</li>'+
+   '<li>시험 중에는 정답이 보이지 않아요. 시간이 끝나면 자동으로 제출되고, 틀린 문제는 오답 노트로 들어가요.</li>'+
+   '<li>단답형 배점은 강의에서 언급되지 않아 1점으로 정했어요.</li></ul>'+
+   '<div class="tools" style="margin-top:14px"><span style="font-size:14px;font-weight:600">제한 시간</span>'+[40,50,60,0].map(function(m){return '<button class="chip" data-mt="'+m+'" aria-pressed="'+(M.limit===m)+'">'+(m?m+'분':'제한 없음')+'</button>'}).join('')+'</div>'+
+   '<div class="actions"><button class="btn" data-m="start">시험 시작</button></div></div>';
+  var hs=(S.hist||[]).slice().reverse();
+  h+='<div class="card"><div class="qhead"><span style="font-weight:700;color:var(--ink);font-size:15px">지난 응시 기록</span></div>';
+  if(!hs.length)h+='<p style="margin:0;color:var(--muted)">아직 응시 기록이 없어요. 첫 모의고사를 보면 점수와 소요 시간이 여기에 쌓여요.</p>';
+  else{var best=Math.max.apply(null,hs.map(function(x){return x.sc})),avg=hs.reduce(function(s,x){return s+x.sc},0)/hs.length;
+    h+='<p style="margin:0 0 8px;font-size:14px">응시 '+hs.length+'회 · 최고 <b>'+best+'점</b> · 평균 '+avg.toFixed(1)+'점</p><div style="overflow-x:auto"><table class="hist"><tr><th>일시</th><th>점수</th><th>박스형</th><th>단답형</th><th>소요</th></tr>'+
+    hs.map(function(x){return '<tr><td>'+fmt(x.t)+'</td><td><b>'+x.sc+'</b> / '+x.total+'</td><td>'+x.bo+'/'+x.nb+'</td><td>'+x.so+'/'+x.ns+'</td><td>'+Math.round(x.used/60000)+'분'+(x.limit?' / '+x.limit+'분':'')+'</td></tr>'}).join('')+'</table></div>';}
+  return h+'</div></div>';
+}
+function resultHtml(){var r=M.res;
+  var byPart={};M.qs.forEach(function(id){var q=byId(id),o=byPart[q.p]=byPart[q.p]||{n:0,ok:0,pt:0,max:0};o.n++;o.max+=PTS[q.t];if(r.per[id]){o.ok++;o.pt+=PTS[q.t]}});
+  var wrong=M.qs.filter(function(id){return !r.per[id]}).length;
+  var h='<div class="card"><div class="scorebox"><div class="scorebig">'+r.sc+'<small> / '+r.total+'점</small></div><div>'+
+    '<div>박스형 <b>'+r.bo+'/'+r.nb+'</b> ('+r.bo*PTS.b+'점) · 단답형 <b>'+r.so+'/'+r.ns+'</b> ('+r.so*PTS.s+'점)</div>'+
+    '<div style="color:var(--muted);font-size:14px">소요 '+Math.round(r.used/60000)+'분'+(M.limit?' / 제한 '+M.limit+'분':'')+(r.auto?' · 시간 종료로 자동 제출':'')+'</div>'+
+    (wrong?'<div style="font-size:14px;margin-top:4px">틀린 <b>'+wrong+'문항</b>은 오답 노트에 기록했어요.</div>':'<div style="font-size:14px;margin-top:4px;color:var(--ok);font-weight:600">만점이에요!</div>')+'</div></div>'+
+    '<div style="overflow-x:auto;margin-top:14px"><table class="hist"><tr><th>파트</th><th>맞힘</th><th>득점</th></tr>'+parts.slice(1).filter(function(p){return byPart[p]}).map(function(p){var o=byPart[p];return '<tr><td>'+p+'</td><td>'+o.ok+' / '+o.n+'</td><td>'+o.pt+' / '+o.max+'</td></tr>'}).join('')+'</table></div>'+
+    '<div class="actions"><button class="btn" data-m="new">새 모의고사</button><button class="btn ghost" data-m="note">오답 노트 보기</button></div></div>';
+  h+='<div class="tools" style="margin-top:18px"><span style="font-weight:700">문항별 채점</span><span class="spacer"></span><button class="chip" data-mr="all" aria-pressed="'+(M.rf==='all')+'">전체</button><button class="chip" data-mr="wrong" aria-pressed="'+(M.rf==='wrong')+'">틀린 문항만</button></div><div class="card" style="padding-top:4px">';
+  M.qs.forEach(function(id,i){var q=byId(id),ok=r.per[id],a=M.ans[id];if(M.rf==='wrong'&&ok)return;
+    h+='<div class="rv"><div class="top"><span class="ox '+(ok?'o':'x')+'">'+(ok?'O':'X')+'</span><b>'+(i+1)+'번</b><span class="tag">'+q.p+'</span>'+(q.hot?'<span class="hot">출제</span>':'')+'<span style="color:var(--muted);font-size:13px">'+PTS[q.t]+'점</span></div>'+
+     '<div class="stem" style="margin:6px 0">'+q.stem+'</div>'+((q.sit||q.tr)?'<details><summary style="cursor:pointer;color:var(--accent);font-size:13.5px">상황 보기</summary>'+sitHtml(q)+'</details>':'');
+    if(q.t==='b'){var pk=a||[];h+='<ol class="st">'+q.o.map(function(o,j){var isA=q.a.indexOf(j)>=0,on=pk.indexOf(j)>=0,m='';
+      if(isA&&on)m='<span class="mk-ok">옳음 · 고름</span>';else if(isA)m='<span class="mk-no">옳음 · 놓침</span>';else if(on)m='<span class="mk-no">틀린 지문 · 고름</span>';
+      return '<li><b>'+K[j]+'.</b><span>'+esc(o)+'</span>'+m+'</li>'}).join('')+'</ol>';}
+    h+='<dl class="cmp"><dt>내 답</dt><dd class="'+(ok?'right':'mine')+'">'+esc(pickText(q,q.t==='b'?(a||[]):(a||'')))+'</dd><dt>정답</dt><dd class="right">'+ansText(q)+'</dd></dl><div class="exp">'+q.e+'</div></div>';});
+  return h+'</div>';
+}
+function renderMock(){var el=document.getElementById('view-mock');document.body.classList.toggle('wide',M.phase==='exam');
+  if(M.phase==='exam'){el.innerHTML=examHtml();mUpd();updTimer()}else if(M.phase==='result')el.innerHTML=resultHtml();else el.innerHTML=startHtml();}
+
+function setTab(t){V.tab=t;['quiz','mock','note'].forEach(function(n){document.getElementById('tab-'+n).setAttribute('aria-selected',n===t);document.getElementById('view-'+n).hidden=n!==t});
+  if(t!=='mock')document.body.classList.remove('wide');renderAll();}
+function renderAll(){updateCnt();if(V.tab==='quiz'){renderChips();buildList();renderQ()}else if(V.tab==='mock')renderMock();else renderNote()}
 document.addEventListener('click',function(e){
   var b=e.target.closest('button');if(!b)return;
   if(b.id==='tab-quiz')return setTab('quiz');
+  if(b.id==='tab-mock')return setTab('mock');
+  if(b.dataset.mt!==undefined){M.limit=+b.dataset.mt;mSave();return renderMock()}
+  if(b.dataset.mo){var pr=b.dataset.mo.split('|'),id=pr[0],ix=+pr[1],arr=M.ans[id]=M.ans[id]||[],at=arr.indexOf(ix);if(at>=0)arr.splice(at,1);else arr.push(ix);b.setAttribute('aria-pressed',at<0);mSave();return mUpd()}
+  if(b.dataset.mj!==undefined){var t=document.getElementById('mi-'+M.qs[+b.dataset.mj]);if(t)t.scrollIntoView({block:'start'});return}
+  if(b.dataset.mr){M.rf=b.dataset.mr;mSave();return renderMock()}
+  if(b.dataset.m){var a=b.dataset.m;
+    if(a==='start')return startMock();
+    if(a==='ask')return showConfirm();
+    if(a==='cancel'){document.getElementById('mConfirm').hidden=true;return}
+    if(a==='submit')return submitMock(false);
+    if(a==='new'){M.phase='start';M.res=null;mSave();renderMock();return window.scrollTo(0,0)}
+    if(a==='note'){V.nf='open';return setTab('note')}
+  }
   if(b.id==='tab-note')return setTab('note');
   if(b.dataset.part){V.part=b.dataset.part;V.idx=0;V.single=null;return renderAll()}
   if(b.id==='onlyWrong'){V.onlyWrong=!V.onlyWrong;V.idx=0;V.single=null;return renderAll()}
@@ -562,9 +720,11 @@ document.addEventListener('click',function(e){
   if(b.dataset.done){var it=S.items[b.dataset.done];it.done=!it.done;it.t=Date.now();save();renderNote();return updateCnt()}
 });
 var memoT=null;
+var mInT=null;
+document.addEventListener('input',function(e){var ms=e.target.dataset&&e.target.dataset.ms;if(ms){M.ans[ms]=e.target.value;mUpd();clearTimeout(mInT);mInT=setTimeout(mSave,400);}});
 document.addEventListener('input',function(e){var k=e.target.dataset&&e.target.dataset.memo;if(!k)return;S.items[k].memo=e.target.value;clearTimeout(memoT);memoT=setTimeout(save,600)});
 function scrollTop(){var el=document.querySelector('.tabs');if(el&&el.getBoundingClientRect().top<0)el.scrollIntoView({block:'start'})}
-renderAll();
+if(M.phase==='exam'){setTab('mock');runTimer()}else renderAll();
 </script>
 
 </body>
