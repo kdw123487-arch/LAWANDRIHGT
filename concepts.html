@@ -16,6 +16,7 @@
   --bg:#f5f6f8; --paper:#ffffff; --ink:#18212e; --muted:#5a6475; --line:#dde1e8;
   --accent:#1d5a86; --accent-soft:#e6eef5; --stamp:#c0362c; --stamp-soft:#fbeceb;
   --note:#8a6a12; --note-soft:#fbf4e1;
+  --lnF:#1d5a86; --lnS:#8a3d7a; --lnM:#2a7a64; --soft:#eef1f5;
   --f-display:"Nanum Myeongjo","Noto Serif KR",serif;
   --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   color-scheme:light;
@@ -23,11 +24,38 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#12161d; --paper:#1a1f28; --ink:#e4e8ef; --muted:#9aa3b2; --line:#2c3340;
   --accent:#7db3dc; --accent-soft:#1d2a38; --stamp:#f0776c; --stamp-soft:#3a1f1d;
-  --note:#e2c06a; --note-soft:#332b17; color-scheme:dark}}
+  --note:#e2c06a; --note-soft:#332b17; --lnF:#7db3dc; --lnS:#d79ccb; --lnM:#6cc4ad; --soft:#222834; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#12161d; --paper:#1a1f28; --ink:#e4e8ef; --muted:#9aa3b2; --line:#2c3340;
   --accent:#7db3dc; --accent-soft:#1d2a38; --stamp:#f0776c; --stamp-soft:#3a1f1d;
-  --note:#e2c06a; --note-soft:#332b17; color-scheme:dark}
+  --note:#e2c06a; --note-soft:#332b17; --lnF:#7db3dc; --lnS:#d79ccb; --lnM:#6cc4ad; --soft:#222834; color-scheme:dark}
+
+/* 호칭 지도 */
+.kin{overflow-x:auto;margin:12px 0 6px;scroll-margin-top:20px}
+.kin-grid{display:grid;grid-template-columns:112px repeat(3,minmax(190px,1fr));min-width:720px;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--paper)}
+.kin-grid > div{padding:9px 10px;border-top:1px solid var(--line);border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.kin-grid > .kh{border-top:none;font-weight:700;font-size:14px;line-height:1.35;padding-block:11px;background:var(--soft)}
+.kin-grid > .kh small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.kin-grid > .kh.f{box-shadow:inset 0 4px 0 var(--lnF)} .kin-grid > .kh.s{box-shadow:inset 0 4px 0 var(--lnS)} .kin-grid > .kh.m{box-shadow:inset 0 4px 0 var(--lnM)}
+.kin-grid > .kh:first-child,.kin-grid > .kg{border-left:none}
+.kg{background:var(--soft);font-size:13px;justify-content:center}
+.kg b{font-size:14px}
+.kg span{color:var(--muted);font-size:12px}
+.kin-grid > .me{background:var(--accent-soft)}
+.kc{border-left:3px solid var(--line);background:var(--bg);border-radius:0 6px 6px 0;padding:6px 8px 7px;line-height:1.4}
+.kc.f{border-left-color:var(--lnF)} .kc.s{border-left-color:var(--lnS)} .kc.m{border-left-color:var(--lnM)}
+.kc .t{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.kc b{font-family:var(--f-display);font-size:16.5px}
+.kc .hj{font-size:11.5px;color:var(--muted)}
+.kc .cn{margin-left:auto;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;border:1.5px solid currentColor;border-radius:999px;padding:0 7px;line-height:1.5}
+.kc.f .cn{color:var(--lnF)} .kc.s .cn{color:var(--lnS)} .kc.m .cn{color:var(--lnM)}
+.kc small{display:block;font-size:12.5px;color:var(--muted)}
+.kc.anc{border-left-style:dashed;background:transparent}
+.kc.anc b{font-size:14.5px;color:var(--muted)}
+.kna{color:var(--muted);font-size:12.5px}
+.kin-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0 4px}
+.kin-notes div{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+.kin-notes b.h{display:block;font-size:12px;letter-spacing:.06em;color:var(--accent);margin-bottom:2px}
 
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.7;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -101,7 +129,7 @@ html{scroll-behavior:smooth}
   <div class="grp">시작</div>
   <div class="links"><a href="#flow">전체 흐름</a><a href="#exam">시험 안내</a></div>
   <div class="grp">제1편 가족과 재산</div>
-  <div class="links"><a href="#c1">1 친족</a><a href="#c2">2 상속 순위</a><a href="#c3">3 유언</a><a href="#c4">4 유류분·결격·기여분</a><a href="#c5">5 승인·포기</a><a href="#c6">6 혼인·부부재산</a><a href="#c7">7 협의이혼</a><a href="#c8">8 재판상 이혼</a><a href="#c9">9 이혼 후 정리</a></div>
+  <div class="links"><a href="#c1">1 친족</a><a href="#kin">1-1 호칭 지도</a><a href="#c2">2 상속 순위</a><a href="#c3">3 유언</a><a href="#c4">4 유류분·결격·기여분</a><a href="#c5">5 승인·포기</a><a href="#c6">6 혼인·부부재산</a><a href="#c7">7 협의이혼</a><a href="#c8">8 재판상 이혼</a><a href="#c9">9 이혼 후 정리</a></div>
   <div class="grp">제2편 범죄와 절차</div>
   <div class="links"><a href="#c10">10 주요 범죄</a><a href="#c11">11 수사기관</a><a href="#c12">12 수사 절차</a><a href="#c13">13 체포·구속</a><a href="#c14">14 송치·기소</a><a href="#c15">15 고소·합의</a><a href="#c16">16 피해 회복</a></div>
   <div class="grp">제3편 형벌과 그 이후</div>
@@ -164,6 +192,53 @@ html{scroll-behavior:smooth}
       <li class="ex"><i class="x">출제</i>시험 범위는 <b>1촌~5촌</b> 호칭과 촌수 계산.</li>
       <li><b>홀수촌 형제는 없다</b>: 형제 관계는 항상 짝수촌.</li>
     </ul>
+
+    <h4 id="kin">호칭 지도 <i class="x">출제</i> <span class="src">1~5촌 호칭·촌수 계산</span></h4>
+    <div class="lead"><b class="k">한눈에</b>위로 올라간 대수 + 아래로 내려온 대수 = 촌수. 나와 <b>같은 대</b>이거나 두 대 차이면 <b>짝수촌</b>, 한 대나 세 대 차이면 <b>홀수촌</b>이다. 아버지 쪽 형제 계열은 5촌까지, 아버지 쪽 자매 계열과 어머니 쪽은 4촌까지, 아래로는 손자 대까지 정리했다.</div>
+    <div class="kin" role="region" aria-label="호칭 지도 표, 좁은 화면에서는 옆으로 스크롤">
+      <div class="kin-grid">
+        <div class="kh">세대<small>직계 기준</small></div>
+        <div class="kh f">부계 · 형제 계열<small>아버지 쪽 남자 형제 줄 · 5촌 이내</small></div>
+        <div class="kh s">부계 · 자매 계열<small>아버지 쪽 여자 형제 줄 · 4촌 이내</small></div>
+        <div class="kh m">모계<small>어머니 쪽 · 4촌 이내</small></div>
+
+        <div class="kg"><b>증조부 대</b><span>증조부모 3촌</span></div>
+        <div><div class="kc f"><div class="t"><b>종증조부</b><span class="hj">從曾祖父</span><span class="cn">5촌</span></div><small>증조할아버지의 형제</small></div></div>
+        <div><span class="kna">— (5촌이라 범위 밖)</span></div>
+        <div><span class="kna">—</span></div>
+
+        <div class="kg"><b>조부 대</b><span>조부모 2촌</span></div>
+        <div><div class="kc f"><div class="t"><b>종조부</b><span class="hj">從祖父</span><span class="cn">4촌</span></div><small>할아버지의 형제 · 큰할아버지/작은할아버지</small></div></div>
+        <div><div class="kc s"><div class="t"><b>대고모</b><span class="hj">大姑母</span><span class="cn">4촌</span></div><small>할아버지의 자매 · 왕고모, 고모할머니</small></div></div>
+        <div><div class="kc m anc"><div class="t"><b>외조부모</b><span class="cn">2촌</span></div><small>직계 · 외할아버지·외할머니</small></div><div class="kc m"><div class="t"><b>외종조부</b><span class="hj">外從祖父</span><span class="cn">4촌</span></div><small>외할아버지의 형제</small></div></div>
+
+        <div class="kg"><b>부모 대</b><span>부·모 1촌</span></div>
+        <div><div class="kc f"><div class="t"><b>백부 · 숙부</b><span class="hj">伯父·叔父</span><span class="cn">3촌</span></div><small>아버지의 형제 · 큰아버지/작은아버지, 합쳐서 <b style="font-size:inherit;font-family:inherit">백숙부</b>, 미혼이면 삼촌</small></div><div class="kc f"><div class="t"><b>종숙 (당숙)</b><span class="hj">從叔·堂叔</span><span class="cn">5촌</span></div><small>아버지의 사촌 형제 = 종조부의 아들</small></div></div>
+        <div><div class="kc s"><div class="t"><b>고모</b><span class="hj">姑母</span><span class="cn">3촌</span></div><small>아버지의 자매</small></div></div>
+        <div><div class="kc m anc"><div class="t"><b>어머니</b><span class="cn">1촌</span></div><small>직계</small></div><div class="kc m"><div class="t"><b>외숙 (외삼촌)</b><span class="hj">外叔</span><span class="cn">3촌</span></div><small>어머니의 남자 형제</small></div><div class="kc m"><div class="t"><b>이모</b><span class="hj">姨母</span><span class="cn">3촌</span></div><small>어머니의 자매</small></div></div>
+
+        <div class="kg me"><b>나의 대</b><span>나 0촌 · 배우자 0촌</span></div>
+        <div class="me"><div class="kc f"><div class="t"><b>형제</b><span class="hj">兄弟</span><span class="cn">2촌</span></div><small>형·오빠·남동생</small></div><div class="kc f"><div class="t"><b>종형제 (사촌)</b><span class="hj">從兄弟</span><span class="cn">4촌</span></div><small>백숙부의 자녀 · 친사촌</small></div></div>
+        <div class="me"><div class="kc s"><div class="t"><b>자매</b><span class="hj">姉妹</span><span class="cn">2촌</span></div><small>누나·언니·여동생</small></div><div class="kc s"><div class="t"><b>고종형제</b><span class="hj">姑從</span><span class="cn">4촌</span></div><small>고모의 자녀 · 고종사촌(내종)</small></div></div>
+        <div class="me"><div class="kc m"><div class="t"><b>외종형제</b><span class="hj">外從</span><span class="cn">4촌</span></div><small>외삼촌의 자녀 · 외사촌</small></div><div class="kc m"><div class="t"><b>이종형제</b><span class="hj">姨從</span><span class="cn">4촌</span></div><small>이모의 자녀 · 이종사촌</small></div></div>
+
+        <div class="kg"><b>자녀 대</b><span>자녀 1촌</span></div>
+        <div><div class="kc f"><div class="t"><b>조카 (질)</b><span class="hj">姪</span><span class="cn">3촌</span></div><small>형제의 자녀 · 딸은 질녀</small></div><div class="kc f"><div class="t"><b>종질 (당질)</b><span class="hj">從姪·堂姪</span><span class="cn">5촌</span></div><small>사촌의 자녀 · 딸은 종질녀</small></div></div>
+        <div><div class="kc s"><div class="t"><b>생질</b><span class="hj">甥姪</span><span class="cn">3촌</span></div><small>자매의 자녀 · 딸은 생질녀</small></div></div>
+        <div><span class="kna">— (외사촌·이종사촌의 자녀는 5촌)</span></div>
+
+        <div class="kg"><b>손자 대</b><span>손자녀 2촌</span></div>
+        <div><div class="kc f"><div class="t"><b>종손</b><span class="hj">從孫</span><span class="cn">4촌</span></div><small>형제의 손자 · 손녀는 종손녀</small></div></div>
+        <div><div class="kc s"><div class="t"><b>생질손</b><span class="hj">甥姪孫</span><span class="cn">4촌</span></div><small>자매의 손자녀</small></div></div>
+        <div><span class="kna">—</span></div>
+      </div>
+    </div>
+    <div class="kin-notes">
+      <div><b class="h">계산 예시 · 종숙 5촌</b>나 → 아버지 → 할아버지 → 증조부 (3대 위) → 종조부 → 종숙 (2대 아래) = 3 + 2 = <b>5촌</b></div>
+      <div><b class="h">이름 붙이는 규칙</b><b>종(從)</b> = 한 줄 건너 사촌 계열, <b>고종</b> = 고모 쪽, <b>외종</b> = 외삼촌 쪽, <b>이종</b> = 이모 쪽, <b>생질</b> = 자매의 자녀</div>
+      <div><b class="h">헷갈리기 쉬운 점</b>배우자는 0촌이고 친족에 포함된다. 고모부·이모부·외숙모는 <b>혈족의 배우자</b>라 인척이다. 종손(從孫)은 '맏손자'를 뜻하는 종손(宗孫)과 다른 말이다.</div>
+    </div>
+
     <h4>인척의 유형</h4>
     <ul>
       <li>① 내 혈족의 배우자(큰엄마·외숙모·형수) ② 배우자의 혈족(시댁·처가) ③ 배우자의 혈족의 배우자(동서, 2촌 인척).</li>
