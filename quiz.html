@@ -182,7 +182,7 @@ body.wide .wrap{max-width:1180px}
 <div class="wrap">
   <header>
     <h1>법과권리 중간고사 문제집</h1>
-    <p class="sub">박스형 36 · 단답형 23 · 총 59문항 · 실전 모의고사 40점 — 박스형은 옳은 것을 모두 골라야 정답(부분점수 없음)</p>
+    <p class="sub">세트 A 59문항 · 세트 B 54문항(전부 새 문제) · 실전 모의고사 40점 — 박스형은 옳은 것을 모두 골라야 정답(부분점수 없음)</p>
   </header>
 
   <div class="tabs" role="tablist">
@@ -192,6 +192,7 @@ body.wide .wrap{max-width:1180px}
   </div>
 
   <section id="view-quiz">
+    <div class="tools" id="setChips"></div>
     <div class="tools" id="partChips"></div>
     <div class="tools">
       <button class="chip" id="onlyWrong" aria-pressed="false">미해결 오답만</button>
@@ -452,6 +453,188 @@ var Q=[
 {id:'t5',p:'교통사고',t:'s',stem:'교통사고 과실비율(몇 대 몇)에 이의가 있을 때 진정할 수 있는 기관은?',acc:['금융감독원','금감원'],show:'금융감독원',e:'과실비율은 민사 사항으로 보험사가 처리하고, 이의가 있으면 <b>금융감독원</b>에 진정.'}
 ];
 
+/* ---------- 세트 B (신규 문항) ---------- */
+var QB=[
+/* 친족 */
+{id:'bk1',p:'친족',t:'b',hot:1,
+ sit:'<p>아래는 갑의 가계도이다. D는 갑의 아버지의 동생이고, E는 D의 딸, F는 E의 아들이다. C는 갑의 형 A의 아들이다.</p>',
+ tr:{n:[['gf',0.5,0,'조부'],['gm',1.6,0,'조모'],['f',0,1,'갑의 부'],['mo',1,1,'갑의 모'],['d',2.15,1,'D'],['a',0,2,'형 A'],['g',1,2,'갑','k'],['e',2.15,2,'E'],['c',0,3,'C'],['ff',2.15,3,'F']],m:[['gf','gm'],['f','mo']],c:[[['gf','gm'],'f'],[['gf','gm'],'d'],[['f','mo'],'a'],[['f','mo'],'g'],[['a'],'c'],[['d'],'e'],[['e'],'ff']]},
+ stem:'위 가계도에 대한 설명으로 '+STEM,
+ o:['갑과 C는 3촌이다.','D는 갑의 백숙부로 갑과 3촌이다.','갑과 E는 3촌이다.','갑과 F는 5촌이다.','갑의 형 A의 아내는 갑의 혈족이다.'],a:[0,1,3],
+ e:'<ul><li>형 A(2촌)의 아들 C = 2+1 = <b>3촌</b>. 아버지의 형제 D = <b>3촌</b>(백숙부).</li><li>D의 딸 E는 사촌 = <b>4촌</b>(ㄷ ✗), E의 아들 F = <b>5촌</b>.</li><li>ㅁ 형의 아내(형수)는 <b>혈족의 배우자</b>, 즉 인척이다.</li></ul>'},
+{id:'bk2',p:'친족',t:'b',
+ sit:'<p>갑(남)은 을과 혼인하였다. 을에게는 언니가 있고, 그 언니는 병과 결혼하였다. 갑에게는 형과 누나가 있으며 형은 결혼하였고, 누나도 결혼하여 시댁이 있다.</p>',
+ stem:'갑의 인척 관계에 대한 설명으로 '+STEM,
+ o:['갑의 누나의 시어머니(사돈)는 갑의 인척이다.','을의 언니는 갑의 인척(배우자의 혈족)이다.','갑과 을이 이혼해도 을의 언니와의 인척 관계는 유지된다.','갑의 형의 아내(형수)는 갑의 인척(혈족의 배우자)이다.','을의 언니의 남편 병은 갑과 동서 지간으로, 배우자의 혈족의 배우자에 해당하는 인척이다.'],a:[1,3,4],
+ e:'<ul><li>인척 3유형: 혈족의 배우자(형수), 배우자의 혈족(처형), 배우자의 혈족의 배우자(동서).</li><li>ㄱ 사돈(혈족의 배우자의 혈족)은 개정으로 제외 → 남.</li><li>ㄷ 이혼하면 인척 관계는 <b>즉시 소멸</b>.</li></ul>'},
+{id:'bk3',p:'친족',t:'b',
+ sit:'<p>갑의 아내 을이 사망하였다. 갑과 을 사이에는 자녀 C가 있다. 을의 부모는 생존해 있다.</p>',
+ tr:{n:[['pf',0,0,'을의 부'],['pm',1,0,'을의 모'],['e',0.5,1,'을(사망)','d'],['g',1.6,1,'갑'],['c',1.05,2,'C']],m:[['pf','pm'],['e','g']],c:[[['pf','pm'],'e'],[['e','g'],'c']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['을이 사망한 직후에도 갑과 을의 부모 사이의 인척 관계는 유지된다.','갑이 재혼하면 C와 외조부모(을의 부모) 사이의 혈족 관계도 소멸한다.','갑이 재혼하면 갑과 을의 부모 사이의 인척 관계는 소멸한다.','C가 다른 부부에게 일반 양자로 입양되면 C와 갑 사이의 자연혈족 관계는 소멸한다.','을의 부모는 갑의 인척이므로 갑의 재산을 법정상속할 수 없다.'],a:[0,2,4],
+ e:'<ul><li>배우자 사망 시 인척 관계는 <b>유지</b> → <b>재혼하면 소멸</b>.</li><li>ㄴ 자녀와 사망한 배우자 측 혈족의 관계는 그대로(자녀의 외가는 유지).</li><li>ㄹ 자연혈족(핏줄)은 절대 끊을 수 없다.</li><li>ㅁ 인척은 상속 불가.</li></ul>'},
+{id:'bk4',p:'친족',t:'s',stem:'가족관계증명서에는 본인을 기준으로 배우자(0촌)와 몇 촌까지만 기재되는가? (숫자만)',acc:['1'],show:'1촌',e:'0촌(배우자)·<b>1촌</b>(부모·자녀)만 기재. 본인 사항만 담긴 것은 기본증명서.'},
+{id:'bk5',p:'친족',t:'s',hot:1,stem:'큰아빠(백부)와 작은아빠(숙부)를 합쳐 부르는 말은?',acc:['백숙부'],show:'백숙부',e:'<b>백숙부</b>, 3촌. 미혼의 백숙부를 삼촌이라 부른다.'},
+
+/* 상속 */
+{id:'bi1',p:'상속',t:'b',hot:1,
+ sit:'<p>갑은 유언 없이 사망하였고 재산은 <b>9억 원</b>이다. 갑은 오래전 배우자와 <b>이혼</b>하였다. 자녀로 A와 B가 있는데 A는 갑보다 <b>먼저 사망</b>하였고, A에게는 배우자 없이 자녀 C가 있다. 갑의 부모는 생존해 있다.</p>',
+ tr:{n:[['f',0,0,'갑의 부'],['mo',1.1,0,'갑의 모'],['g',0.55,1,'갑','k'],['x',1.75,1,'전 배우자'],['a',0.55,2,'A(사망)','d'],['b',1.75,2,'B'],['c',0.55,3,'C']],m:[['f','mo'],['g','x',1,'이혼']],c:[[['f','mo'],'g'],[['g','x'],'a'],[['g','x'],'b'],[['a'],'c']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['C는 갑의 손자이므로 자녀인 B보다 후순위가 되어 상속받지 못한다.','이혼한 전 배우자는 갑의 상속인이 아니다.','갑의 부모는 B와 함께 1순위 상속인이 된다.','C는 4억 5천만 원을 상속받는다.','갑이 "전 재산을 B에게 준다"는 유언을 남겼다면 C의 유류분은 2억 2천 5백만 원이다.'],a:[1,3,4],
+ e:'<ul><li>A의 자리를 직계비속 C가 <b>대습상속</b> → A몫 1 : B 1 → 각 4억 5천.</li><li>1순위가 있으므로 부모는 상속하지 못한다(ㄷ ✗).</li><li>ㅁ C의 법정상속분 4.5억 × 1/2 = <b>2.25억</b>.</li></ul>'},
+{id:'bi2',p:'상속',t:'b',hot:1,
+ sit:'<p>갑은 어릴 때 병에게 <b>일반 양자</b>로 입양되었다. 갑은 자녀 없이 사망하였고 유언은 없다. 재산은 <b>7억 원</b>이다. 배우자 을, 양부 병, 친생모 정이 생존해 있다.</p>',
+ tr:{n:[['j',0,0,'친생모 정'],['bb',1.8,0,'양부 병'],['g',0.9,1,'갑','k'],['e',2,1,'을']],m:[['g','e']],c:[[['j'],'g',0,'친생'],[['bb'],'g',0,'양자']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['직계존속이 있으므로 배우자 을은 상속인이 아니다.','양부 병과 친생모 정은 모두 직계존속으로서 상속인이 된다.','을은 3억 원을 상속받는다.','갑이 친양자였다면 을과 병이 각각 3억 5천만 원을 상속받는다.','정은 2억 원을 상속받는다.'],a:[1,2,4],
+ e:'<ul><li>2순위 = 직계존속 + 배우자. <b>일반 양자</b>는 양부모·친부모 모두 직계존속.</li><li>을 1.5 : 병 1 : 정 1 = 3.5 → 1당 2억 → 을 3억, 병·정 각 2억.</li><li>ㄹ 친양자라면 정은 빠지고 을 1.5 : 병 1 → 을 4.2억, 병 2.8억.</li></ul>'},
+{id:'bi3',p:'상속',t:'b',
+ sit:'<p>미혼이고 자녀가 없는 갑이 사망하였다. 갑의 부모는 이미 사망하였고, 형 A와 누나 B가 있다. 재산은 <b>6억 원</b>이다. 그런데 A가 자신에게 유리하도록 갑의 <b>유언장을 위조</b>한 사실이 밝혀져 유언은 효력이 없다. A에게는 자녀가 없다.</p>',
+ tr:{n:[['f',0.5,0,'부(사망)','d'],['mo',1.6,0,'모(사망)','d'],['a',0,1,'형 A'],['b',1.05,1,'누나 B'],['g',2.1,1,'갑','k']],m:[['f','mo']],c:[[['f','mo'],'a'],[['f','mo'],'b'],[['f','mo'],'g']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['형제자매는 3순위 상속인이다.','부모가 이미 사망했으므로 갑의 재산은 국가에 귀속된다.','A는 유언장 위조로 상속결격자가 된다.','갑이 전 재산을 친구에게 준다는 유효한 유언을 남겼다면 B는 유류분을 청구할 수 있다.','A가 상속결격자가 되면 B가 6억 원을 모두 상속받는다.'],a:[0,2,4],
+ e:'<ul><li>1·2순위가 없으면 3순위 형제자매.</li><li>유언장 위조·변조·은닉은 <b>상속결격</b> 사유.</li><li>ㄹ 2026년부터 형제자매는 유류분권이 없다.</li></ul>'},
+{id:'bi4',p:'상속',t:'b',
+ sit:'<p>갑은 을과 10년간 함께 살았지만 <b>혼인신고는 하지 않았다</b>. 둘 사이에는 갑의 친자녀 C가 있다. 갑이 유언 없이 사망하였고 재산은 <b>4억 원</b>이다. 갑의 어머니 정이 생존해 있다.</p>',
+ tr:{n:[['j',0.5,0,'정(모)'],['g',0.5,1,'갑','k'],['e',1.6,1,'을'],['c',1.05,2,'C']],m:[['g','e',1,'사실혼']],c:[[['j'],'g'],[['g','e'],'c']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['C가 단독으로 4억 원을 상속받는다.','을은 사실혼 배우자로서 C와 1.5 : 1 비율로 상속받는다.','을은 갑이 사망한 뒤 혼인신고를 하면 C와 함께 법정상속인이 될 수 있다.','정은 2순위이므로 상속받지 못한다.','을은 상속권이 없어도 유족급여는 받을 수 있다.'],a:[0,3,4],
+ e:'<ul><li><b>법률혼 배우자만</b> 상속 순위에 포함. 사실혼 배우자는 1~4순위가 모두 없을 때만 가능.</li><li>1순위 C가 있으므로 2순위 정은 제외.</li><li>사실혼 배우자도 <b>유족급여</b>는 받을 수 있다.</li></ul>'},
+{id:'bi5',p:'상속',t:'b',hot:1,
+ sit:'<p>갑이 사망하였다. 재산은 <b>1억 원</b>, 빚은 <b>10억 원</b>이다. 배우자 을과 자녀 A가 있고, 갑의 부모는 이미 사망하였다. 갑에게는 형 B와 삼촌 D가 있다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['을과 A가 모두 상속을 포기하면 형 B가 다음 순위 상속인이 된다.','가족 모두가 빚에서 완전히 벗어나려면 4순위인 삼촌 D까지 상속을 포기해야 한다.','상속포기는 사망을 안 날부터 6개월 이내에 하면 된다.','상속포기는 가족끼리 포기 각서를 써 두는 것만으로 효력이 생긴다.','상속포기 절차를 위해 인감도장과 인감증명서는 다른 가족에게 맡겨 두어도 괜찮다.'],a:[0,1],
+ e:'<ul><li>포기하면 다음 순위로 넘어간다 → <b>4순위까지 모두 포기</b>해야 완전한 효력.</li><li>ㄷ 기한은 <b>3개월</b>. ㄹ 법원에 심판청구서를 내야 한다.</li><li>ㅁ 인감도장·인감증명서는 남에게 함부로 맡기지 말라고 강조됨.</li></ul>'},
+{id:'bi6',p:'상속',t:'b',hot:1,
+ sit:'<p>갑은 "<b>전 재산을 장남 A에게 준다</b>"는 유언을 남기고 사망하였다. 재산은 <b>18억 원</b>이다. 가족으로 배우자 을, 자녀 A·B·C가 있다.</p>',
+ tr:{n:[['g',1,0,'갑','k'],['e',2.1,0,'을'],['a',0.45,1,'A'],['b',1.55,1,'B'],['c',2.65,1,'C']],m:[['g','e']],c:[[['g','e'],'a'],[['g','e'],'b'],[['g','e'],'c']]},
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['유류분은 유언이 있는 경우의 상속분을 기준으로 계산한다.','을의 유류분은 3억 원이다.','을의 유류분은 법정상속분의 1/3이다.','B의 유류분은 2억 원이다.','B는 유류분 침해 사실을 안 날부터 1년이 지나면 청구할 수 없다(강의 기준).'],a:[1,3,4],
+ e:'<ul><li>유언이 <b>없다고 가정</b>하고 법정상속분 계산: 18억 ÷ 4.5 = 4억 → 을 6억, 자녀 각 4억.</li><li>배우자·직계비속은 <b>1/2</b> → 을 3억, B·C 각 2억.</li><li>청구 기한 1년(시험 기준).</li></ul>'},
+{id:'bi7',p:'상속',t:'b',hot:1,
+ sit:'<p>홀로 지내던 갑이 사망하였다. 갑에게는 배우자·직계비속·직계존속·형제자매가 없고 <b>3~4촌 방계혈족도 없다</b>. 사실혼 배우자도 없다. 이웃 을이 20년 동안 갑을 돌보았다. 갑에게는 5촌 당숙이 있다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['을은 법원을 통해 특별연고자로서 재산 일부를 청구할 수 있다.','상속인이 없으므로 특별연고자 확인 절차 없이 곧바로 국가에 귀속된다.','갑이 을에게 재산을 준다는 유언을 남겼다면 을은 유언상속으로 받을 수 있다.','을은 오랫동안 돌봤으므로 5순위 법정상속인이 된다.','5촌 당숙은 4순위 상속인이 된다.'],a:[0,2],
+ e:'<ul><li>4순위까지 없고 유언도 없으면 <b>특별연고자</b> 확인 → 그래도 남으면 국가 귀속.</li><li>4순위는 <b>3~4촌</b> 방계혈족까지라 5촌은 해당하지 않는다. 5순위라는 것은 없다.</li></ul>'},
+{id:'bi8',p:'상속',t:'s',hot:1,
+ sit:'<p>갑이 유언 없이 사망하였다. 재산은 <b>10억 원</b>이다. 배우자 을과 자녀 A가 있고, 갑의 부모도 생존해 있다.</p>',
+ stem:'을의 법정상속분은 몇 억 원인가? (숫자만)',acc:['6'],show:'6억 원',e:'을 1.5 : A 1 = 2.5 → 10억 ÷ 2.5 = 4억 → 을 <b>6억</b>, A 4억. 부모는 2순위라 제외.'},
+{id:'bi9',p:'상속',t:'s',hot:1,
+ sit:'<p>자녀가 없는 갑이 유언 없이 사망하였다. 재산은 <b>5억 원</b>이다. 배우자 을과 어머니 정이 생존해 있다(아버지는 사망).</p>',
+ stem:'정의 법정상속분은 몇 억 원인가? (숫자만)',acc:['2'],show:'2억 원',e:'2순위 직계존속 + 배우자: 을 1.5 : 정 1 = 2.5 → 1당 2억 → 을 3억, 정 <b>2억</b>.'},
+{id:'bi10',p:'상속',t:'s',hot:1,
+ sit:'<p>자녀가 없는 갑은 "<b>전 재산을 아내 을에게 준다</b>"는 유언을 남기고 사망하였다. 재산은 <b>7억 5천만 원</b>이다. 갑의 어머니 정이 생존해 있다(아버지는 사망).</p>',
+ stem:'정이 청구할 수 있는 유류분은 몇 억 원인가? (숫자만)',acc:['1'],show:'1억 원',e:'법정상속분: 을 1.5 : 정 1 → 7.5억 ÷ 2.5 = 3억 → 정 3억. 직계존속 유류분은 <b>1/3</b> → <b>1억</b>.'},
+{id:'bi11',p:'상속',t:'s',hot:1,stem:'피상속인을 부양하거나 재산 유지에 기여한 상속인이 법원에 청구해 추가로 인정받는 몫은?',acc:['기여분'],show:'기여분',e:'<b>기여분</b>은 상속재산에서 먼저 떼어 주고, 나머지를 법정상속분대로 나눈다.'},
+{id:'bi12',p:'상속',t:'s',hot:1,stem:'재산과 빚의 규모가 불분명할 때, 파악된 상속재산의 한도 안에서만 빚을 갚겠다고 하는 것은?',acc:['한정승인'],show:'한정승인',e:'<b>한정승인</b>. 재산이 많으면 단순승인, 빚이 확실히 많으면 상속포기.'},
+{id:'bi13',p:'상속',t:'s',stem:'사망신고 후 정부24에서 피상속인의 부동산·차량·금융채무를 한꺼번에 조회하는 서비스는?',acc:['안심상속원스톱서비스','안심상속','안심상속원스톱','안심상속서비스'],show:'안심상속 원스톱서비스',e:'<b>안심상속 원스톱서비스</b>. 빚이 많으면 3개월 안에 대응해야 한다.'},
+
+/* 유언 */
+{id:'bw1',p:'유언',t:'b',hot:1,
+ sit:'<p>갑은 손글씨로 다음과 같은 유언장을 남겼다.</p><p style="border-left:3px solid var(--line);padding-left:10px">"나의 서울 노원구 ○○아파트 101동 1001호를 장남 A에게 준다. 2026. 9. 1. 갑 (서명)"</p><p>유언장에는 갑의 <b>주소와 생년월일이 적혀 있지 않다</b>.</p>',
+ stem:'위 유언장에 대한 설명으로 '+STEM,
+ o:['주소와 생년월일이 빠졌으므로 이 자필증서 유언은 무효이다.','재산이 동·호수까지 구체적으로 특정되어 있어 이 부분은 요건을 갖추었다.','유언장에 수익자 A를 유언집행자로 지정하는 문구를 넣어도 문제가 없다.','유언이 무효가 되면 갑의 재산은 법정상속에 따라 나누어진다.','분쟁을 줄이기 위해 가장 권장되는 유언 방식은 비밀증서이다.'],a:[0,1,3],
+ e:'<ul><li>자필증서 필수: <b>날짜·서명·주소·생년월일</b>. 하나라도 빠지면 무효.</li><li>재산 특정은 필수(동·호수까지).</li><li>ㄷ 수익자를 유언집행자로 지정할 수 없다. ㅁ 가장 권장되는 방식은 <b>공정증서</b>.</li></ul>'},
+{id:'bw2',p:'유언',t:'s',hot:1,stem:'질병·교통사고 등 급박한 상황에서 말로 유언하고 증인이 받아 적는 방식은?',acc:['구수증서','구수증서유언'],show:'구수증서',e:'<b>구수증서</b>(세부 내용은 시험 제외, 방식 이름은 범위).'},
+{id:'bw3',p:'유언',t:'s',hot:1,stem:'유언 내용을 봉투에 밀봉하고, 증인은 내용을 모른 채 서명하는 유언 방식은?',acc:['비밀증서','비밀증서유언'],show:'비밀증서',e:'<b>비밀증서</b>. 5가지: 자필증서·녹음·공정증서·비밀증서·구수증서.'},
+
+/* 혼인·이혼 */
+{id:'bm1',p:'혼인·이혼',t:'b',hot:1,
+ sit:'<p>혼인신고를 한 부부 갑과 을이 있다. 을은 갑 몰래 자녀 학원비로 500만 원을 빌렸다. 을은 혼인 전에 부모에게 상속받은 땅이 있고, 혼인 중에는 부모에게 아파트를 증여받았다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['갑과 을은 혼인신고를 했으므로 사실혼 관계이다.','학원비는 일상가사비용이므로 갑도 연대하여 갚을 책임이 있다.','부부별산제에 따라 학원비 채무는 빌린 을만 책임진다.','혼인 전에 상속받은 땅은 을의 고유재산이다.','혼인 중 증여받은 아파트는 특유재산으로, 이혼할 때 공동재산 분할 대상이 아니다.'],a:[1,3,4],
+ e:'<ul><li>혼인신고 = <b>법률혼</b>.</li><li>교육비·생활비 = <b>일상가사비용</b> → 몰래 빌렸어도 연대채무.</li><li>고유재산(혼인 전) · 특유재산(증여·우연) = 분할 대상 아님.</li></ul>'},
+{id:'bm2',p:'혼인·이혼',t:'b',stem:'재판상 이혼 사유에 대한 설명으로 '+STEM,
+ o:['남편이 모텔에 들어가는 사진과 연인과 주고받은 문자가 있다면 부정한 행위로 인정될 수 있다.','간통은 현재도 형사처벌 대상이다.','중병에 걸린 배우자를 알면서도 돌보지 않으면 악의의 유기에 해당한다.','회복이 불가능한 조울증은 판례상 기타 중대한 사유로 인정된 바 있다.','부정행위를 저지른 남편도 그 부정행위를 이유로 재판상 이혼을 청구할 수 있다.'],a:[0,2,3],
+ e:'<ul><li>부정한 행위는 간통보다 넓은 개념. 간통은 현재 형사처벌 없음.</li><li>ㅁ <b>유책배우자는 재판상 이혼 청구 불가</b>.</li></ul>'},
+{id:'bm3',p:'혼인·이혼',t:'b',
+ sit:'<p>전업주부 갑의 남편 을이 <b>4년째 행방불명</b>이다. 부부의 재산은 모두 을의 명의로 되어 있다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['갑은 전업주부이므로 재산 형성 기여가 인정되지 않는다.','갑은 3년 이상 생사불명을 이유로 재판상 이혼을 청구할 수 있다.','재판상 이혼을 하면 재산은 1:1로 분할한다.','실종선고는 실종 신고 후 3년이 지나면 받을 수 있다.','갑이 임신 중이라면 태아 몫을 포함해 1:1.5 비율로 분할한다.'],a:[1,2,4],
+ e:'<ul><li>3년 이상 생사불명 → 재판상 이혼 사유.</li><li>재산 1:1(전업주부도 동일), 임신 중이면 1:1.5. 사산 시 시부모와 재분할.</li><li>ㄹ 실종선고는 <b>5년</b> → 이혼이 아닌 사망 간주.</li></ul>'},
+{id:'bm4',p:'혼인·이혼',t:'b',
+ sit:'<p>갑과 을이 이혼하면서 10살 자녀 C의 양육권은 을이 갖기로 하였다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['갑은 양육권이 없어도 C를 만날 수 있는 면접교섭권을 가진다.','갑이 양육비를 주지 않았다면 C가 성년이 된 뒤에는 더 이상 청구할 수 없다.','갑에게 가정폭력 전력이 있다면 면접교섭권이 제한될 수 있다.','양육비는 C가 만 20세가 될 때까지 지급해야 한다.','C 명의의 계약을 대신 체결하는 것은 친권의 내용이다.'],a:[0,2,4],
+ e:'<ul><li>양육비는 <b>만 18세</b>까지, 미성년 때 미지급분은 성년 후에도 <b>소급 청구 가능</b>.</li><li>친권 = 재산관리권 + 법률행위 대리권. 양육권 = 함께 살 권리.</li></ul>'},
+{id:'bm5',p:'혼인·이혼',t:'s',stem:'미성년 자녀가 없고 임신 중도 아닌 부부가 협의이혼할 때 숙려기간은 몇 개월인가? (숫자만)',acc:['1'],show:'1개월',e:'자녀·임신 있으면 3개월, 그 외 <b>1개월</b>. 재판상 이혼 조정기간(4주)과 구별.'},
+{id:'bm6',p:'혼인·이혼',t:'s',stem:'이혼조정이 성립했을 때 작성되며, 1개월 이내에 이혼신고서와 함께 제출하는 문서는?',acc:['조정조서'],show:'조정조서',e:'<b>조정조서</b> → 1개월 이내 신고(넘기면 과태료). 협의이혼 확인서는 3개월.'},
+{id:'bm7',p:'혼인·이혼',t:'s',stem:'이혼 후 위자료는 몇 년 이내에 청구해야 하는가? (숫자만)',acc:['3'],show:'3년',e:'위자료 <b>3년</b>, 재산분할 2년.'},
+{id:'bm8',p:'혼인·이혼',t:'s',stem:'이혼 후 재산분할은 몇 년 이내에 청구해야 하는가? (숫자만)',acc:['2'],show:'2년',e:'재산분할 <b>2년</b>(유책 여부 무관), 위자료 3년.'},
+
+/* 범죄·수사 */
+{id:'bc1',p:'범죄·수사',t:'b',
+ sit:'<p>갑과 을이 술집에서 1대1로 주먹다짐을 하였다. 이를 본 병이 말리면서 갑과 을을 둘 다 밀쳤다. 이후 을은 전치 2주 진단서를 경찰에 제출하였다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['갑이 먼저 맞았다면 갑의 행위는 정당방위로 인정된다.','갑과 을의 싸움은 쌍방폭행이다.','을이 진단서를 제출했더라도 갑과 합의하면 반의사불벌죄로 사건이 끝난다.','병은 싸움을 말렸더라도 특수폭행으로 처벌받을 수 있다.','담당 형사가 "합의를 보라"고 권한다면 합의가 유리하다는 신호로 볼 수 있다.'],a:[1,3,4],
+ e:'<ul><li>1대1 싸움 = 쌍방폭행, 정당방위 인정 안 됨.</li><li>진단서 제출 → <b>폭행치상(상해)</b>으로 바뀌어 반의사불벌죄 적용 불가.</li><li>말리다 양쪽에 손대면 특수폭행(2대1).</li></ul>'},
+{id:'bc2',p:'범죄·수사',t:'b',stem:'명예훼손과 직장 내 성희롱에 대한 설명으로 '+STEM,
+ o:['회사 단체 대화방에 동료의 실제 이혼 사실을 퍼뜨리면 사실이라도 명예훼손이 될 수 있다.','친한 동료 한 명에게만 비밀이라며 말한 험담은 퍼질 가능성이 없어 문제되지 않는다.','사장이 직원의 외모를 평가하는 언어적 성희롱을 하면 형사처벌될 수 있다.','부장이 같은 언어적 성희롱을 하면 형사처벌된다.','SNS를 통한 명예훼손은 정보통신망법에 따라 가중처벌된다.'],a:[0,2,4],
+ e:'<ul><li>사실적시 명예훼손죄 존재. 비밀은 100% 전파된다고 봐야 한다.</li><li>사장의 언어적 성희롱은 형사처벌 가능, 과장·부장은 <b>징계</b>.</li></ul>'},
+{id:'bc3',p:'범죄·수사',t:'b',stem:'수사의 시작과 출석에 대한 설명으로 '+STEM,
+ o:['고소·고발·자수·신고는 수사가 시작되는 단서가 된다.','임의출석한 사람은 조사 도중 언제든지 자유롭게 나갈 수 있다.','내사가 종결되더라도 그 사람은 입건된다.','경찰 소환 문자를 받으면 문자 속 링크를 눌러 확인하는 것이 안전하다.','정당한 이유 없이 출석요구에 3회 이상 응하지 않으면 체포영장이 발부될 수 있다.'],a:[0,1,4],
+ e:'<ul><li>ㄷ 내사 종결 시 <b>입건 불가</b>.</li><li>ㄹ 링크 클릭 금지, 경찰서 <b>대표번호로 직접 확인</b>.</li></ul>'},
+{id:'bc4',p:'범죄·수사',t:'b',stem:'체포·구속에 대한 설명으로 '+STEM,
+ o:['긴급체포는 중대범죄에 대해 영장 없이 체포한 뒤 사후에 검사의 승인을 받는다.','구속영장실질심사는 구속된 이후 그 적법성을 다시 심사하는 제도이다.','구속기간은 경찰 단계 10일, 검찰 단계 20일이다.','1심 재판 중 구속기간은 최대 6개월이다.','압수수색영장은 경찰이 스스로 발부한다.'],a:[0,2,3],
+ e:'<ul><li>ㄴ 그건 <b>구속적부심사</b>. 실질심사는 영장 발부 <b>전</b>.</li><li>구속기간: 경찰 10일 → 검찰 20일 → 1심 6개월 → 2심 4개월 → 3심 4개월.</li><li>ㅁ 압수수색영장은 <b>법원</b>이 발부.</li></ul>'},
+{id:'bc5',p:'범죄·수사',t:'b',stem:'조사와 기소에 대한 설명으로 '+STEM,
+ o:['피의자신문조서는 피의자를 문답식으로 조사한 조서로 강력한 증거가 된다.','무혐의로 불기소된 사건은 나중에 새 증거가 나와도 기소할 수 없다.','참고인은 재판 단계에서 증인으로 신분이 바뀐다.','약식명령은 판사가 법정에서 피고인을 직접 불러 선고한다.','공소 제기 여부는 경찰도 결정할 수 있다.'],a:[0,2],
+ e:'<ul><li>ㄴ 증거가 나오면 기소 가능.</li><li>ㄹ 약식기소는 <b>서류재판</b>, 약식명령은 등기로 발송.</li><li>ㅁ 공소 제기는 <b>오로지 검사</b>의 권한.</li></ul>'},
+{id:'bc6',p:'범죄·수사',t:'b',
+ sit:'<p>을은 갑에게 사기를 당해 2천만 원의 피해를 입었다. 검사는 갑을 <b>정식기소</b>하였다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['갑이 약식기소되었더라도 을은 배상명령을 신청할 수 있다.','을은 형사재판 중 배상명령을 신청해 민사소송 없이 배상을 받을 수 있다.','갑이 법원에 공탁만 하면 피해자의 용서와 상관없이 크게 감형된다.','배상명령이 나오면 갑의 월급·전세보증금을 압류할 수 있다.','갑이 미성년자라면 부모가 배상 책임을 진다.'],a:[1,3,4],
+ e:'<ul><li>배상명령은 <b>정식기소된 경우에만</b>.</li><li>최근에는 피해자 용서 여부까지 보므로 공탁만으로는 감형 효과가 제한된다.</li></ul>'},
+{id:'bc7',p:'범죄·수사',t:'s',stem:'내사(입건 전 조사) 단계에서 혐의를 받는 사람을 부르는 말은?',acc:['용의자'],show:'용의자',e:'<b>용의자</b> → (입건) 피의자 → (기소) 피고인 → (확정) 수형자.'},
+{id:'bc8',p:'범죄·수사',t:'s',stem:'체포 후 조사할 수 있는 최대 시간은 몇 시간인가? (숫자만)',acc:['48'],show:'48시간',e:'<b>48시간</b>. 더 구금하려면 그 안에 구속영장 청구.'},
+{id:'bc9',p:'범죄·수사',t:'s',stem:'친고죄의 대표적인 예로, 피해자가 고소해야만 처벌할 수 있는 범죄는?',acc:['모욕죄','모욕'],show:'모욕죄',e:'<b>모욕죄</b>. 범인을 안 날부터 6개월 내 고소, 취소하면 재고소 불가.'},
+{id:'bc10',p:'범죄·수사',t:'s',stem:'약식명령에 불복하여 정식재판을 청구하려면 며칠 이내에 해야 하는가? (숫자만)',acc:['7'],show:'7일',e:'<b>7일</b> 이내 이의 → 정식재판.'},
+{id:'bc11',p:'범죄·수사',t:'s',stem:'수사기관 개편으로 검찰청은 어떤 이름의 기관으로 바뀌었는가?',acc:['공소청'],show:'공소청',e:'검찰청 → <b>공소청</b>. 수사는 사법경찰관(경찰청·중수청)이 담당.'},
+
+/* 형벌 */
+{id:'bp1',p:'형벌',t:'b',hot:1,
+ sit:'<p>공무원 갑은 뇌물 2억 원을 받아 모두 써 버렸고, <b>징역 5년</b>을 선고받았다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['받은 돈을 이미 써서 몰수할 수 없으므로 그 금액을 추징한다.','유기징역을 선고받았으므로 자격상실이 함께 따른다.','유기징역을 선고받았으므로 일정 기간 자격정지가 따른다.','갑이 만기 출소하면 5년간 전과 조회가 된다.','갑에 대한 형벌 집행은 판사가 지휘한다.'],a:[0,2],
+ e:'<ul><li>자격상실은 사형·<b>무기</b>징역·무기금고, 자격정지는 <b>유기</b>징역·유기금고.</li><li>ㄹ 3년 초과 징역 → 출소 후 <b>10년</b>.</li><li>ㅁ 모든 형벌은 <b>검사</b> 지휘로 집행.</li></ul>'},
+{id:'bp2',p:'형벌',t:'b',hot:1,stem:'형벌과 행정벌에 대한 설명으로 '+STEM,
+ o:['주차위반 과태료를 냈다고 해서 전과가 생기지는 않는다.','구류는 1일 이상 90일 이하이다.','과태료·범칙금·과징금은 판사가 아닌 행정부가 부과한다.','500만 원 이하 벌금에 집행유예를 붙일 수 있는 제도는 2009년에 생겼다.','5만 원 미만의 재산형은 과료에 해당한다.'],a:[0,2,4],
+ e:'<ul><li>구류 1~<b>30일</b>. 과료 2,000원 이상 5만 원 미만.</li><li>300만 원 이하 사회봉사 대체 = 2009년, 500만 원 이하 집행유예 = <b>2018년</b>.</li></ul>'},
+{id:'bp3',p:'형벌',t:'b',hot:1,
+ sit:'<p>갑은 무기징역으로 22년째 복역 중인 모범수이다. 을은 징역 9년을 선고받고 2년째 복역 중이다. 병은 금고 3년 복역 중 암에 걸렸다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['을은 최소 3년을 복역해야 가석방 심사를 받을 수 있다.','갑은 가석방 심사 대상이 될 수 있다.','병이 형 집행정지로 병원 치료를 받은 기간은 형기에 포함된다.','을이 가석방되면 10년간 보호관찰을 받는다.','갑이 가석방되면 10년간 보호관찰을 받는다.'],a:[0,1,4],
+ e:'<ul><li>심사: 무기 20년, 유기 1/3(9년 → 3년).</li><li>보호관찰: 유기 = <b>잔여 형기</b>, 무기 = <b>10년</b>.</li><li>형 집행정지 기간은 형기에 합산되지 않는다.</li></ul>'},
+{id:'bp4',p:'형벌',t:'s',hot:1,stem:'벌금을 내지 않아 노역장에 유치될 때 1일을 얼마로 환산하는가? (만 원 단위 숫자만)',acc:['10','10만','100000'],show:'10만 원',e:'1일 <b>10만 원</b>, 유치 기간은 1일 이상 3년 이하.'},
+{id:'bp5',p:'형벌',t:'s',hot:1,stem:'징역과 금고를 구분하는 기준으로, 징역형에만 부과되는 작업을 무엇이라 하는가?',acc:['정역','정역복무'],show:'정역',e:'<b>정역</b>(작업) 복무 여부. 금고는 과실범·정치범에게 주로 선고.'},
+{id:'bp6',p:'형벌',t:'s',hot:1,stem:'경찰청이 보관하는 전과기록의 명칭은?',acc:['범죄경력자료'],show:'범죄경력자료',e:'검찰청 수형인명부 · 읍면동 수형인명표 · 경찰청 <b>범죄경력자료</b>.'},
+{id:'bp7',p:'형벌',t:'s',hot:1,stem:'무기징역 수형자가 가석방 심사를 받으려면 최소 몇 년을 복역해야 하는가? (숫자만)',acc:['20'],show:'20년',e:'무기 <b>20년</b>, 유기 형기의 1/3.'},
+{id:'bp8',p:'형벌',t:'s',hot:1,stem:'벌금형의 전과 조회 기간은 부과된 때부터 몇 년인가? (숫자만)',acc:['2'],show:'2년',e:'벌금 <b>2년</b>, 3년 이하 징역·금고 5년, 3년 초과 10년.'},
+
+/* 교통사고 */
+{id:'bt1',p:'교통사고',t:'b',hot:1,
+ sit:'<p>종합보험에 가입한 갑은 빨간불에 횡단보도 앞 정지선을 넘어 전진하다가 보행자 을에게 전치 2주의 상처를 입혔다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['사람이 다치지 않았으므로 대물사고로 처리된다.','횡단보도 앞 전진도 신호위반사고에 포함된다.','12대 중과실에 해당하므로 종합보험에 가입했어도 형사처벌 대상이다.','을과 합의서를 쓸 때 후유증 조항은 넣지 않아도 된다.','갑에게는 업무상 과실치상죄가 성립할 수 있다.'],a:[1,2,4],
+ e:'<ul><li>사람이 다치면 대인사고 → 업무상 과실치상(사망 시 치사).</li><li>신호위반은 12대 중과실 1번 → 종합보험이어도 처벌.</li><li>ㄹ "후유증 발생 시 가해자가 치료 및 손해 배상" 조항 필수.</li></ul>'},
+{id:'bt2',p:'교통사고',t:'b',
+ sit:'<p>정상 운전 중이던 갑의 차를 을의 차가 들이받았다. 을에게서 술 냄새가 났다.</p>',
+ stem:'위 사례에 대한 설명으로 '+STEM,
+ o:['을의 음주가 의심되면 즉시 경찰에 신고하는 것이 좋다.','을의 음주운전 사고도 을의 보험사가 처리해 준다.','을이 음주를 인정하면 음주량·장소·시간에 대한 말을 녹화·녹음해 둔다.','고속도로라면 차에서 내려 을과 직접 따지는 것이 증거 확보에 좋다.','과실비율은 형사 사항이므로 경찰이 정한다.'],a:[0,2],
+ e:'<ul><li>음주운전 사고는 보험 처리 불가, 가해자 전액 자비 부담.</li><li>고속도로에서 내려 시비하면 2차 사고 위험.</li><li>과실비율은 <b>민사</b> 사항 → 보험사, 이의는 금융감독원.</li></ul>'},
+{id:'bt3',p:'교통사고',t:'b',stem:'교통사고와 보험에 대한 설명으로 '+STEM,
+ o:['후진하다 사람을 다치게 한 사고는 형사처벌 대상이 아니다.','일부 렌트 오토바이는 책임보험만 들어 있으므로 확인이 필요하다.','인도로 차가 돌진해 사람을 다치게 한 사고는 12대 중과실에 해당하지 않는다.','책임보험은 피해액의 일부만 보상하고, 초과분은 가해자가 부담한다.','무보험 차량이라도 피해자와 형사합의하면 종합보험과 같이 처리될 수 있다.'],a:[1,3,4],
+ e:'<ul><li>후진사고도 형사처벌 대상 → 비상등 켜고 후진, 블랙박스 녹음.</li><li>인도 돌진은 12대 중과실 <b>9번</b>.</li></ul>'},
+{id:'bt4',p:'교통사고',t:'s',hot:1,stem:'뺑소니 성립 요건: 구호조치 미이행 또는 (   ) 미제공. 빈칸은?',acc:['연락처','인적사항'],show:'연락처',e:'둘 중 하나라도 해당하면 뺑소니. 연락처는 피해자와 <b>병원</b>에도 남긴다.'},
+{id:'bt5',p:'교통사고',t:'s',hot:1,stem:'12대 중과실 중 8번에 해당하는 것은?',acc:['음주운전','주취운전','음주','음주(주취)운전'],show:'음주(주취)운전',e:'8번 <b>음주(주취)운전</b>. 1 신호위반, 2 중앙선, 3 속도 20km 초과, 6 신호등 없는 횡단보도, 9 인도 돌진, 11 스쿨존.'},
+{id:'bt6',p:'교통사고',t:'s',stem:'대인사고가 났을 때 구호의무를 위해 함께 신고해야 하는 번호는?',acc:['119'],show:'119',e:'<b>119</b> 동시 신고. 현장 이탈 금지.'}
+];
+/* 정답 위치가 한쪽으로 몰리지 않도록 일부 문항의 지문 순서를 섞어 둠 */
+var PERM={bi6:[1,3,4,0,2],bm1:[3,1,0,4,2],bc1:[1,2,0,3,4],bc6:[3,0,4,1,2],bt3:[3,4,0,1,2]};
+QB.forEach(function(q){var pm=PERM[q.id];if(!pm)return;var a0=q.a,o0=q.o;q.o=pm.map(function(i){return o0[i]});q.a=pm.map(function(i,ni){return a0.indexOf(i)>=0?ni:-1}).filter(function(x){return x>=0})});
+Q.forEach(function(q){q.set='A'});QB.forEach(function(q){q.set='B'});Q=Q.concat(QB);
+
 /* ---------- 저장소 ---------- */
 var LS='lawquiz-v1', S={items:{},res:{}}, dbRef=null, saveT=null, saving=Promise.resolve();
 function lsGet(){try{var r=localStorage.getItem(LS);return r?JSON.parse(r):null}catch(e){return null}}
@@ -494,11 +677,13 @@ function setSync(s){var el=document.getElementById('sync');
 
 /* ---------- 상태 ---------- */
 var parts=['전체','친족','상속','유언','혼인·이혼','범죄·수사','형벌','교통사고'];
-var V={tab:'quiz',part:'전체',onlyWrong:false,shuffle:false,list:[],idx:0,sess:{},nf:'open',single:null};
+var V={tab:'quiz',set:'A',part:'전체',onlyWrong:false,shuffle:false,list:[],idx:0,sess:{},nf:'open',single:null};
+var SETS=[['A','세트 A'],['B','세트 B (새 문제)'],['all','A+B 전체']];
+function inSet(q,s){return s==='all'||s==='AB'||q.set===s}
 function byId(id){for(var i=0;i<Q.length;i++)if(Q[i].id===id)return Q[i]}
 function openWrong(){return Object.keys(S.items).filter(function(k){return !S.items[k].done&&byId(k)})}
 function buildList(){
-  var l=Q.filter(function(q){return (V.part==='전체'||q.p===V.part)&&(!V.onlyWrong||(S.items[q.id]&&!S.items[q.id].done))}).map(function(q){return q.id});
+  var l=Q.filter(function(q){return inSet(q,V.set)&&(V.part==='전체'||q.p===V.part)&&(!V.onlyWrong||(S.items[q.id]&&!S.items[q.id].done))}).map(function(q){return q.id});
   if(V.single)l=[V.single];
   if(V.shuffle){for(var i=l.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=l[i];l[i]=l[j];l[j]=t}}
   V.list=l; if(V.idx>=l.length)V.idx=0;
@@ -510,7 +695,9 @@ function pickText(q,pk){return q.t==='b'?(pk.length?pk.slice().sort().map(functi
 
 /* ---------- 문제 화면 ---------- */
 function renderChips(){
-  var h=parts.map(function(p){var n=p==='전체'?Q.length:Q.filter(function(q){return q.p===p}).length;
+  document.getElementById('setChips').innerHTML=SETS.map(function(s){var n=Q.filter(function(q){return inSet(q,s[0])}).length;
+    return '<button class="chip" data-set="'+s[0]+'" aria-pressed="'+(V.set===s[0])+'">'+s[1]+' · '+n+'</button>'}).join('');
+  var h=parts.map(function(p){var n=Q.filter(function(q){return inSet(q,V.set)&&(p==='전체'||q.p===p)}).length;
     return '<button class="chip" data-part="'+p+'" aria-pressed="'+(V.part===p)+'">'+p+' '+n+'</button>'}).join('');
   document.getElementById('partChips').innerHTML=h;
   document.getElementById('onlyWrong').setAttribute('aria-pressed',V.onlyWrong);
@@ -520,7 +707,7 @@ function renderQ(){
   var box=document.getElementById('qcard');
   if(!V.list.length){box.innerHTML='<div class="empty"><b>풀 문제가 없어요</b>'+(V.onlyWrong?'미해결 오답이 없습니다. 전체 문제를 풀고 틀린 문제가 생기면 여기에 모입니다.':'선택한 파트에 문제가 없습니다.')+'</div>';renderGrid();return;}
   var q=byId(V.list[V.idx]),st=V.sess[q.id]||{pk:q.t==='b'?[]:''},it=S.items[q.id];
-  var h='<div class="card"><div class="qhead"><span class="qno">'+(V.idx+1)+'</span><span>/ '+V.list.length+'</span><span class="tag">'+q.p+'</span><span class="tag">'+(q.t==='b'?'박스형 · 2점':'단답형')+'</span>'+(q.hot?'<span class="hot">출제</span>':'')+(it&&!it.done?'<span class="prev-wrong">이전에 '+it.n+'회 틀림</span>':'')+'</div>';
+  var h='<div class="card"><div class="qhead"><span class="qno">'+(V.idx+1)+'</span><span>/ '+V.list.length+'</span><span class="tag">세트 '+q.set+'</span><span class="tag">'+q.p+'</span><span class="tag">'+(q.t==='b'?'박스형 · 2점':'단답형')+'</span>'+(q.hot?'<span class="hot">출제</span>':'')+(it&&!it.done?'<span class="prev-wrong">이전에 '+it.n+'회 틀림</span>':'')+'</div>';
   if(q.sit||q.tr){h+='<div class="sit"><div class="lab">&lt;상황&gt;</div>'+(q.sit||'')+(q.tr?tree(q.tr):'')+'</div>';}
   h+='<p class="stem">'+q.stem+(q.t==='b'?' <small>(부분점수 없음)</small>':'')+'</p>';
   if(q.t==='b'){
@@ -578,7 +765,7 @@ function renderNote(){
   var L=document.getElementById('noteList');
   if(!ids.length){L.innerHTML='<div class="empty"><b>'+(V.nf==='done'?'해결한 오답이 아직 없어요':'기록된 오답이 없어요')+'</b>문제를 풀다 틀리면 내 답·정답·해설이 자동으로 여기에 모이고, 메모를 남길 수 있어요.</div>';return;}
   L.innerHTML=ids.map(function(k){var q=byId(k),it=S.items[k];
-    return '<article class="nitem'+(it.done?' done':'')+'"><div class="meta"><span class="tag">'+q.p+'</span>'+(q.hot?'<span class="hot">출제</span>':'')+'<span><b>'+it.n+'회</b> 틀림</span>'+(it.re?'<span>이후 '+it.re+'회 맞힘</span>':'')+'<span>최근 '+fmt(it.t)+'</span></div>'+
+    return '<article class="nitem'+(it.done?' done':'')+'"><div class="meta"><span class="tag">세트 '+q.set+'</span><span class="tag">'+q.p+'</span>'+(q.hot?'<span class="hot">출제</span>':'')+'<span><b>'+it.n+'회</b> 틀림</span>'+(it.re?'<span>이후 '+it.re+'회 맞힘</span>':'')+'<span>최근 '+fmt(it.t)+'</span></div>'+
      '<div class="q">'+q.stem+'</div>'+
      ((q.sit||q.tr)?'<details><summary>상황 보기</summary><div class="sit">'+(q.sit||'')+(q.tr?tree(q.tr):'')+'</div></details>':'')+
      (q.t==='b'?'<details><summary>지문 보기</summary><ol style="list-style:none;padding:0;margin:4px 0">'+q.o.map(function(o,i){return '<li><b>'+K[i]+'.</b> '+esc(o)+(q.a.indexOf(i)>=0?' <span style="color:var(--ok);font-weight:600">(옳음)</span>':'')+'</li>'}).join('')+'</ol></details>':'')+
@@ -593,16 +780,18 @@ function updateCnt(){document.getElementById('noteCnt').textContent=openWrong().
 /* ---------- 모의고사 ---------- */
 var MQ={b:{'친족':2,'상속':5,'유언':1,'혼인·이혼':2,'범죄·수사':3,'형벌':1,'교통사고':1},s:{'친족':1,'상속':3,'유언':1,'혼인·이혼':1,'범죄·수사':2,'형벌':1,'교통사고':1}};
 var PTS={b:2,s:1},MK='lawquiz-mock-v1',mTimer=null;
-var M={phase:'start',limit:50,qs:[],ans:{},start:0,res:null,rf:'all'};
-(function(){try{var r=localStorage.getItem(MK);if(r){var o=JSON.parse(r);if(o&&o.phase)M=o}}catch(e){}})();
+var M={phase:'start',limit:50,set:'B',qs:[],ans:{},start:0,res:null,rf:'all'};
+(function(){try{var r=localStorage.getItem(MK);if(r){var o=JSON.parse(r);if(o&&o.phase){M=o;if(!M.set)M.set='A';M.qs=(M.qs||[]).filter(byId)}}}catch(e){}})();
+var MSETS=[['A','세트 A'],['B','세트 B (새 문제)'],['AB','A+B 섞어서']];
+function setName(s){return s==='AB'?'A+B':'세트 '+s}
 function mSave(){try{localStorage.setItem(MK,JSON.stringify(M))}catch(e){}}
 function pickN(a,n){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a.slice(0,n)}
 function drawMock(){var out=[];['b','s'].forEach(function(t){parts.slice(1).forEach(function(p){
-  var pool=Q.filter(function(q){return q.t===t&&q.p===p}).map(function(q){return q.id});
+  var pool=Q.filter(function(q){return q.t===t&&q.p===p&&inSet(q,M.set)}).map(function(q){return q.id});
   out=out.concat(pickN(pool,MQ[t][p]).sort(function(x,y){return pool.indexOf(x)-pool.indexOf(y)}));});});return out}
 function mAnswered(id){var a=M.ans[id],q=byId(id);return q.t==='b'?!!(a&&a.length):!!(a&&String(a).trim())}
 function mm(ms){ms=Math.max(0,ms);var s=Math.round(ms/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
-function startMock(){M={phase:'exam',limit:M.limit,qs:drawMock(),ans:{},start:Date.now(),res:null,rf:'all'};mSave();runTimer();setTab('mock');window.scrollTo(0,0)}
+function startMock(){M={phase:'exam',limit:M.limit,set:M.set,qs:drawMock(),ans:{},start:Date.now(),res:null,rf:'all'};mSave();runTimer();setTab('mock');window.scrollTo(0,0)}
 function runTimer(){clearInterval(mTimer);if(M.phase==='exam'){mTimer=setInterval(updTimer,1000);updTimer()}}
 function updTimer(){if(M.phase!=='exam'){clearInterval(mTimer);return}
   var el=document.getElementById('mTime'),now=Date.now();
@@ -617,7 +806,7 @@ function examHtml(){
   var h='<div class="exbar"><b>모의고사</b><span id="mAnswered"></span><span class="grow"></span><span class="clock" id="mTime"></span><button class="btn" data-m="ask">답안 제출</button>'+
    '<div class="confirm" id="mConfirm" hidden></div></div>';
   h+='<div class="omr" aria-label="문항 바로가기">'+M.qs.map(function(id,i){return '<button data-mj="'+i+'" aria-label="'+(i+1)+'번으로">'+(i+1)+'</button>'}).join('')+'</div>';
-  h+='<div class="sheet"><div class="shead"><h2>2026학년도 2학기 법과권리 중간고사 (모의)</h2><div class="meta">박스형 '+nb+'문항 × '+PTS.b+'점 · 단답형 '+ns+'문항 × '+PTS.s+'점 · 총 '+total+'점'+(M.limit>0?' · 제한 '+M.limit+'분':'')+'</div></div><div class="cols">';
+  h+='<div class="sheet"><div class="shead"><h2>2026학년도 2학기 법과권리 중간고사 (모의)</h2><div class="meta">'+setName(M.set)+' · 박스형 '+nb+'문항 × '+PTS.b+'점 · 단답형 '+ns+'문항 × '+PTS.s+'점 · 총 '+total+'점'+(M.limit>0?' · 제한 '+M.limit+'분':'')+'</div></div><div class="cols">';
   var no=0;
   h+='<h3 class="sec">Ⅰ. 박스형 — 옳은 것을 있는 대로 고르시오 (각 '+PTS.b+'점, 부분점수 없음)</h3>';
   M.qs.forEach(function(id){var q=byId(id);if(q.t!=='b')return;no++;var pk=M.ans[id]||[];
@@ -644,23 +833,24 @@ function submitMock(auto){if(M.phase!=='exam')return;clearInterval(mTimer);
     else if(it){it.re=(it.re||0)+1;it.t=now}});
   var used=Math.min(now-M.start,M.limit>0?M.limit*60000:Infinity),total=nb*PTS.b+ns*PTS.s;
   M.res={sc:sc,total:total,bo:bo,nb:nb,so:so,ns:ns,used:used,auto:!!auto,per:per};M.phase='result';M.rf='all';
-  (S.hist=S.hist||[]).push({t:now,sc:sc,total:total,bo:bo,nb:nb,so:so,ns:ns,used:used,limit:M.limit});S.hist=S.hist.slice(-30);
+  (S.hist=S.hist||[]).push({t:now,sc:sc,total:total,bo:bo,nb:nb,so:so,ns:ns,used:used,limit:M.limit,set:M.set});S.hist=S.hist.slice(-30);
   save();mSave();updateCnt();if(V.tab==='mock'){renderMock();window.scrollTo(0,0)}}
 function startHtml(){
   var h='<div class="mstart"><div class="card"><div class="qhead"><span class="qno">실전 모의고사</span></div>'+
    '<ul class="rules"><li><b>구성</b>: 박스형 15문항 × 2점 + 단답형 10문항 × 1점 = <b>40점</b> (중간고사 반영 비율과 같은 40점 만점)</li>'+
-   '<li>강의 진도 순서대로, 파트별 비중을 맞춰 59문항 중에서 매번 새로 뽑아요. 상속은 사례형 위주로 8문항이 나와요.</li>'+
+   '<li>고른 세트에서 강의 진도 순서대로, 파트별 비중을 맞춰 매번 새로 뽑아요. 상속은 사례형 위주로 8문항이 나와요.</li>'+
    '<li>박스형은 옳은 지문을 <b>모두</b> 골라야 정답이고 <b>부분점수는 없어요</b>. 단답형은 단어·수치를 직접 써요.</li>'+
    '<li>시험 중에는 정답이 보이지 않아요. 시간이 끝나면 자동으로 제출되고, 틀린 문제는 오답 노트로 들어가요.</li>'+
    '<li>단답형 배점은 강의에서 언급되지 않아 1점으로 정했어요.</li></ul>'+
-   '<div class="tools" style="margin-top:14px"><span style="font-size:14px;font-weight:600">제한 시간</span>'+[40,50,60,0].map(function(m){return '<button class="chip" data-mt="'+m+'" aria-pressed="'+(M.limit===m)+'">'+(m?m+'분':'제한 없음')+'</button>'}).join('')+'</div>'+
+   '<div class="tools" style="margin-top:14px"><span style="font-size:14px;font-weight:600">출제 범위</span>'+MSETS.map(function(s){return '<button class="chip" data-mset="'+s[0]+'" aria-pressed="'+(M.set===s[0])+'">'+s[1]+'</button>'}).join('')+'</div>'+
+   '<div class="tools"><span style="font-size:14px;font-weight:600">제한 시간</span>'+[40,50,60,0].map(function(m){return '<button class="chip" data-mt="'+m+'" aria-pressed="'+(M.limit===m)+'">'+(m?m+'분':'제한 없음')+'</button>'}).join('')+'</div>'+
    '<div class="actions"><button class="btn" data-m="start">시험 시작</button></div></div>';
   var hs=(S.hist||[]).slice().reverse();
   h+='<div class="card"><div class="qhead"><span style="font-weight:700;color:var(--ink);font-size:15px">지난 응시 기록</span></div>';
   if(!hs.length)h+='<p style="margin:0;color:var(--muted)">아직 응시 기록이 없어요. 첫 모의고사를 보면 점수와 소요 시간이 여기에 쌓여요.</p>';
   else{var best=Math.max.apply(null,hs.map(function(x){return x.sc})),avg=hs.reduce(function(s,x){return s+x.sc},0)/hs.length;
-    h+='<p style="margin:0 0 8px;font-size:14px">응시 '+hs.length+'회 · 최고 <b>'+best+'점</b> · 평균 '+avg.toFixed(1)+'점</p><div style="overflow-x:auto"><table class="hist"><tr><th>일시</th><th>점수</th><th>박스형</th><th>단답형</th><th>소요</th></tr>'+
-    hs.map(function(x){return '<tr><td>'+fmt(x.t)+'</td><td><b>'+x.sc+'</b> / '+x.total+'</td><td>'+x.bo+'/'+x.nb+'</td><td>'+x.so+'/'+x.ns+'</td><td>'+Math.round(x.used/60000)+'분'+(x.limit?' / '+x.limit+'분':'')+'</td></tr>'}).join('')+'</table></div>';}
+    h+='<p style="margin:0 0 8px;font-size:14px">응시 '+hs.length+'회 · 최고 <b>'+best+'점</b> · 평균 '+avg.toFixed(1)+'점</p><div style="overflow-x:auto"><table class="hist"><tr><th>일시</th><th>범위</th><th>점수</th><th>박스형</th><th>단답형</th><th>소요</th></tr>'+
+    hs.map(function(x){return '<tr><td>'+fmt(x.t)+'</td><td>'+setName(x.set||'A')+'</td><td><b>'+x.sc+'</b> / '+x.total+'</td><td>'+x.bo+'/'+x.nb+'</td><td>'+x.so+'/'+x.ns+'</td><td>'+Math.round(x.used/60000)+'분'+(x.limit?' / '+x.limit+'분':'')+'</td></tr>'}).join('')+'</table></div>';}
   return h+'</div></div>';
 }
 function resultHtml(){var r=M.res;
@@ -693,6 +883,8 @@ document.addEventListener('click',function(e){
   if(b.id==='tab-quiz')return setTab('quiz');
   if(b.id==='tab-mock')return setTab('mock');
   if(b.dataset.mt!==undefined){M.limit=+b.dataset.mt;mSave();return renderMock()}
+  if(b.dataset.mset){M.set=b.dataset.mset;mSave();return renderMock()}
+  if(b.dataset.set){V.set=b.dataset.set;V.part='전체';V.idx=0;V.single=null;return renderAll()}
   if(b.dataset.mo){var pr=b.dataset.mo.split('|'),id=pr[0],ix=+pr[1],arr=M.ans[id]=M.ans[id]||[],at=arr.indexOf(ix);if(at>=0)arr.splice(at,1);else arr.push(ix);b.setAttribute('aria-pressed',at<0);mSave();return mUpd()}
   if(b.dataset.mj!==undefined){var t=document.getElementById('mi-'+M.qs[+b.dataset.mj]);if(t)t.scrollIntoView({block:'start'});return}
   if(b.dataset.mr){M.rf=b.dataset.mr;mSave();return renderMock()}
